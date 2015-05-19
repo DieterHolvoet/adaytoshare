@@ -158,3 +158,24 @@ div[data-role="page"] header h1 {
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
 }
+
+
+/************** Event Feed ****************/
+
+.eventHeader{
+    background-image: url(../img/eventbackground.jpg);
+    background-size: cover;
+    font-family: 'Raleway';
+    color: white;
+    width: 92%;
+    padding: 4%;
+    background-color: red;
+}
+
+.eventHeader h1{
+    font-size: 1.3em;
+}
+
+.eventHeader h2{
+    margin-top: 10px;
+}
