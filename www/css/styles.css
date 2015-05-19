@@ -88,6 +88,7 @@ div[data-role="page"] header {
     font-weight: 200;
     font-size: 18px;
     color: white;
+    height: 60px;
 }
 
 .navbarbtn {
@@ -99,11 +100,12 @@ div[data-role="page"] header {
     float: left;
 }
 
+div[data-role="page"] header h1 ~ .navbarbtn {
+    float: right;
+}
+
 div[data-role="page"] header h1 {
-    width: 100vw;
-    padding-left: 120px;
-/*    width: calc(100vw - 120px);*/
-    
+    max-width: calc(100vw - 120px);
     height: 60px;
     line-height: 60px;
     float: left;
