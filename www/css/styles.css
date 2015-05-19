@@ -116,7 +116,11 @@ div[data-role="page"] header h1 {
     text-overflow: ellipsis;
 }
 
-/*************** Nieuwfeed *************/
+/*************** Event Lijst *************/
+
+.ui-content{
+    background-color: #dfdfde;
+}
 
 .event{
     background-image: url(../img/eventbackground.jpg);
@@ -126,7 +130,6 @@ div[data-role="page"] header h1 {
     height: 125px;
     display: inline-block;
     margin: auto 0;
-    background-color: red;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
