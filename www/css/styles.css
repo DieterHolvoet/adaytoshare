@@ -119,8 +119,39 @@ div[data-role="page"] header h1 {
 /*************** Nieuwfeed *************/
 
 .event{
+    background-image: url(../img/eventbackground.jpg);
+    background-size: cover;
+    position: relative;
     width: 100%;
+    height: 125px;
     display: inline-block;
     margin: auto 0;
     background-color: red;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Raleway';
+}
+
+.event h1{
+    margin-left: 4%;
+    margin-top: 19%;
+    font-size: 1.2em;
+}
+
+.event section{
+    color: black;
+    position: absolute;
+    bottom: 0;
+    width: 92%;
+    padding: 4%;
+    height: 20px;
+    background-color: rgba(255,255,255,0.85);
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
