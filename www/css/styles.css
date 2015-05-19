@@ -1,4 +1,6 @@
-@import url("http://fonts.googleapis.com/css?family=Raleway:500,700,400,300");
+@import url("jquery.mobile-1.4.5.min.css");
+@import url("reset.css");
+@import url("jquery.ripple.css");
 
 /* CLEARFIX */
 
@@ -12,37 +14,99 @@
     clear: both;
 }
 
-/* PAGE LAYOUT */
+/* FONTS */
 
-.page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+@font-face {
+    font-family: 'Raleway';
+    src: url('raleway-light-webfont.eot');
+    src: url('raleway-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('raleway-light-webfont.woff2') format('woff2'),
+         url('raleway-light-webfont.woff') format('woff'),
+         url('raleway-light-webfont.ttf') format('truetype'),
+         url('raleway-light-webfont.svg#ralewaylight') format('svg');
+    src: url('raleway-medium-webfont.eot');
+    src: url('raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('raleway-medium-webfont.woff2') format('woff2'),
+         url('raleway-medium-webfont.woff') format('woff'),
+         url('raleway-medium-webfont.ttf') format('truetype'),
+         url('raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    src: url('raleway-regular-webfont.eot');
+    src: url('raleway-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('raleway-regular-webfont.woff2') format('woff2'),
+         url('raleway-regular-webfont.woff') format('woff'),
+         url('raleway-regular-webfont.ttf') format('truetype'),
+         url('raleway-regular-webfont.svg#ralewayregular') format('svg');
+    src: url('raleway-semibold-webfont.eot');
+    src: url('raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('raleway-semibold-webfont.woff2') format('woff2'),
+         url('raleway-semibold-webfont.woff') format('woff'),
+         url('raleway-semibold-webfont.ttf') format('truetype'),
+         url('raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
 }
- 
-.page.left {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    background-color: aquamarine;
+
+/* ICON FONT */
+
+@font-face {
+	font-family: 'adts';
+	src:url('../fonts/adts.eot?');
+	src:url('../fonts/adts.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/adts.woff') format('woff'),
+		url('../fonts/adts.ttf') format('truetype'),
+		url('../fonts/adts.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
- 
-.page.center {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    background-color: brown;
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'adts';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+    font-size: 25px;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
- 
-.page.right {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    background-color: chartreuse;
+
+.icon-plus:before {
+	content: "\e60a";
 }
- 
-.page.transition {
-    -webkit-transition-duration: .25s;
-    transition-duration: .25s;
+
+.icon-back:before {
+	content: "\e60b";
+}
+
+/* NAVBAR */
+
+div[data-role="page"] header {
+    background-color: #51b0c5;
+    font-family: Raleway, Arial, sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    color: white;
+}
+
+.navbarbtn {
+    width: 40px;
+    height: 60px;
+    margin: 0 10px;
+    line-height: 60px;
+    text-align: center;
+    float: left;
+}
+
+div[data-role="page"] header h1 {
+    width: calc(100vw - 120px);
+    height: 60px;
+    line-height: 60px;
+    float: left;
+    
+    /* Line break */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
