@@ -1,3 +1,19 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:500,700,400,300");
+
+/* CLEARFIX */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* PAGE LAYOUT */
+
 .page {
     position: absolute;
     top: 0;
