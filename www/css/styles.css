@@ -199,19 +199,19 @@ div[data-role="page"] header h1 {
     background-size: cover;
     font-family: 'Raleway';
     color: white;
-    width: calc(100% + 20px);
-    padding: 4%;
+    width: 100%;
+    padding: 20px;
     margin-top: -20px;
     margin-left: -20px;
 }
 
 .eventHeader h1 {
-    font-size: 1.3em;
+    font-size: 1.6em;
     font-weight: 200;
 }
 
 .eventHeader h2 {
-    margin-top: 10px;
+    margin-top: 20px;
     font-weight: 200;
 }
 
@@ -267,6 +267,26 @@ div[data-role="page"] header h1 {
     margin-top: 10px;
     width: 110%;
     margin-left: -5%
+}
+
+.fab{
+    text-align: center;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: #51afc5;
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    margin: 0 auto;
+    left: 50%;
+    margin-left: -30px;
+}
+
+.fab span{
+    line-height: 2.4;
 }
 
 
