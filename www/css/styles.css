@@ -18,30 +18,46 @@
 
 @font-face {
     font-family: 'Raleway';
-    src: url('raleway-light-webfont.eot');
-    src: url('raleway-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('raleway-light-webfont.woff2') format('woff2'),
-         url('raleway-light-webfont.woff') format('woff'),
-         url('raleway-light-webfont.ttf') format('truetype'),
-         url('raleway-light-webfont.svg#ralewaylight') format('svg');
-    src: url('raleway-medium-webfont.eot');
-    src: url('raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('raleway-medium-webfont.woff2') format('woff2'),
-         url('raleway-medium-webfont.woff') format('woff'),
-         url('raleway-medium-webfont.ttf') format('truetype'),
-         url('raleway-medium-webfont.svg#ralewaymedium') format('svg');
-    src: url('raleway-regular-webfont.eot');
-    src: url('raleway-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('raleway-regular-webfont.woff2') format('woff2'),
-         url('raleway-regular-webfont.woff') format('woff'),
-         url('raleway-regular-webfont.ttf') format('truetype'),
-         url('raleway-regular-webfont.svg#ralewayregular') format('svg');
-    src: url('raleway-semibold-webfont.eot');
-    src: url('raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('raleway-semibold-webfont.woff2') format('woff2'),
-         url('raleway-semibold-webfont.woff') format('woff'),
-         url('raleway-semibold-webfont.ttf') format('truetype'),
-         url('raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    src: url('../fonts/raleway-light-webfont.eot');
+    src: url('../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-light-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-light-webfont.woff') format('woff'),
+         url('../fonts/raleway-light-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-light-webfont.svg#ralewaylight') format('svg');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-medium-webfont.eot');
+    src: url('../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-medium-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-medium-webfont.woff') format('woff'),
+         url('../fonts/raleway-medium-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    font-weight: 400;
+}
+    
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-regular-webfont.eot');
+    src: url('../fonts/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-regular-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-regular-webfont.woff') format('woff'),
+         url('../fonts/raleway-regular-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-regular-webfont.svg#ralewayregular') format('svg');
+    font-weight: 500;
+}
+    
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-semibold-webfont.eot');
+    src: url('../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-semibold-webfont.woff') format('woff'),
+         url('../fonts/raleway-semibold-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    font-weight: 700;
 }
 
 /* ICON FONT */
@@ -78,6 +94,7 @@
 
 .icon-back:before {
 	content: "\e60b";
+    color: white;
 }
 
 /* NAVBAR */
@@ -118,51 +135,51 @@ div[data-role="page"] header h1 {
 
 /*************** Event Lijst *************/
 
-.ui-content{
+.ui-content {
+    min-height: calc(100vh - 100px);
     background-color: #dfdfde;
+    padding: 20px;
 }
 
-.event{
+.event {
     background-image: url(../img/eventbackground.jpg);
-    background-size: cover;
+    background-size: 100%;
+    background-position: 50%;
     position: relative;
     width: 100%;
     height: 125px;
-    display: inline-block;
-    margin: auto 0;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    display: block;
+    margin: 0 auto 20px auto;
+    overflow: hidden; /* Prevent margin-collapsing */
+    border-radius: 5px;
     color: white;
     font-family: 'Raleway';
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.event h1{
-    margin-left: 4%;
-    margin-top: 19%;
+.event h2 {
+    position: absolute;
+    bottom: 42px;
+    padding-left: .8em;
     font-size: 1.2em;
+    font-weight: 100;
 }
 
-.event section{
+.event footer {
     color: black;
     position: absolute;
     bottom: 0;
-    width: 92%;
-    padding: 4%;
-    height: 20px;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 1em;
     background-color: rgba(255,255,255,0.85);
-    -webkit-border-bottom-right-radius: 7px;
-    -webkit-border-bottom-left-radius: 7px;
-    -moz-border-radius-bottomright: 7px;
-    -moz-border-radius-bottomleft: 7px;
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
 }
 
 
 /************** Event Feed ****************/
 
-.eventHeader{
+.eventHeader {
     background-image: url(../img/eventbackground.jpg);
     background-size: cover;
     font-family: 'Raleway';
@@ -172,10 +189,10 @@ div[data-role="page"] header h1 {
     background-color: red;
 }
 
-.eventHeader h1{
+.eventHeader h1 {
     font-size: 1.3em;
 }
 
-.eventHeader h2{
+.eventHeader h2 {
     margin-top: 10px;
 }
