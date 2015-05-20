@@ -145,7 +145,7 @@ div[data-role="page"] header h1 {
 }
 
 .event {
-    background-image: url(eventBackground.jpg);
+    background-image: url(../img/eventBackground.jpg);
     background-size: 100%;
     background-position: 50%;
     position: relative;
@@ -183,7 +183,7 @@ div[data-role="page"] header h1 {
 /************** Event Feed ****************/
 
 .eventHeader {
-    background-image: url(eventBackground.jpg);
+    background-image: url(../img/eventBackground.jpg);
     background-size: cover;
     font-family: 'Raleway';
     color: white;
