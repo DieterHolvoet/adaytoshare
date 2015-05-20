@@ -82,8 +82,6 @@
 	text-transform: none;
 	line-height: 1;
     font-size: 25px;
-
-	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -96,6 +94,14 @@
 .icon-back:before {
 	content: "\e60b";
     color: white;
+}
+
+.icon-camera:before {
+	content: "\e600";
+}
+
+.icon-people:before {
+	content: "\e604";
 }
 
 /* NAVBAR */
@@ -145,12 +151,9 @@ div[data-role="page"] header h1 {
 }
 
 .event {
-    background-image: url(../eventBackground.jpg);
-    background-size: 100%;
-    background-position: 50%;
     position: relative;
     width: 100%;
-    height: 125px;
+    height: 150px;
     display: block;
     margin: 0 auto 20px auto;
     overflow: hidden; /* Prevent margin-collapsing */
@@ -160,10 +163,21 @@ div[data-role="page"] header h1 {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.background {
+    background-image: url(../eventBackground.jpg);
+    background-size: 100%;
+    background-position: 50%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+}
+
 .event h2 {
     position: absolute;
     bottom: 42px;
-    padding-left: .8em;
+    padding-left: 15px;
     font-size: 1.2em;
     font-weight: 100;
 }
@@ -172,13 +186,35 @@ div[data-role="page"] header h1 {
     color: black;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 15px);
     height: 35px;
     line-height: 35px;
-    padding-left: 1em;
+    padding-left: 15px;
     background-color: rgba(255,255,255,0.85);
 }
 
+.evt-photos, .evt-people {
+    color: #e84746;
+    font-size: 18px;
+    height: 35px;
+    display: block;
+    float: right;
+    padding-right: 15px;
+}
+
+.evt-photos:before {
+	content: "\e600";
+    font-family: 'adts';
+    font-size: 20px;
+    padding-right: 6px;
+}
+
+.evt-people:before {
+	content: "\e604";
+    font-family: 'adts';
+    font-size: 20px;
+    padding-right: 6px;
+}
 
 /************** Event Feed ****************/
 
