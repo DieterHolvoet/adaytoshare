@@ -1,6 +1,7 @@
-$(document)ready(function() {
+$(document).ready(function() {
     $("form").on("submit", function(e) {
-        e.preventDefault();
-        window.location = index.html
+        e.preventDefault;
+        location.href = "index.html";
+        return false;
     })
 });
