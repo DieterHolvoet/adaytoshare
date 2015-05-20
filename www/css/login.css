@@ -77,9 +77,9 @@ a {
 .logo {
     width: 40%;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 30%;
     display: block;
-    margin-bottom: 10%;
+    margin-bottom: 20%;
 }
 form {
     text-align: center;
@@ -109,7 +109,7 @@ input {
     width: 80%;
 }
 ::-webkit-input-placeholder {
-    font-size: 1em;
+    font-size: 1.2em;
     height: 60px;
     color: #4d4d4d;
     font-family: 'Raleway';
@@ -127,7 +127,6 @@ input[type="submit"] {
     margin: 0 auto;
     padding-top: 3%;
     font-family: 'Raleway';
-    font-size: 1em;
 }
 hr {
     width: 75%;
