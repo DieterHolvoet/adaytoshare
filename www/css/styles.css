@@ -250,6 +250,7 @@ div[data-role="page"] header h1 {
 }
 
 .eventHeader h1 {
+    text-rendering: optimizeLegibility;
     font-size: 1.6em;
     font-weight: 200;
 }
