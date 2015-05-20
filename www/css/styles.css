@@ -99,15 +99,31 @@
 }
 
 .icon-pin56:before {
-  content: "\e606";
+    content: "\e606";
 }
 
 .icon-multiple25:before {
-  content: "\e604";
+    content: "\e604";
 }
 
 .icon-mail87:before {
-  content: "\e603";
+    content: "\e603";
+}
+
+.icon-wine65:before {
+    content: "\e609";
+    font-size: 1.3em;
+}
+
+.icon-chat110:before {
+    content: "\e601";
+    font-size: 1.3em;
+}
+
+.icon-warning34:before {
+    content: "\e608";
+    font-size: 1.3em;
+    margin-left: 5px;
 }
 
 /* NAVBAR */
@@ -169,6 +185,8 @@ div[data-role="page"] header h1 {
     border-radius: 5px;
     color: white;
     font-family: 'Raleway';
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
@@ -234,6 +252,9 @@ div[data-role="page"] header h1 {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .boodschapFeed div{
@@ -269,6 +290,14 @@ div[data-role="page"] header h1 {
     margin-left: -5%
 }
 
+.boodschapFeed footer{
+    margin-top: 10px;
+}
+
+.boodschapFeed footer span{
+    font-size: 0.9em;
+}
+
 .fab{
     text-align: center;
     position: fixed;
@@ -283,6 +312,9 @@ div[data-role="page"] header h1 {
     margin: 0 auto;
     left: 50%;
     margin-left: -30px;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .fab span{
