@@ -98,6 +98,18 @@
     color: white;
 }
 
+.icon-pin56:before {
+  content: "\e606";
+}
+
+.icon-multiple25:before {
+  content: "\e604";
+}
+
+.icon-mail87:before {
+  content: "\e603";
+}
+
 /* NAVBAR */
 
 div[data-role="page"] header {
@@ -183,19 +195,94 @@ div[data-role="page"] header h1 {
 /************** Event Feed ****************/
 
 .eventHeader {
-    background-image: url(../img/eventBackground.jpg);
+    background-image: url(../eventBackground.jpg);
     background-size: cover;
     font-family: 'Raleway';
     color: white;
-    width: 92%;
+    width: calc(100% + 20px);
     padding: 4%;
-    background-color: red;
+    margin-top: -20px;
+    margin-left: -20px;
 }
 
 .eventHeader h1 {
     font-size: 1.3em;
+    font-weight: 200;
 }
 
 .eventHeader h2 {
     margin-top: 10px;
+    font-weight: 200;
 }
+
+.eventHeader h2 span{
+    font-size: 1em;
+}
+
+.spanHeaderRight{
+    float: right;
+    margin-left: 10px;
+}
+
+.boodschapFeed{
+    font-family: 'Raleway';
+    float: left;
+    width: 90%;
+    margin-top: 15px;
+    padding: 5%;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.boodschapFeed div{
+    color: white;
+    text-align: center;
+    float: left;
+    line-height: 2;
+    background-color: #e94540;
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+
+.boodschapFeed h1{
+    line-height: 2;
+    margin-left: 40px;
+}
+
+.boodschapFeed time{
+    float: right;
+}
+
+.boodschapFeed p{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.boodschapFeed img{
+    margin-top: 10px;
+    width: 110%;
+    margin-left: -5%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
