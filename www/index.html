@@ -22,13 +22,18 @@
     <script src="js/jquery.foggy.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/comment.js"></script>
+    
+    <!-- vw/vh/vmax/vmin polyfill -->
+    <script src="js/tokenizer.js"></script>
+    <script src="js/parser.js"></script>
+    <script src="js/vminpoly.js"></script>
 </head>
 
 <body>
     <!-- Loginpagina -->
     <div data-role="page" id="page-login" data-enhance="false">
         <img src="ADTS_Logo.png" alt="logo a day to share" class="logo">
-        <form>
+        <form id="loginform">
             <label>
                 <a href="#" class="icon-user185">
                     <input type="text" name="Naam" placeholder="Naam" alt="naam invoeren" class="naam">
