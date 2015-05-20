@@ -4,7 +4,9 @@ browser: true,
 jquery: true
 */
 
-//window.location = "login.html";
+if(location.search.split('login=')[1] !== "true") {
+    location.href = "login.html";
+}
 
 $(document).ready(function() {
     $('.background').foggy();
