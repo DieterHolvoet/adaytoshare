@@ -293,8 +293,6 @@ div[data-role="page"] header h1 {
     margin-top: 15px;
     padding: 5%;
     background-color: white;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
@@ -307,8 +305,6 @@ div[data-role="page"] header h1 {
     background-color: #e94540;
     width: 30px;
     height: 30px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
     border-radius: 100px;
 }
 
@@ -317,8 +313,6 @@ div[data-role="page"] header h1 {
     font-family: 'Raleway';
     font-weight: 200;
     color: white;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
     border-radius: 0px;
 }
 
@@ -457,7 +451,6 @@ div[data-role="page"] header h1 {
 
 #page-login label {
     margin: 0;
-<<<<<<< HEAD
 }
 
 /************** Nieuw Bericht ****************/
@@ -580,6 +573,4 @@ ui-content {
     color: #000;
     padding-top: 10px;
     padding-left: 5px;
-=======
->>>>>>> origin/master
 }

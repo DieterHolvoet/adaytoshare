@@ -23,10 +23,7 @@
     <script src="js/index.js"></script>
     <script src="js/comment.js"></script>
     
-    <!-- vw/vh/vmax/vmin polyfill -->
-    <script src="js/tokenizer.js"></script>
-    <script src="js/parser.js"></script>
-    <script src="js/vminpoly.js"></script>
+    
 </head>
 
 <body>
@@ -36,13 +33,13 @@
         <form id="loginform">
             <label>
                 <a href="#" class="icon-user185">
-                    <input type="text" name="Naam" placeholder="Naam" alt="naam invoeren" class="naam">
+                    <input type="text" name="Naam" placeholder="Naam" alt="naam invoeren" id="login-naam">
                 </a>
             </label>
             <hr>
             <label>
                 <a href="#" class="icon-locked59">
-                    <input type="text" name="Login" placeholder="Evenementencode" alt="code invoeren" class="code">
+                    <input type="text" name="Login" placeholder="Evenementencode" alt="code invoeren" id="login-code">
                 </a>
             </label>
             <input type="submit" value="Login" alt="loginknop" class="button" href="index.html">
@@ -171,6 +168,12 @@
                 </form>
             </div>
         </div>
+    </div>
+    
+    <!-- vw/vh/vmax/vmin polyfill -->
+    <script src="js/tokenizer.js"></script>
+    <script src="js/parser.js"></script>
+    <script src="js/vminpoly.js"></script>
 </body>
 
 </html>
