@@ -447,19 +447,18 @@ div[data-role="page"] header h1 {
 #page-login input[type="submit"] {
     font-size: 100%;
     font-family: 'Raleway';
+/*
     background-color: #51b0c5;
-    margin: 8% auto 20% auto;
     color: #fff;
+*/
+    background-color: #9a9a9a;
+    color: #f9f9f9;
+    margin: 8% auto 20% auto;
     width: 75%;
     height: 40px;
     text-transform: uppercase;
     font-weight: 100;
     border-radius: 3px;
-}
-
-.btn-inactive {
-    color: #51b0c5;
-    background-color: #9a9a9a;
 }
 
 #page-login a {

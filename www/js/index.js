@@ -77,7 +77,7 @@ $(document).ready(function() {
         var check_login = checkInvalidInput($("#login-naam"));
         
         if (check_code && check_login) {
-            $("#page-login input[type='submit']").removeClass("btn-inactive");
+            
             localStorage.setItem("username", $("#login-naam").val());
             localStorage.setItem("events", JSON.stringify(events));
             
@@ -88,7 +88,6 @@ $(document).ready(function() {
             }
             
         } else {
-            $("#page-login input[type='submit']").addClass("btn-inactive");
             return false;
         }
     });
@@ -99,12 +98,24 @@ $(document).ready(function() {
     });
     
     $("#login-naam, #login-code").on("blur", function(e) {
-        checkInvalidInput($(this));
+        if(checkInvalidInput($("#login-code")) && checkInvalidInput($("#login-naam"))) {
+            $("#page-login input[type='submit']").animate({color: "#fff", "background-color": "#51b0c5"});
+            $("#page-login input[type='submit']").css("cursor", "pointer");
+            
+        } else {
+            $("#page-login input[type='submit']").animate({color: "#f9f9f9", "background-color": "#9a9a9a"});
+            $("#page-login input[type='submit']").css("cursor", "default");
+        }
     });
     
     $('.formulierTekstbericht').on("submit", function(e){
         e.preventDefault();
         $("body").pagecontainer("change", "#page-newsfeed", {});
+    });
+    
+    
+    $("#page-newpost").on("pagecreate", function () {
+        console.log("lol");
     });
     
     $('.background').foggy();
