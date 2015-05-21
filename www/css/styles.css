@@ -128,9 +128,15 @@
     content: "\e607";
     color: #4d4d4d;
     font-family: 'adts';
+    height: 40px;
+    line-height: 40px;
 }
 
 .invalid-input:before {
+    color: #e84746;
+}
+
+.invalid-input::-webkit-input-placeholder {
     color: #e84746;
 }
 
@@ -401,6 +407,8 @@ div[data-role="page"] header h1 {
     width: 55%;
     background: none;
     margin-left: 10px;
+    color: #4d4d4d;
+    font-family: 'Raleway', sans-serif;
 }
 
 .button {
@@ -422,9 +430,9 @@ div[data-role="page"] header h1 {
 
 #page-login ::-webkit-input-placeholder {
     font-size: 80%;
-    height: 60px;
     color: #4d4d4d;
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
+    padding: 5px 0;
 }
 
 #page-login input[type="submit"] {
@@ -444,6 +452,8 @@ div[data-role="page"] header h1 {
     font-family: 'Raleway';
     text-decoration: none;
     font-weight: 400;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #page-login hr {

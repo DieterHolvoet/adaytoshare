@@ -27,27 +27,41 @@ $(document).ready(function() {
         
         if(t_name === "") {
             $(".icon-user185").addClass("invalid-input");
+            console.log("a");
+            return false;
         }
         
         if(t_code === "") {
             $(".icon-locked59").addClass("invalid-input");
+            console.log("b");
+            return false;
+        }
+        
+        $(".icon-user185:before").removeClass("invalid-input");
+        $(".icon-locked59:before").removeClass("invalid-input");
 
+        localStorage.setItem("username", $("#login-name").value);
+        events[0] = new Event(t_code);
+    });
+    
+    $("#login-naam, #login-code").on("keydown", function(e) {
+        if($(this).val() === "") {
+            $(this).parent().addClass("invalid-input");
+            $(this).addClass("invalid-input");
+            $(this).attr("placeholder", "Gelieve iets in te vullen")
+            console.log("a");
         } else {
-            $(".icon-user185:before").removeClass("invalid-input");
-            $(".icon-locked59:before").removeClass("invalid-input");
-
-            localStorage.setItem("username", $("#login-name").value);
-            events[0] = new Event(t_code);
+            $(this).parent().removeClass("invalid-input");
         }
     });
     
-    if(!localStorage.getItem("username")) {
-        $("body").pagecontainer("change", "#page-login", {});
-        
-    } else {
-        $("body").pagecontainer("change", "#page-login", {});
-    }
-    $('.background').foggy();
+//    if(!localStorage.getItem("username")) {
+//        $("body").pagecontainer("change", "#page-login", {});
+//        
+//    } else {
+//        $("body").pagecontainer("change", "#page-login", {});
+//    }
+//    $('.background').foggy();
 });
 
 //StatusBar.styleLightContent();
