@@ -457,6 +457,11 @@ div[data-role="page"] header h1 {
     border-radius: 3px;
 }
 
+.btn-inactive {
+    color: #51b0c5;
+    background-color: #9a9a9a;
+}
+
 #page-login a {
     display: block;
     text-align: center;

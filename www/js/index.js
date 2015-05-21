@@ -21,16 +21,13 @@ if(localStorage.getItem("events")) {
 function checkInvalidInput(element) {
     var temp = "";
     
-    if($(element).val() === "" || ($(element).attr("name") === "code" && $(element).val().length < 6)) {
+    if($(element).val() === "" || ($(element).attr("name") === "code" && !validateCode($(element).val()))) {
         $(element).parent().addClass("invalid-input");
         $(element).addClass("invalid-input");
         temp = $(element).attr("placeholder");
         $(element).attr("placeholder", "Ongeldige invoer");
         return false;
-        
-    } else if($(element).attr("name") === "code") {
-        return validateCode($(element).val());
-        
+
     } else {
         $(element).parent().removeClass("invalid-input");
         $(element).attr("placeholder", temp);
@@ -40,23 +37,27 @@ function checkInvalidInput(element) {
 
 function validateCode(code) {
     var result = true;
-    $.ajax({
-        url: 'crosscall.php',
-        data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
-        type: 'POST',
-        async: false,
-        success: function (data) {
-            data = JSON.parse(data);
-            if(data.success === 1) {
-                events.push(new Event(code, data.album_name));
-                console.log("New event added!")
-            } else {
-                console.error(data.error_message);
-                result = false;
+    if(code.length >= 6) {
+        $.ajax({
+            url: 'crosscall.php',
+            data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
+            type: 'POST',
+            async: false,
+            success: function (data) {
+                data = JSON.parse(data);
+                if(data.success === 1) {
+                    events.push(new Event(code, data.album_name));
+                    console.log("New event added!")
+                } else {
+                    console.error(data.error_message);
+                    result = false;
+                }
             }
-        }
-    });
-    return result;
+        });
+        return result;
+    } else {
+        return false;
+    }
 }
 
 $(document).ready(function() {
@@ -75,7 +76,8 @@ $(document).ready(function() {
         var check_code = checkInvalidInput($("#login-code"));
         var check_login = checkInvalidInput($("#login-naam"));
         
-        if (check_code && check_login && validateCode($("#login-code").val())) {
+        if (check_code && check_login) {
+            $("#page-login input[type='submit']").removeClass("btn-inactive");
             localStorage.setItem("username", $("#login-naam").val());
             localStorage.setItem("events", JSON.stringify(events));
             
@@ -86,6 +88,7 @@ $(document).ready(function() {
             }
             
         } else {
+            $("#page-login input[type='submit']").addClass("btn-inactive");
             return false;
         }
     });
