@@ -71,6 +71,11 @@ $(document).ready(function() {
         checkInvalidInput($(this));
     });
     
+    $('.formulierTekstbericht').on("submit", function(e){
+        e.preventDefault();
+        $("body").pagecontainer("change", "#page-newsfeed", {});
+    });
+    
     $('.background').foggy();
 });
 
