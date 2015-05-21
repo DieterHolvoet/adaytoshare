@@ -132,14 +132,6 @@
     line-height: 40px;
 }
 
-.invalid-input:before {
-    color: #e84746;
-}
-
-.invalid-input::-webkit-input-placeholder {
-    color: #e84746;
-}
-
 .icon-locked59:before {
     content: "\e602";
     color: #4d4d4d;
@@ -417,6 +409,27 @@ div[data-role="page"] header h1 {
     color: #4D4D4D;   
 }
 
+.invalid-input:before {
+    color: #e84746; !important
+}
+
+/*
+.invalid-input::-webkit-input-placeholder {
+    color: #e84746; !important
+}
+
+.invalid-input:-moz-placeholder {
+    color: #e84746; !important
+}
+
+.invalid-input::-moz-placeholder {
+    color: #e84746; !important
+}
+
+.invalid-input:-ms-input-placeholder {
+    color: #e84746; !important
+}
+*/
 
 .linkdiv {
     display: block;

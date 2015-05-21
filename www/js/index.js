@@ -18,16 +18,18 @@ if(localStorage.getItem("events")) {
 }
                
 function checkInvalidInput(element) {
-    console.log(element);
-    if($(element).val() === "") {
+    var temp = "";
+    
+    if($(element).val() === "" || ($(element).attr("name") === "code" && $(element).val().length < 6)) {
         $(element).parent().addClass("invalid-input");
         $(element).addClass("invalid-input");
-        $(element).attr("placeholder", "Gelieve iets in te vullen")
+        temp = $(element).attr("placeholder");
+        $(element).attr("placeholder", "Ongeldige invoer");
         return false;
         
     } else {
         $(element).parent().removeClass("invalid-input");
-        $(element).attr("placeholder", "Naam")
+        $(element).attr("placeholder", temp);
         return true;
     }
 }
@@ -45,10 +47,24 @@ $(document).ready(function() {
     // Controle login
     $("#loginform").on("submit", function(e) {
         e.preventDefault();
-
-        return (checkInvalidInput($("#login-naam")) && checkInvalidInput($("#login-code")));
-        localStorage.setItem("username", $("#login-naam").val());
-        events[0] = new Event($("#login-code").val());
+        
+        if (checkInvalidInput($("#login-code")) && checkInvalidInput($("#login-naam"))) {
+            localStorage.setItem("username", $("#login-naam").val());
+            events[0] = new Event($("#login-code").val());
+            if(events.length > 1) {
+                $("body").pagecontainer("change", "#page-eventlist", {});
+            } else {
+                $("body").pagecontainer("change", "#page-newsfeed", {});
+            }
+            
+        } else {
+            return false;
+        }
+    });
+    
+    $(".logout").on("click", function() {
+        localStorage.removeItem("username");
+        $("body").pagecontainer("change", "#page-login", {});
     });
     
     $("#login-naam, #login-code").on("blur", function(e) {
