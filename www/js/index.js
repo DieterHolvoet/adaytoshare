@@ -101,10 +101,12 @@ $(document).ready(function() {
         if(checkInvalidInput($("#login-code")) && checkInvalidInput($("#login-naam"))) {
             $("#page-login input[type='submit']").animate({color: "#fff", "background-color": "#51b0c5"});
             $("#page-login input[type='submit']").css("cursor", "pointer");
+            $("#page-login input[type='submit']").prop('disabled', false);
             
         } else {
             $("#page-login input[type='submit']").animate({color: "#f9f9f9", "background-color": "#9a9a9a"});
             $("#page-login input[type='submit']").css("cursor", "default");
+            $("#page-login input[type='submit']").prop('disabled', true);
         }
     });
     
