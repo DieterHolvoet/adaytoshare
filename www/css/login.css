@@ -1,0 +1,139 @@
+/*font*/
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-light-webfont.eot');
+    src: url('../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-light-webfont.woff2') format('woff2'), url('../fonts/raleway-light-webfont.woff') format('woff'), url('../fonts/raleway-light-webfont.ttf') format('truetype'), url('../fonts/raleway-light-webfont.svg#ralewaylight') format('svg');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-medium-webfont.eot');
+    src: url('../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-medium-webfont.woff2') format('woff2'), url('../fonts/raleway-medium-webfont.woff') format('woff'), url('../fonts/raleway-medium-webfont.ttf') format('truetype'), url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-regular-webfont.eot');
+    src: url('../fonts/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-regular-webfont.woff2') format('woff2'), url('../fonts/raleway-regular-webfont.woff') format('woff'), url('../fonts/raleway-regular-webfont.ttf') format('truetype'), url('../fonts/raleway-regular-webfont.svg#ralewayregular') format('svg');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway-semibold-webfont.eot');
+    src: url('../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-semibold-webfont.woff2') format('woff2'), url('../fonts/raleway-semibold-webfont.woff') format('woff'), url('../fonts/raleway-semibold-webfont.ttf') format('truetype'), url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'adts-fontface';
+    src: url('../fonts/adts-fontface.eot?-s30nm0');
+    src: url('../fonts/adts-fontface.eot?#iefix-s30nm0') format('embedded-opentype'), url('../fonts/adts-fontface.woff?-s30nm0') format('woff'), url('../fonts/adts-fontface.ttf?-s30nm0') format('truetype'), url('../fonts/adts-fontface.svg?-s30nm0#adts-fontface') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'adts';
+    src: url('../fonts/adts.eot?');
+    src: url('../fonts/adts.eot?#iefix') format('embedded-opentype'), url('../fonts/adts.woff') format('woff'), url('../fonts/adts.ttf') format('truetype'), url('../fonts/adts.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: 'adts';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 25px;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-user185:before {
+    content: "\e607";
+    color: #4d4d4d;
+    display: inline-block;
+    text-decoration: none;
+  text-align: center;
+   
+}
+.icon-locked59:before {
+    content: "\e602";
+    color: #4d4d4d;
+    display: inline-block;
+    text-decoration: none;
+}
+body {
+    font-family: Raleway, Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+    width: 25px;
+    
+}
+.logo {
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 30%;
+    display: block;
+    margin-bottom: 20%;
+}
+form {
+    text-align: center;
+    display: block;
+   
+}
+input {
+    margin-bottom: 1%;
+    height: 40px;
+    border: none;
+    width: 55%;
+    vertical-align:middle;
+}
+.button {
+    display: block;
+    margin: 0 auto;
+    width: 75%;
+    background: #51b0c5;
+    color: #fff;
+    height: 40px;
+    margin-bottom: 20%;
+    margin-top: 6%;
+}
+.linkdiv {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+::-webkit-input-placeholder {
+    font-size: 1.2em;
+    height: 60px;
+    color: #4d4d4d;
+    font-family: 'Raleway';
+}
+input[type="submit"] {
+    font-size: 20px;
+    font-family: 'Raleway'; 
+}
+.link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #4d4d4d;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 3%;
+    font-family: 'Raleway';
+}
+hr {
+    width: 75%;
+    background-color: #4d4d4d;
+    color: #4d4d4d;
+    height: 0.6px;
+}
+
+
+
