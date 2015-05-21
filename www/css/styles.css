@@ -63,27 +63,27 @@
 /* ICON FONT */
 
 @font-face {
-	font-family: 'adts';
-	src:url('../fonts/adts.eot?');
-	src:url('../fonts/adts.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/adts.woff') format('woff'),
-		url('../fonts/adts.ttf') format('truetype'),
-		url('../fonts/adts.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'adts';
+    src:url('../fonts/adts.eot?');
+    src:url('../fonts/adts.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/adts.woff') format('woff'),
+        url('../fonts/adts.ttf') format('truetype'),
+        url('../fonts/adts.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'adts';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+    font-family: 'adts';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
     font-size: 25px;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-plus:before {
@@ -242,14 +242,14 @@ div[data-role="page"] header h1 {
 }
 
 .evt-photos:before {
-	content: "\e600";
+    content: "\e600";
     font-family: 'adts';
     font-size: 20px;
     padding-right: 6px;
 }
 
 .evt-people:before {
-	content: "\e604";
+    content: "\e604";
     font-family: 'adts';
     font-size: 20px;
     padding-right: 6px;
@@ -310,8 +310,12 @@ div[data-role="page"] header h1 {
     border-radius: 100px;
 }
 
+#commentField{
+    display: none;
+}
+
 #commentField button{
-    background-color: red;
+    background-color: #51b0c5;
     font-family: 'Raleway';
     font-weight: 200;
     color: white;
