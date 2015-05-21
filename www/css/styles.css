@@ -479,6 +479,7 @@ div[data-role="page"] header h1 {
 
 #page-newpost ui-content {
     padding: 20px;
+    padding-bottom: 0px;
 }
 
 .contentTextbericht {
