@@ -75,18 +75,19 @@ $(document).ready(function() {
         e.preventDefault();
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
-    
+    var totalheight = $(document).height();
     /*Test voor calc height*/
-    
+    $('#page-newpost').on("pagecreate", function(){
     var imgDiv = $('.nieuwBerichtBackground').height();
     var header = $('#headerNewPost').height();
     var button = $('.verzendButton').height();
-    var totalheight = $(document).height();
     console.log(imgDiv);
     console.log(totalheight);
     console.log(header);
     console.log(button);
-    $('.boodschap').height(totalheight  - imgDiv - header - button);
+    $('.boodschap').height(totalheight - button - header - imgDiv);    
+    });
+    
     $('.background').foggy();
 });
 

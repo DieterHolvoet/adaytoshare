@@ -529,7 +529,7 @@ div[data-role="page"] header h1 {
 
 .backgroundImg img {
     position: relative;
-    float: left;
+    display: block;
     width: calc(100% + 20px);
 }
 
