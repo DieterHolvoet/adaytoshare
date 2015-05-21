@@ -130,6 +130,10 @@
     font-family: 'adts';
 }
 
+.invalid-input:before {
+    color: #e84746;
+}
+
 .icon-locked59:before {
     content: "\e602";
     color: #4d4d4d;
