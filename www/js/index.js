@@ -16,52 +16,46 @@ function Event(code) {
 if(localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
 }
+               
+function checkInvalidInput(element) {
+    console.log(element);
+    if($(element).val() === "") {
+        $(element).parent().addClass("invalid-input");
+        $(element).addClass("invalid-input");
+        $(element).attr("placeholder", "Gelieve iets in te vullen")
+        return false;
+        
+    } else {
+        $(element).parent().removeClass("invalid-input");
+        $(element).attr("placeholder", "Naam")
+        return true;
+    }
+}
 
 $(document).ready(function() {
+
+    // Initialisatie van de pagina
+    if(localStorage.getItem("username")) {
+        window.location.hash = "page-eventlist";
+    } else {
+        window.location.hash = "page-login";
+    }
+    $.mobile.initializePage();
     
+    // Controle login
     $("#loginform").on("submit", function(e) {
         e.preventDefault();
 
-        var t_name = $("#login-naam").val();    // Waarde v.h. naam-veld
-        var t_code = $("#login-code").val();    // Waarde v.h. code-veld
-        
-        if(t_name === "") {
-            $(".icon-user185").addClass("invalid-input");
-            console.log("a");
-            return false;
-        }
-        
-        if(t_code === "") {
-            $(".icon-locked59").addClass("invalid-input");
-            console.log("b");
-            return false;
-        }
-        
-        $(".icon-user185:before").removeClass("invalid-input");
-        $(".icon-locked59:before").removeClass("invalid-input");
-
-        localStorage.setItem("username", $("#login-name").value);
-        events[0] = new Event(t_code);
+        return (checkInvalidInput($("#login-naam")) && checkInvalidInput($("#login-code")));
+        localStorage.setItem("username", $("#login-naam").val());
+        events[0] = new Event($("#login-code").val());
     });
     
-    $("#login-naam, #login-code").on("keydown", function(e) {
-        if($(this).val() === "") {
-            $(this).parent().addClass("invalid-input");
-            $(this).addClass("invalid-input");
-            $(this).attr("placeholder", "Gelieve iets in te vullen")
-            console.log("a");
-        } else {
-            $(this).parent().removeClass("invalid-input");
-        }
+    $("#login-naam, #login-code").on("blur", function(e) {
+        checkInvalidInput($(this));
     });
     
-//    if(!localStorage.getItem("username")) {
-//        $("body").pagecontainer("change", "#page-login", {});
-//        
-//    } else {
-//        $("body").pagecontainer("change", "#page-login", {});
-//    }
-//    $('.background').foggy();
+    $('.background').foggy();
 });
 
 //StatusBar.styleLightContent();
