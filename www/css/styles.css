@@ -373,7 +373,7 @@ div[data-role="page"] header h1 {
     line-height: 2.4;
 }
 
-/* LOGINPAGINA */
+/************** Loginpagina ****************/
 
 .logo {
     height: 25vh;
@@ -400,27 +400,23 @@ div[data-role="page"] header h1 {
 }
 
 #page-login input {
-    margin-bottom: 1%;
-    height: 40px;
-    line-height: 40px;
+    line-height: 21px;
+    height: 21px;
     border: none;
     width: 55%;
     background: none;
     margin-left: 10px;
     color: #4d4d4d;
     font-family: 'Raleway', sans-serif;
+    padding: 0;
+    margin: 0;
+    color: #4D4D4D;   
 }
 
-.button {
-    display: block;
-    margin: 0 auto;
-    width: 75%;
-    background: #51b0c5;
-    color: #fff;
-    height: 40px;
-    margin-bottom: 20%;
-    margin-top: 6%;
+#page-login ::-webkit-input-placeholder{
+    color: #4D4D4D;   
 }
+
 
 .linkdiv {
     display: block;
@@ -428,18 +424,17 @@ div[data-role="page"] header h1 {
     width: 80%;
 }
 
-#page-login ::-webkit-input-placeholder {
-    font-size: 80%;
-    color: #4d4d4d;
-    font-family: 'Raleway', sans-serif;
-    padding: 5px 0;
-}
-
 #page-login input[type="submit"] {
     font-size: 100%;
     font-family: 'Raleway';
     background-color: #51b0c5;
     margin: 8% auto 20% auto;
+    color: #fff;
+    width: 75%;
+    height: 40px;
+    text-transform: uppercase;
+    font-weight: 100;
+    border-radius: 3px;
 }
 
 #page-login a {
@@ -451,16 +446,15 @@ div[data-role="page"] header h1 {
     margin: 0 auto;
     font-family: 'Raleway';
     text-decoration: none;
-    font-weight: 400;
-    display: table-cell;
-    vertical-align: middle;
+    font-weight: 200;
 }
 
 #page-login hr {
     width: 75%;
     background-color: #4d4d4d;
     color: #4d4d4d;
-    height: 0.6px;
+    height: 0.4px;
+    margin-top: 0;
 }
 
 #page-login label {
@@ -470,7 +464,7 @@ div[data-role="page"] header h1 {
 /************** Nieuw Bericht ****************/
 /*Setting screen*/
 
-ui-content {
+#page-newpost ui-content {
     padding: 20px;
 }
 
@@ -561,13 +555,13 @@ ui-content {
     padding: 0;
 }
 
-::-webkit-input-placeholder {
+#page-newpost ::-webkit-input-placeholder {
     color: #000;
     padding-top: 10px;
     padding-left: 5px;
 }
 
-:-moz-placeholder {
+#page-newpost :-moz-placeholder {
     /* Firefox 18- */
     
     color: #000;
@@ -575,7 +569,7 @@ ui-content {
     padding-left: 5px;
 }
 
-::-moz-placeholder {
+#page-newpost ::-moz-placeholder {
     /* Firefox 19+ */
     
     color: #000;
@@ -583,7 +577,7 @@ ui-content {
     padding-left: 5px;
 }
 
-:-ms-input-placeholder {
+#page-newpost :-ms-input-placeholder {
     color: #000;
     padding-top: 10px;
     padding-left: 5px;

@@ -22,8 +22,8 @@
     <script src="js/jquery.foggy.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/comment.js"></script>
-    
-    
+
+
 </head>
 
 <body>
@@ -31,14 +31,13 @@
     <div data-role="page" id="page-login" data-enhance="false">
         <img src="ADTS_Logo.png" alt="logo a day to share" class="logo">
         <form id="loginform">
+
             <label class="icon-user185">
                 <input type="text" name="naam" placeholder="Naam" alt="naam invoeren" id="login-naam">
             </label>
-            <hr>
-            <label>
-                <a href="#" class="icon-locked59">
-                    <input type="text" name="code" placeholder="Evenementencode" alt="code invoeren" id="login-code">
-                </a>
+            <hr class="lijn">
+            <label class="icon-locked59">
+                <input type="text" name="code" placeholder="Evenementencode" alt="code invoeren" id="login-code">
             </label>
             <input type="submit" value="Login" alt="loginknop" class="button" href="index.html">
         </form>
@@ -47,12 +46,14 @@
             <a href="#" class="link">Bekijk onze website</a>
         </div>
     </div>
-    
+
     <!-- Evenementenlijst -->
     <div data-role="page" id="page-eventlist">
         <header class="clearfix">
             <h1>Evenementenlijst</h1>
-            <a href="#"><div class="navbarbtn icon-plus"></div></a>
+            <a href="#">
+                <div class="navbarbtn icon-plus"></div>
+            </a>
         </header>
         <div role="main" class="ui-content">
             <a href="#page-newsfeed" data-transition="slide" data-ripple>
@@ -92,13 +93,17 @@
             </a>
         </div>
     </div>
-    
+
     <!-- Nieuwsfeed -->
     <div data-role="page" id="page-newsfeed">
         <header class="clearfix">
-            <a href="#page-eventlist" data-transition="slide" data-direction="reverse"><div class="navbarbtn icon-back"></div></a>
+            <a href="#page-eventlist" data-transition="slide" data-direction="reverse">
+                <div class="navbarbtn icon-back"></div>
+            </a>
             <h1>Evenementenlijst</h1>
-            <a href="#"><div class="navbarbtn"></div></a>
+            <a href="#">
+                <div class="navbarbtn"></div>
+            </a>
         </header>
 
         <div role="main" class="ui-content">
@@ -112,7 +117,8 @@
                 </h2>
             </section>
             <article class="boodschapFeed">
-                <div>J</div><h1>Joske duchatoo<time>20:08</time></h1>
+                <div>J</div>
+                <h1>Joske duchatoo<time>20:08</time></h1>
                 <p>Wa een zot project is me da hier !</p>
                 <footer>
                     <span class="icon-wine65"> 6 Party points</span>
@@ -126,7 +132,8 @@
             </article>
 
             <article class="boodschapFeed">
-                <div>V</div><h1>Den Danny<time>19:17</time></h1>
+                <div>V</div>
+                <h1>Den Danny<time>19:17</time></h1>
                 <p>Wij zijn ier goe aant werk.</p>
                 <img src="fotoPost.jpg" alt="foto post">
                 <footer>
@@ -136,13 +143,14 @@
                 </footer>
             </article>
             <a href="#page-newpost" data-transition="slideup">
-                <div class="fab"><span class="icon-plus"></span></div>
+                <div class="fab"><span class="icon-plus"></span>
+                </div>
             </a>
         </div>
     </div>
-    
+
     <!-- Nieuw bericht -->
-   <div data-role="page" id="page-newpost">
+    <div data-role="page" id="page-newpost">
         <header class="clearfix">
             <h1>Nieuw bericht</h1>
             <a href="#page-newsfeed" class="closeLink">
@@ -167,7 +175,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- vw/vh/vmax/vmin polyfill -->
     <script src="js/tokenizer.js"></script>
     <script src="js/parser.js"></script>
