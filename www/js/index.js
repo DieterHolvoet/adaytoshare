@@ -76,6 +76,17 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
+    /*Test voor calc height*/
+    
+    var imgDiv = $('.nieuwBerichtBackground').height();
+    var header = $('#headerNewPost').height();
+    var button = $('.verzendButton').height();
+    var totalheight = $(document).height();
+    console.log(imgDiv);
+    console.log(totalheight);
+    console.log(header);
+    console.log(button);
+    $('.boodschap').height(totalheight  - imgDiv - header - button);
     $('.background').foggy();
 });
 
