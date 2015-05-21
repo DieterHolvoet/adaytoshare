@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	$( "#comment" ).click(function() {
-  		$( "#commentField" ).slideToggle( "fast", function() {
+	$( ".comment" ).click(function() {
+  		$(this).next().slideToggle( "fast", function() {
     // Animation complete.
   	});
 	});
