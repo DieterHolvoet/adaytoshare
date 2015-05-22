@@ -92,14 +92,66 @@ function updateStorage() {
 
 function loadEvents() {
     for(var i = 0; i < events.length; i++) {
-        $("#page-eventlist .ui-content").append("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple>"
+        $("#page-eventlist .ui-content").append("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple id=\'"
+                                                + events[i].code + "\'>"
                                                 + "<article class=\'event\'><div class=\'background\'></div>"
                                                 + "<h2>" + events[i].name + "</h2>"
                                                 + "<footer><time>" + "20 mei 2015" + "</time>"
                                                 + "<span class=\'evt-photos\'>" + "103" + "</span>"
                                                 + "<span class=\'evt-people\'>" + "80" + "</span>"
-                                                + "</footer></article></a>")
+                                                + "</footer></article></a>");
     }
+}
+
+function loadNewsfeed(code) {
+    $("#page-newsfeed .ui-content").empty();
+    var index;
+    for(var i = 0; i < events.length; i++) {
+        if(events[i].code === code) index = i;
+    }
+    
+    $("#page-newsfeed .ui-content").prepend("<section class=\'eventHeader\'><h1>" + events[index].name + "</h1>"
+                                            + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
+                                            + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
+                                            + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>");
+    
+    var messages = events[index].messages;
+    var date = new Date(messages[i].timestamp * 1000);
+    for(var i = 0; i <  messages.length; i++) {
+        $("#page-newsfeed .ui-content .eventHeader").after("<article class=\'boodschapFeed\'>"
+                                                           + "<div>" + messages[i].from.charAt(0).toUpperCase() + "</div>"
+                                                           + "<h1>" + messages[i].from + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "</time></h1>"
+                                                           + "<p>" + messages[i].message + "</p>"
+                                                           + (messages[i].photoURL !== "" ? ("<img src=\'" + messages[i].photoURL + "\' alt=\'foto post\'>") : "")
+                                                           + "<footer><span class=\'icon-wine65 partypoints\'>"
+                                                           + "<span class=\'ppNumber\'>" + messages[i].likes + "</span>" + "Party points" + "</span>"
+                                                           + "<span class=\'icon-warning34 spanHeaderRight\'></span>"
+                                                           + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
+                                                           + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
+    }
+    
+    $(".comment").on("click", function() {
+        $(this).next().slideToggle("fast");
+    });
+
+    $(".partypoints").on("click", function() {
+        var n = $(this).children().text();
+        $(this).addClass('magictime boingInUp');
+        if($(this).attr("pp") !== "true"){
+            n++;
+            $(this).children().text( " " + n);
+            $(this).css( "color", "#489CAF");
+            $(this).attr("pp", true);
+
+        } else {
+            n--;
+            $(this).children().text( " " + n);
+            $(this).css( "color", "black");
+            $(this).attr("pp", false);
+        }
+    });
+    
+    $("body").pagecontainer("change", "#page-newsfeed", {});
 }
 
 function addEvent(code, name) {
@@ -114,6 +166,7 @@ $(document).ready(function() {
 
     // Initialisatie van de pagina
     if(localStorage.getItem("username")) {
+        loadEvents();
         window.location.hash = "page-eventlist";
     } else {
         window.location.hash = "page-login";
@@ -129,7 +182,7 @@ $(document).ready(function() {
         if (check_code && check_login) {
             var code = $("#login-code").val();
             $.ajax({
-                url: "http://api.adaytoshare.be/1/platform/check_code?code=",
+                url: "http://api.adaytoshare.be/1/platform/check_code",
                 data: {code: code},
                 type: 'GET',
                 async: false,
@@ -137,7 +190,7 @@ $(document).ready(function() {
                     if(data.success === 1) {
                         addEvent(code, data.album_name);
                         fetchEventData(code, 5, 0);
-                        console.log("New event added!");
+                        loadEvents();
                         updateStorage();
                     } else {
                         console.error(data.error_message);
@@ -165,6 +218,10 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-login", {});
     });
     
+    $(".event").on("click", function() {
+        loadNewsfeed($(this).parent().attr("id"));
+    })
+    
     $("#login-naam, #login-code").on("keyup", function(e) {
         if($(this).val() !== "") {
             checkInvalidInput($(this), true);
@@ -191,6 +248,7 @@ $(document).ready(function() {
         console.log("lol");
     });
     
+    // Evenementenlijst
     $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
             $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
@@ -202,6 +260,9 @@ $(document).ready(function() {
                 localStorage.setItem('wasVisited','true');
             });
         }
+        
+        
+        
         $('.background').foggy();
     });
 });
