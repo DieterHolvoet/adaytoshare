@@ -655,3 +655,8 @@ div[data-role="page"] header h1 {
 * {
     text-shadow: none;
 }
+
+input {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
