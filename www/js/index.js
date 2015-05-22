@@ -46,8 +46,7 @@ function validateCode(code) {
             success: function (data) {
                 data = JSON.parse(data);
                 if(data.success === 1) {
-                    events.push(new Event(code, data.album_name));
-                    console.log("New event added!")
+                    result = true;
                 } else {
                     console.error(data.error_message);
                     result = false;
@@ -77,9 +76,24 @@ $(document).ready(function() {
         var check_login = checkInvalidInput($("#login-naam"));
         
         if (check_code && check_login) {
-            
+            $.ajax({
+                url: 'crosscall.php',
+                data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + $("#login-code").val()},
+                type: 'POST',
+                async: false,
+                success: function (data) {
+                    data = JSON.parse(data);
+                    if(data.success === 1) {
+                        events.push(new Event(code, data.album_name));
+                        console.log("New event added!");
+                        localStorage.setItem("events", JSON.stringify(events));
+                    } else {
+                        console.error(data.error_message);
+                        result = false;
+                    }
+                }
+            });
             localStorage.setItem("username", $("#login-naam").val());
-            localStorage.setItem("events", JSON.stringify(events));
             
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
@@ -97,7 +111,7 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-login", {});
     });
     
-    $("#login-naam, #login-code").on("blur", function(e) {
+    $("#login-naam, #login-code").on("keyup", function(e) {
         if(checkInvalidInput($("#login-code")) && checkInvalidInput($("#login-naam"))) {
             $("#page-login input[type='submit']").animate({color: "#fff", "background-color": "#51b0c5"});
             $("#page-login input[type='submit']").css("cursor", "pointer");
