@@ -40,8 +40,8 @@ function checkInvalidInput(element, style) {
 }
 
 function validateCode(code) {
-    var result = true;
-    if(code.length === 6) {
+    if(new RegExp("^[0-9]{6}$").test(code)) {
+        var result = false;
         $.ajax({
             url: 'crosscall.php',
             data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
