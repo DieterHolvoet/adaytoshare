@@ -575,14 +575,25 @@ div[data-role="page"] header h1 {
     padding-left: 5px;
 }
 
+.custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on{
+    height: 20px;   
+}
+
 .custom-size-flipswitch.ui-flipswitch {
-    width: 60px;
+    height: 20px;
+    width: 50px;
 border-radius: 100px;
 }
 .custom-size-flipswitch.ui-flipswitch.ui-flipswitch-active {
 background-color: #51B0C5;
-    padding-left: 30px;
+    padding-left: 20px;
     width: 1.875em;
+}
+
+.sliderPrive{
+    position: absolute;
+    left: 70%;
+    bottom: 40px; 
 }
 
 #page-newpost :-moz-placeholder {
