@@ -31,7 +31,7 @@ function takePicture(e) {
         saveToPhotoAlbum: true,
         correctOrientation:true,
         targetWidth:600,
-        targetheight:600
+        targetHeight:600
     });
 }
 
