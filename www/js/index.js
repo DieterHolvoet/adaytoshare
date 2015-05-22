@@ -172,9 +172,7 @@ $(document).ready(function() {
             $("#popup-eventlist").on("click", function() {
                 $(this).fadeOut(300);
                 localStorage.setItem('wasVisited','true');
-                console.log("first");
             });
-            localStorage.setItem('wasVisited', "true");
         }
         $('.background').foggy();
     });
