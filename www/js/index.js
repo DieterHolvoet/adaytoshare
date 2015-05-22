@@ -46,9 +46,10 @@ function validateCode(code) {
             success: function (data) {
                 data = JSON.parse(data);
                 if(data.success === 1) {
+                    console.log("Valid platform.")
                     result = true;
                 } else {
-                    console.error(data.error_message);
+                    console.error("Error " + data.errorcode + ": " + data.error_message);
                     result = false;
                 }
             }
@@ -57,6 +58,34 @@ function validateCode(code) {
     } else {
         return false;
     }
+}
+
+function fetchEventData(code, limit, offset) {
+    var result = true;
+    if(code.length >= 6) {
+        $.ajax({
+            url: 'crosscall.php',
+            data: {url: "http://api.adaytoshare.be/1/guestbook/get_posts?code=" + code + "&limit=" + limit + "&offset=" + offset},
+            type: 'POST',
+            async: false,
+            success: function (data) {
+                data = JSON.parse(data);
+                if(data.success === 1) {
+                    events[events.length - 1].messages = data.messages;
+                } else {
+                    console.error("Error " + data.errorcode + ": " + data.error_message);
+                    result = false;
+                }
+            }
+        });
+        return result;
+    } else {
+        return false;
+    }
+}
+
+function updateStorage() {
+    localStorage.setItem("events", JSON.stringify(events));
 }
 
 $(document).ready(function() {
@@ -76,17 +105,19 @@ $(document).ready(function() {
         var check_login = checkInvalidInput($("#login-naam"));
         
         if (check_code && check_login) {
+            var code = $("#login-code").val();
             $.ajax({
                 url: 'crosscall.php',
-                data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + $("#login-code").val()},
+                data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
                 type: 'POST',
                 async: false,
                 success: function (data) {
                     data = JSON.parse(data);
                     if(data.success === 1) {
                         events.push(new Event(code, data.album_name));
+                        fetchEventData(code, 5, 0);
                         console.log("New event added!");
-                        localStorage.setItem("events", JSON.stringify(events));
+                        updateStorage();
                     } else {
                         console.error(data.error_message);
                         result = false;
@@ -108,6 +139,7 @@ $(document).ready(function() {
     
     $(".logout").on("click", function() {
         localStorage.removeItem("username");
+        localStorage.removeItem("events");
         $("body").pagecontainer("change", "#page-login", {});
     });
     
