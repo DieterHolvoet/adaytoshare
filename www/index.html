@@ -172,24 +172,25 @@
 
     <!-- Nieuw bericht -->
     <div data-role="page" id="page-newpost">
-        <header class="clearfix">
+        <header id="headerNewPost" class="clearfix">
             <h1>Nieuw bericht</h1>
             <a href="#page-newsfeed" class="closeLink">
                 <div class="navbarbtn icon-close"></div>
             </a>
         </header>
-        <div role="main" class="ui-content">
+        <div role="main" class="ui-content" style="padding-bottom: 0">
             <div class="contentTextbericht">
                 <div class="backgroundImg">
-                    <img src="img/nieuwBerichtBackground.jpg" class="nieuwBerichtBackground" alt="Geblurde background foto" id="myImage">
+                    <img src="img/nieuwBerichtBackground.jpg" class="nieuwBerichtBackground" alt="Geblurde background foto">
                     <div class="choiseCameraOrImport">
-                        <a href="#" class="icon-camera" id="takePicture"></a>
+                        <a href="#" class="icon-camera"></a>
                         <a href="#" class="icon-galery"></a>
                     </div>
                 </div>
                 <form class="formulierTekstbericht">
                     <textarea class="boodschap" data-role="none" placeholder="Schrijf hier je boodschap..."></textarea>
-                    <!-- <input type="checkbox" data-role="flipswitch" name="switch" id="switch"> -->
+                    <label class="sliderPrive">Privé
+                     <input type="checkbox" data-role="flipswitch" name="switch" id="switch" data-wrapper-class="custom-size-flipswitch" data-on-text="" data-off-text=""></label>
                     <input type="submit" value="Verzenden" class="verzendButton" data-role="none">
 
                 </form>

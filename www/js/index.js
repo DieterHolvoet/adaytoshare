@@ -167,8 +167,19 @@ $(document).ready(function() {
     });
     
     
-    $("#page-newpost").on("pageshow", function () {
-        console.log("lol");
+    /*Test voor calc height*/
+    var totalheight = $(document).height();
+    $('#page-newpost').on("pageshow", function(){
+        console.log("pagecontainerloaded");
+        $('.nieuwBerichtBackground').foggy({blurRadius: 5});
+    var imgDiv = $('.nieuwBerichtBackground').height();
+    var header = $('#headerNewPost').height();
+    var button = $('.verzendButton').height();
+    console.log($('.nieuwBerichtBackground').height());
+    console.log(totalheight);
+    console.log(header);
+    console.log(button);
+    $('.boodschap').height(totalheight - button - header - imgDiv - 10);    
     });
     
     $("#page-eventlist").on("pageshow", function () {
