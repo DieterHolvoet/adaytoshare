@@ -90,6 +90,26 @@ function updateStorage() {
     localStorage.setItem("events", JSON.stringify(events));
 }
 
+function loadEvents() {
+    for(var i = 0; i < events.length; i++) {
+        $("#page-eventlist .ui-content").append("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple>"
+                                                + "<article class=\'event\'><div class=\'background\'></div>"
+                                                + "<h2>" + events[i].name + "</h2>"
+                                                + "<footer><time>" + "20 mei 2015" + "</time>"
+                                                + "<span class=\'evt-photos\'>" + "103" + "</span>"
+                                                + "<span class=\'evt-people\'>" + "80" + "</span>"
+                                                + "</footer></article></a>")
+    }
+}
+
+function addEvent(code, name) {
+    for(var i = 0; i < events.length; i++) {
+        if(events[i].code === code) return false;
+    }
+    events.push(new Event(code, name));
+    console.log("New event added");
+}
+
 $(document).ready(function() {
 
     // Initialisatie van de pagina
@@ -115,7 +135,7 @@ $(document).ready(function() {
                 async: false,
                 success: function (data) {
                     if(data.success === 1) {
-                        events.push(new Event(code, data.album_name));
+                        addEvent(code, data.album_name);
                         fetchEventData(code, 5, 0);
                         console.log("New event added!");
                         updateStorage();
