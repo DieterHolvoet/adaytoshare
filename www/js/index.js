@@ -79,7 +79,7 @@ $(document).ready(function() {
     /*Test voor calc height*/
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
-        $('.nieuwBerichtBackground').foggy();
+        $('.nieuwBerichtBackground').foggy({blurRadius: 5});
     var imgDiv = $('.nieuwBerichtBackground').height();
     var header = $('#headerNewPost').height();
     var button = $('.verzendButton').height();
