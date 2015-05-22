@@ -555,6 +555,8 @@ div[data-role="page"] header h1 {
     color: #000;
     margin: 0;
     padding: 0;
+    padding: 10px 5px 0px 5px;
+    box-sizing: border-box;
     resize: none;
     display: block;
 }
@@ -571,8 +573,6 @@ div[data-role="page"] header h1 {
 
 #page-newpost ::-webkit-input-placeholder {
     color: #000;
-    padding-top: 10px;
-    padding-left: 5px;
 }
 
 .custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on{

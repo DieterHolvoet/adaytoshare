@@ -87,7 +87,7 @@ $(document).ready(function() {
     console.log(totalheight);
     console.log(header);
     console.log(button);
-    $('.boodschap').height(totalheight - button - header - imgDiv);    
+    $('.boodschap').height(totalheight - button - header - imgDiv - 10);    
     });
     
     $('.background').foggy();
