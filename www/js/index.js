@@ -166,7 +166,18 @@ $(document).ready(function() {
         console.log("lol");
     });
     
-    $('.background').foggy();
+    $("#page-eventlist").on("pagecreate", function () {
+        if (!localStorage.getItem('wasVisited')) {
+            $("body").append("<div id=\'popup-eventlist\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            $("#popup-eventlist").on("click", function() {
+                $(this).fadeOut(300);
+                localStorage.setItem('wasVisited','true');
+                console.log("first");
+            });
+            localStorage.setItem('wasVisited', "true");
+        }
+        $('.background').foggy();
+    });
 });
 
 //StatusBar.styleLightContent();
