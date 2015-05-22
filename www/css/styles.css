@@ -283,6 +283,20 @@ div[data-role="page"] header h1 {
    background-color: #DFDFDE;
 }
 
+.reaction{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.recation h1{
+    font-family: 0.9em;
+}
+
+.reaction p{
+    font-size: 0.8em;
+    margin-top: 10px !important;
+}
+
 .eventHeader {
     background-image: url(../eventBackground.jpg);
     background-size: cover;
@@ -348,6 +362,12 @@ div[data-role="page"] header h1 {
     font-weight: 200;
     color: white !important;
     border-radius: 0px !important;
+}
+
+.commentField h2{
+    width: 100%;
+    font-size: 0.7em;
+    text-align: center;
 }
 
 .boodschapFeed h1{
