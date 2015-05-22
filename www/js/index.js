@@ -185,6 +185,9 @@ $(document).ready(function() {
     $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
             $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            
+            // hier komt mijn popUpBol
+            
             $("#popup-eventlist").fadeIn(300);
             $("#popup-eventlist").on("click", function() {
                 $(this).fadeOut(300, function() {
