@@ -18,26 +18,30 @@ if(localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
 }
                
-function checkInvalidInput(element) {
+function checkInvalidInput(element, style) {
     var temp = "";
     
     if($(element).val() === "" || ($(element).attr("name") === "code" && !validateCode($(element).val()))) {
-        $(element).parent().addClass("invalid-input");
-        $(element).addClass("invalid-input");
-        temp = $(element).attr("placeholder");
-        $(element).attr("placeholder", "Ongeldige invoer");
+        if(style) {
+            $(element).parent().addClass("invalid-input");
+            $(element).addClass("invalid-input");
+            temp = $(element).attr("placeholder");
+            $(element).attr("placeholder", "Ongeldige invoer");
+        }
         return false;
 
     } else {
-        $(element).parent().removeClass("invalid-input");
-        $(element).attr("placeholder", temp);
+        if(style) {
+            $(element).parent().removeClass("invalid-input");
+            $(element).attr("placeholder", temp);
+        }
         return true;
     }
 }
 
 function validateCode(code) {
     var result = true;
-    if(code.length >= 6) {
+    if(code.length === 6) {
         $.ajax({
             url: 'crosscall.php',
             data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
@@ -140,38 +144,44 @@ $(document).ready(function() {
     $(".logout").on("click", function() {
         localStorage.removeItem("username");
         localStorage.removeItem("events");
+        localStorage.removeItem("wasVisited");
         $("body").pagecontainer("change", "#page-login", {});
     });
     
     $("#login-naam, #login-code").on("keyup", function(e) {
-        if(checkInvalidInput($("#login-code")) && checkInvalidInput($("#login-naam"))) {
-            $("#page-login input[type='submit']").animate({color: "#fff", "background-color": "#51b0c5"});
-            $("#page-login input[type='submit']").css("cursor", "pointer");
-            $("#page-login input[type='submit']").prop('disabled', false);
-            
-        } else {
-            $("#page-login input[type='submit']").animate({color: "#f9f9f9", "background-color": "#9a9a9a"});
-            $("#page-login input[type='submit']").css("cursor", "default");
-            $("#page-login input[type='submit']").prop('disabled', true);
+        if($(this).val() !== "") {
+            checkInvalidInput($(this), true);
+            if(checkInvalidInput($("#login-code"), false) && checkInvalidInput($("#login-naam"), false)) {
+                $("#page-login input[type='submit']").animate({color: "#fff", "background-color": "#51b0c5"});
+                $("#page-login input[type='submit']").css("cursor", "pointer");
+                $("#page-login input[type='submit']").prop('disabled', false);
+
+            } else {
+                $("#page-login input[type='submit']").animate({color: "#f9f9f9", "background-color": "#9a9a9a"});
+                $("#page-login input[type='submit']").css("cursor", "default");
+                $("#page-login input[type='submit']").prop('disabled', true);
+            }
         }
     });
     
-    $('.formulierTekstbericht').on("submit", function(e){
+    $('.formulierTekstbericht').on("submit", function(e) {
         e.preventDefault();
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
     
-    $("#page-newpost").on("pagecreate", function () {
+    $("#page-newpost").on("pageshow", function () {
         console.log("lol");
     });
     
-    $("#page-eventlist").on("pagecreate", function () {
+    $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
-            $("body").append("<div id=\'popup-eventlist\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            $("#popup-eventlist").fadeIn(300);
             $("#popup-eventlist").on("click", function() {
-                $(this).fadeOut(300);
-                $(this).remove();
+                $(this).fadeOut(300, function() {
+                    $(this).remove();
+                });
                 localStorage.setItem('wasVisited','true');
             });
         }
