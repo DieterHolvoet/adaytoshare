@@ -77,11 +77,12 @@ $(document).ready(function() {
     });
     var totalheight = $(document).height();
     /*Test voor calc height*/
-    $('#page-newpost').on("pagecreate", function(){
+    $('#page-newpost').on("pageshow", function(){
+        console.log("pagecontainerloaded");
     var imgDiv = $('.nieuwBerichtBackground').height();
     var header = $('#headerNewPost').height();
     var button = $('.verzendButton').height();
-    console.log(imgDiv);
+    console.log($('.nieuwBerichtBackground').height());
     console.log(totalheight);
     console.log(header);
     console.log(button);

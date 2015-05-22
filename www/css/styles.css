@@ -530,7 +530,7 @@ div[data-role="page"] header h1 {
 .backgroundImg img {
     position: relative;
     display: block;
-    width: calc(100% + 20px);
+    width: 100%; /*calc(100% + 20px);*/
 }
 
 .choiseCameraOrImport {
