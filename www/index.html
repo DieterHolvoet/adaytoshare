@@ -26,7 +26,7 @@
     <script src="js/index.js"></script>
     <script src="js/comment.js"></script>
     <script src="js/camera.js"></script>
-
+    <script src="js/eventCode.js"></script>
 
 </head>
 
@@ -56,9 +56,13 @@
         <header class="clearfix">
             <h1>Evenementenlijst</h1>
             <a href="#">
-                <div class="navbarbtn icon-plus"></div>
+                <div class="navbarbtn icon-plus" id="addEvent"></div>
             </a>
         </header>
+        <section class="eventCodeToevoegen">
+            <input type="text" name="eventCode">
+            <button id="closeEventCode">Toevoegen</button>
+        </section>
         <div role="main" class="ui-content">
             <a href="#page-newsfeed" data-transition="slide" data-ripple>
                 <article class="event">
@@ -95,7 +99,7 @@
                     </footer>
                 </article>
             </a>
-            <a class="logout" href="#">Uitloggen</a>
+            <button class="logout" href="#">Uitloggen</button>
         </div>
     </div>
 
