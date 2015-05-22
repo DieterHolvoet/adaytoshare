@@ -28,7 +28,10 @@ function takePicture(e) {
         allowEdit: true,
         encodingType: Camera.EncodingType.JPEG,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true
+        saveToPhotoAlbum: true,
+        correctOrientation:true,
+        targetWidth:600,
+        targetheight:600
     });
 }
 
