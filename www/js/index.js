@@ -171,6 +171,7 @@ $(document).ready(function() {
             $("body").append("<div id=\'popup-eventlist\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
             $("#popup-eventlist").on("click", function() {
                 $(this).fadeOut(300);
+                $(this).remove();
                 localStorage.setItem('wasVisited','true');
             });
         }
