@@ -7,17 +7,10 @@ $(document).ready(function() {
 	});
 
 	$(".partypoints").click(function(){
-		if($(this).attr("pp") !== "true"){
+		var n = $(".ppNumber").text();
 
-			$(this).addClass('magictime puffIn');
+		n++;
 
-			$(this).attr("pp", "true");
-			var n = $(this).children().text();
-			n++;
-
-			$(this).children().text( " " + n);
-
-			$(this).css( "color", "red");
-		}
+		$(".ppNumber").text(n);
 	});
 });
