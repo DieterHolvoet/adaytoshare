@@ -12,9 +12,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // Cordova is ready to be used!
 //
 function onDeviceReady() {
-   console.log(device);
-   console.log(window.device);
-   console.log(window.plugins);
+    console.log(device);
+    console.log(window.device);
+    console.log(window.plugins);
     //alert('device ready');
     StatusBar.hide();
     document.getElementById("takePicture").onclick = takePicture;
@@ -23,7 +23,14 @@ function onDeviceReady() {
 function takePicture(e) {
     navigator.camera.getPicture(onSuccess, onFail, {
         quality: 50,
-        destinationType: navigator.camera.DestinationType.DATA_URL
+        destinationType: navigator.camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true
     });
 }
 
@@ -33,7 +40,7 @@ function onSuccess(imageData) {
 }
 
 function onFail(message) {
-    setTimeout(function () {
+    setTimeout(function() {
         //alert('Failed because: ' + message);
     }, 0);
 
