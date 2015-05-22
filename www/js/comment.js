@@ -7,10 +7,33 @@ $(document).ready(function() {
 	});
 
 	$(".partypoints").click(function(){
-		var n = $(".ppNumber").text();
 
-		n++;
+		var n = $(this).children().text();
 
-		$(".ppNumber").text(n);
+		$(this).addClass('magictime boingInUp');
+
+		if($(this).attr("pp") !== "true"){
+			
+			n++;
+
+			$(this).children().text( " " + n);
+
+			$(this).css( "color", "#489CAF");
+
+			$(this).attr("pp", true);
+
+		} else{
+
+			n--;
+
+			$(this).children().text( " " + n);
+
+			$(this).css( "color", "black");
+
+			$(this).attr("pp", false);
+		}
+
 	});
+
+
 });

@@ -10,6 +10,7 @@
     <title>A Day To Share</title>
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animation.css">
     <script src="phonegap.js"></script>
     <script src="js/jquery-2.1.3.min.js"></script>
     <script>
@@ -98,7 +99,7 @@
     </div>
 
     <!-- Nieuwsfeed -->
-    <div data-role="page" id="page-newsfeed">
+    <div data-role="page" id="page-newsfeed" class="newFeedBottom">
         <header class="clearfix">
             <a href="#page-eventlist" data-transition="slide" data-direction="reverse">
                 <div class="navbarbtn icon-back"></div>
@@ -111,40 +112,49 @@
 
         <div role="main" class="ui-content">
             <section class="eventHeader">
-                <h1>Integration Show</h1>
-                <h2>
-                    <span class="icon-pin56"></span> 
-                    Multemedia lab 
-                    <span class="icon-multiple25 spanHeaderRight"> 108</span>
-                    <span class="icon-mail87 spanHeaderRight"> 20</span>
-                </h2>
+                    <h1>Integration Show</h1>
+                    <h2>
+                        <span class="icon-pin56"></span> 
+                        Multemedia lab 
+                        <span class="icon-multiple25 spanHeaderRight"> 108</span>
+                        <span class="icon-mail87 spanHeaderRight"> 20</span>
+                    </h2>
             </section>
             <article class="boodschapFeed">
                 <div>J</div>
                 <h1>Joske duchatoo<time>20:08</time></h1>
                 <p>Wa een zot project is me da hier !</p>
                 <footer>
-                    <span class="icon-wine65"> 6 Party points</span>
+                    <span class="icon-wine65 partypoints">
+                        <span class="ppNumber"> 1</span> Party points
+                    </span>
                     <span class="icon-warning34 spanHeaderRight"></span>
                     <span class="icon-chat110 spanHeaderRight comment"> 2</span>
                     <form class="commentField">
-                        <input type="text" name="Boodschap">
+                        <section class="reaction">
+                            <div>N</div>
+                            <h1>Naomi<time>21:05</time></h1>
+                            <p>Haha jaja tzal wel !!</p>
+                        </section>
+                        <textarea></textarea>
                         <button>Post</button>
                     </form>
                 </footer>
             </article>
 
             <article class="boodschapFeed">
-                <div>V</div>
+                <div>D</div>
                 <h1>Den Danny<time>19:17</time></h1>
                 <p>Wij zijn ier goe aant werk.</p>
                 <img src="fotoPost.jpg" alt="foto post">
                 <footer>
-                    <span class="icon-wine65"> 10 Party points</span>
+                    <span class="icon-wine65 partypoints">
+                        <span class="ppNumber"> 10</span> Party points
+                    </span>
                     <span class="icon-warning34 spanHeaderRight"></span>
                     <span class="icon-chat110 spanHeaderRight comment"> 1</span>
                     <form class="commentField">
-                        <input type="text" name="Boodschap">
+                        <textarea></textarea>
                         <button>Post</button>
                     </form>
                 </footer>
