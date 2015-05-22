@@ -43,7 +43,7 @@ function validateCode(code) {
     if(new RegExp("^[0-9]{6}$").test(code)) {
         var result = false;
         $.ajax({
-            url: 'crosscall.php',
+            url: 'http://grapps.dieterholvoet.com/crosscall.php',
             data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
             type: 'POST',
             async: false,
