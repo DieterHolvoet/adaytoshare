@@ -43,12 +43,11 @@ function validateCode(code) {
     if(new RegExp("^[0-9]{6}$").test(code)) {
         var result = false;
         $.ajax({
-            url: 'http://dieterholvoet.com/crosscall.php',
-            data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
-            type: 'POST',
+            url: "http://api.adaytoshare.be/1/platform/check_code?code=",
+            data: {code: code},
+            type: 'GET',
             async: false,
             success: function (data) {
-                data = JSON.parse(data);
                 if(data.success === 1) {
                     console.log("Valid platform.")
                     result = true;
@@ -68,12 +67,11 @@ function fetchEventData(code, limit, offset) {
     var result = true;
     if(code.length >= 6) {
         $.ajax({
-            url: 'http://dieterholvoet.com/crosscall.php',
-            data: {url: "http://api.adaytoshare.be/1/guestbook/get_posts?code=" + code + "&limit=" + limit + "&offset=" + offset},
-            type: 'POST',
+            url: "http://api.adaytoshare.be/1/guestbook/get_posts",
+            data: {code: code, limit: limit, offset: offset},
+            type: 'GET',
             async: false,
             success: function (data) {
-                data = JSON.parse(data);
                 if(data.success === 1) {
                     events[events.length - 1].messages = data.messages;
                 } else {
@@ -111,12 +109,11 @@ $(document).ready(function() {
         if (check_code && check_login) {
             var code = $("#login-code").val();
             $.ajax({
-                url: 'http://dieterholvoet.com/crosscall.php',
-                data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
-                type: 'POST',
+                url: "http://api.adaytoshare.be/1/platform/check_code?code=",
+                data: {code: code},
+                type: 'GET',
                 async: false,
                 success: function (data) {
-                    data = JSON.parse(data);
                     if(data.success === 1) {
                         events.push(new Event(code, data.album_name));
                         fetchEventData(code, 5, 0);
