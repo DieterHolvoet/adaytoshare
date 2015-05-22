@@ -43,7 +43,7 @@ function validateCode(code) {
     if(new RegExp("^[0-9]{6}$").test(code)) {
         var result = false;
         $.ajax({
-            url: 'http://grapps.dieterholvoet.com/crosscall.php',
+            url: 'http://dieterholvoet.com/crosscall.php',
             data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
             type: 'POST',
             async: false,
@@ -68,7 +68,7 @@ function fetchEventData(code, limit, offset) {
     var result = true;
     if(code.length >= 6) {
         $.ajax({
-            url: 'crosscall.php',
+            url: 'http://dieterholvoet.com/crosscall.php',
             data: {url: "http://api.adaytoshare.be/1/guestbook/get_posts?code=" + code + "&limit=" + limit + "&offset=" + offset},
             type: 'POST',
             async: false,
@@ -111,7 +111,7 @@ $(document).ready(function() {
         if (check_code && check_login) {
             var code = $("#login-code").val();
             $.ajax({
-                url: 'crosscall.php',
+                url: 'http://dieterholvoet.com/crosscall.php',
                 data: {url: "http://api.adaytoshare.be/1/platform/check_code?code=" + code},
                 type: 'POST',
                 async: false,
