@@ -27,8 +27,6 @@ function takePicture(e) {
         sourceType: Camera.PictureSourceType.CAMERA,
         allowEdit: true,
         encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true
     });
