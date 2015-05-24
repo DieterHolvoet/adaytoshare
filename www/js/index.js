@@ -4,7 +4,7 @@ browser: true,
 jquery: true
 */
 
-var events = [];
+var events = [], activeNewsfeed;
 
 function Event(code, name) {
     this.code = "";
@@ -12,6 +12,7 @@ function Event(code, name) {
     this.name = "";
     this.name = name;
     this.cover = "";
+    this.myLikes = [];
 }
 
 if(localStorage.getItem("events")) {
@@ -86,10 +87,6 @@ function fetchEventData(code, limit, offset) {
     }
 }
 
-function updateStorage() {
-    localStorage.setItem("events", JSON.stringify(events));
-}
-
 function loadEvents() {
     for(var i = 0; i < events.length; i++) {
         $("#page-eventlist .ui-content").append("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple id=\'"
@@ -104,12 +101,17 @@ function loadEvents() {
 }
 
 function loadNewsfeed(code) {
+    if(code === undefined) {
+        console.error("No code specified");
+        return false;
+    }
+    
     $("#page-newsfeed .ui-content").empty();
     var index;
     for(var i = 0; i < events.length; i++) {
         if(events[i].code === code) index = i;
     }
-    
+    console.log(index);
     $("#page-newsfeed .ui-content").prepend("<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
@@ -132,46 +134,107 @@ function loadNewsfeed(code) {
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
     }
     
-    elasticize($(".commentField textarea"));
+    elasticize($("textarea"));
     
     $(".comment").on("click", function() {
         $(this).next().slideToggle("fast");
     });
 
     $(".partypoints").on("click", function() {
-        var n = $(this).children().text();
-        $(this).addClass('magictime boingInUp');
-        if($(this).attr("pp") !== "true"){
+        var n = $(this).text().replace(" Party points", "");
+        
+        if($(this).attr("pp") !== "true") {
+            $(this).addClass('magictime boingInUp');
             n++;
-            $(this).children().text( " " + n);
+            updateLikes($(this).parent().parent());
             $(this).css( "color", "#489CAF");
             $(this).attr("pp", true);
 
         } else {
-            n--;
-            $(this).children().text( " " + n);
-            $(this).css( "color", "black");
-            $(this).attr("pp", false);
+            // Nog geen un-like-functionaliteit aanwezig in de API
+//            n--;
+//            updateLikes(index);
+//            $(this).css( "color", "black");
+//            $(this).attr("pp", false);
         }
     });
     
-    $("body").pagecontainer("change", "#page-newsfeed", {transition: "slide"});
+    activeNewsfeed = code;
 }
 
+// Krijg de index van het huidige evenement in het events-object
+function getEventIndex() {
+    for(var i = 0; i < events.length; i++) {
+        if(events[i].code === activeNewsfeed) return i;
+    }
+}
+
+// Stuur een request om een post te liken, indien deze nog niet eerder geliked is
+function updateLikes(elem) {
+    console.log(elem);
+    var messageID = events[getEventIndex()].messages[$(".boodschapFeed").index(elem)].messageID,
+        myLikes = events[getEventIndex()].myLikes;
+        alreadyLiked = false;
+    
+    for(var i = 0; i < myLikes.length; i++) {
+        if(myLikes[i] === messageID) return false;
+    }
+    
+    myLikes.push(messageID);
+//    $.ajax({
+//        url: "http://api.adaytoshare.be/1/platform/like",
+//        data: {code: activeNewsfeed, messageID: messageID},
+//        type: 'POST',
+//        async: false,
+//        success: function (data) {
+//            if(data.success === 1) {
+//
+//            } else {
+//                console.error(data.error_message);
+//                result = false;
+//            }
+//        }
+//    });
+}
+
+// Load the previously liked posts back in the interface
+function loadLikes() {
+    var messages = events[getEventIndex()].messages,
+        myLikes = events[getEventIndex()].myLikes;
+    for(var i = 0; i < messages.length; i++) {
+        for(var j = 0; j < myLikes.length; j++) {
+            console.log(messages[i].messageID, myLikes[j])
+            if(messages[i].messageID === myLikes[j]) {
+                var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
+                $(elem).css("color", "#489CAF");
+                $(elem).attr("pp", true);
+            }
+        }
+    }
+}
+
+// Add new event to the events object
 function addEvent(code, name) {
     for(var i = 0; i < events.length; i++) {
         if(events[i].code === code) return false;
     }
     events.push(new Event(code, name));
+    fetchEventData(code, 5, 0);
+    localStorage.setItem("events", JSON.stringify(events));
     console.log("New event added");
 }
 
 $(document).ready(function() {
 
-    // Initialisatie van de pagina
+    // Initialisatie van de pagina    
     if(localStorage.getItem("username")) {
-        loadEvents();
-        window.location.hash = "page-eventlist";
+        if(events.length > 1) {
+            window.location.hash = "page-eventlist";
+        } else {
+            loadNewsfeed(events[0].code);
+            window.location.hash = "page-newsfeed";
+        }
+        
     } else {
         window.location.hash = "page-login";
     }
@@ -193,9 +256,6 @@ $(document).ready(function() {
                 success: function (data) {
                     if(data.success === 1) {
                         addEvent(code, data.album_name);
-                        fetchEventData(code, 5, 0);
-                        loadEvents();
-                        updateStorage();
                     } else {
                         console.error(data.error_message);
                         result = false;
@@ -207,6 +267,7 @@ $(document).ready(function() {
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
             } else {
+                loadNewsfeed(events[0].code);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
             }
             
@@ -224,6 +285,7 @@ $(document).ready(function() {
     
     $(".event").on("click", function() {
         loadNewsfeed($(this).parent().attr("id"));
+        $("body").pagecontainer("change", "#page-newsfeed", {});
     })
     
     $("#login-naam, #login-code").on("keyup", function(e) {
@@ -253,6 +315,10 @@ $(document).ready(function() {
     });
     
     // Evenementenlijst
+    $("#page-eventlist").on("pagecreate", function () {
+        loadEvents();
+    });
+                            
     $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
             $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
@@ -264,9 +330,6 @@ $(document).ready(function() {
                 localStorage.setItem('wasVisited','true');
             });
         }
-        
-        
-        
         $('.background').foggy();
     });
 });
