@@ -98,30 +98,38 @@
 
 .icon-pin56:before {
     content: "\e606";
+    padding-right: 5px;
 }
 
 .icon-multiple25:before {
     content: "\e604";
+    padding-right: 5px;
 }
 
 .icon-mail87:before {
     content: "\e603";
+    padding-right: 5px;
 }
 
 .icon-wine65:before {
     content: "\e609";
     font-size: 1.3em;
+    font-family: 'adts';
+    padding-right: 5px;
 }
 
 .icon-chat110:before {
     content: "\e601";
     font-size: 1.3em;
+    font-family: 'adts';
+    padding-right: 5px;
 }
 
 .icon-warning34:before {
     content: "\e608";
     font-size: 1.3em;
     margin-left: 5px;
+    font-family: 'adts';
 }
 
 .icon-user185:before {
@@ -297,108 +305,156 @@ div[data-role="page"] header h1 {
     margin-top: 10px !important;
 }
 
-.eventHeader {
+.eventBackground {
     background-image: url(../eventBackground.jpg);
-    background-size: cover;
+    background-size: 100%;
+    background-position: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.eventHeader {
     font-family: 'Raleway';
     color: white;
     width: 100%;
-    padding: 20px;
+    padding: 30px 25px;
     margin-top: -20px;
-    margin-left: -20px;
+    margin-left: -25px;
     text-shadow: none;
+    position: relative;
 }
 
 .eventHeader h1 {
     text-shadow: none;
     font-size: 1.6em;
     font-weight: 200;
+    position: relative;
+    z-index: 1;
 }
 
 .eventHeader h2 {
     margin-top: 20px;
     font-weight: 200;
+    position: relative;
+    z-index: 1;
 }
 
-.eventHeader h2 span{
+.eventHeader h2 span {
     font-size: 1em;
 }
 
-.spanHeaderRight{
+.spanHeaderRight {
     float: right;
     margin-left: 10px;
 }
 
-.boodschapFeed{
+.boodschapFeed {
     font-family: 'Raleway';
-    float: left;
-    width: 90%;
-    margin-top: 15px;
-    padding: 5%;
+    margin-top: 20px;
+    padding: 15px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-sizing: border-box;
 }
 
-.boodschapFeed div{
+.boodschapFeed div {
     color: white;
     text-align: center;
     float: left;
-    line-height: 2;
     background-color: #e94540;
     width: 30px;
     height: 30px;
-    border-radius: 100px;
+    border-radius: 50%;
 }
 
-.commentField{
+.boodschapFeed h1 {
+    line-height: 2;
+    float: left;
+    margin-left: 10px;
+    max-width: 30%;
+    
+    /* Line break */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.boodschapFeed time {
+    float: right;
+}
+
+.boodschapFeed p {
+    width: 100%;
+    clear: left;
+    padding-top: 10px;
+}
+
+.boodschapFeed img {
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+.boodschapFeed footer {
+    margin-top: 10px;
+}
+
+.boodschapFeed > * {
+    line-height: 2;
+}
+
+.boodschapFeed time, .boodschapFeed p, .boodschapFeed span {
+    font-size: 15px;
+    font-family: 'Raleway';
+}
+
+.partypoints:hover {
+    cursor: pointer;
+}
+
+.commentField {
     width: 100%;
     display: none;
 }
 
-.commentField button{
+.commentField button {
     background-color: #51b0c5 !important;
-    font-family: 'Raleway';
     font-weight: 200;
-    color: white !important;
-    border-radius: 0px !important;
+    font-size: 100%;
+    font-family: 'Raleway';
+    background-color: #9a9a9a;
+    color: #f9f9f9;
+    width: 100%;
+    height: 40px;
+    text-transform: uppercase;
+    font-weight: 100;
+    border: none;
+    box-sizing: border-box;
 }
 
-.commentField h2{
+.commentField textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 10px;
+    border: none;
+    resize: none;
+    display: block;
+}
+
+.commentField h2 {
     width: 100%;
     font-size: 0.7em;
     text-align: center;
 }
 
-.boodschapFeed h1{
-    line-height: 2;
-    margin-left: 40px;
-}
-
-.boodschapFeed time{
-    float: right;
-}
-
-.boodschapFeed p{
-    width: 100%;
-    margin-top: 15px;
-}
-
-.boodschapFeed img{
-    margin-top: 10px;
-    width: 110%;
-    margin-left: -5%
-}
-
-.boodschapFeed footer{
-    margin-top: 10px;
-}
-
-.boodschapFeed footer span{
-    font-size: 0.9em;
-}
-
-.fab{
+.fab {
     text-align: center;
     position: fixed;
     bottom: 20px;
@@ -492,10 +548,6 @@ div[data-role="page"] header h1 {
 #page-login input[type="submit"] {
     font-size: 100%;
     font-family: 'Raleway';
-/*
-    background-color: #51b0c5;
-    color: #fff;
-*/
     background-color: #9a9a9a;
     color: #f9f9f9;
     margin: 8% auto 20% auto;
@@ -653,7 +705,7 @@ div[data-role="page"] header h1 {
 }
 
 * {
-    text-shadow: none;
+    text-shadow: none !important;
 }
 
 input {

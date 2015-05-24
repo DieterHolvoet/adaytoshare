@@ -110,25 +110,29 @@ function loadNewsfeed(code) {
         if(events[i].code === code) index = i;
     }
     
-    $("#page-newsfeed .ui-content").prepend("<section class=\'eventHeader\'><h1>" + events[index].name + "</h1>"
+    $("#page-newsfeed .ui-content").prepend("<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>");
     
+    $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;
-    var date = new Date(messages[i].timestamp * 1000);
     for(var i = 0; i <  messages.length; i++) {
-        $("#page-newsfeed .ui-content .eventHeader").after("<article class=\'boodschapFeed\'>"
+        var date = new Date(messages[i].timestamp * 1000);
+        $("#page-newsfeed .ui-content .eventHeader").after("<article class=\'boodschapFeed clearfix\' data-enhance=\'false\'>"
                                                            + "<div>" + messages[i].from.charAt(0).toUpperCase() + "</div>"
-                                                           + "<h1>" + messages[i].from + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "</time></h1>"
+                                                           + "<h1>" + messages[i].from + "</h1>"
+                                                           + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "</time>"
                                                            + "<p>" + messages[i].message + "</p>"
                                                            + (messages[i].photoURL !== "" ? ("<img src=\'" + messages[i].photoURL + "\' alt=\'foto post\'>") : "")
                                                            + "<footer><span class=\'icon-wine65 partypoints\'>"
-                                                           + "<span class=\'ppNumber\'>" + messages[i].likes + "</span>" + "Party points" + "</span>"
+                                                           + messages[i].likes + " Party points" + "</span>"
                                                            + "<span class=\'icon-warning34 spanHeaderRight\'></span>"
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
     }
+    
+    elasticize($(".commentField textarea"));
     
     $(".comment").on("click", function() {
         $(this).next().slideToggle("fast");
@@ -151,7 +155,7 @@ function loadNewsfeed(code) {
         }
     });
     
-    $("body").pagecontainer("change", "#page-newsfeed", {});
+    $("body").pagecontainer("change", "#page-newsfeed", {transition: "slide"});
 }
 
 function addEvent(code, name) {
