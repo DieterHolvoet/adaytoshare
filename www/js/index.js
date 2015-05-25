@@ -109,7 +109,6 @@ function loadNewsfeed(code) {
     
     $("#page-newsfeed .ui-content").empty();
     var index = getEventIndex(code);
-    $("#page-newsfeed header").after();
     
     $("#page-newsfeed .ui-content").prepend("<div class=\'iscroll-pulldown\'><div class=\'spinner slow\'><div class=\'dot1\'></div><div class=\'dot2\'></div></div><span class=\'iscroll-pull-icon\'></span><span class=\'iscroll-pull-label\'></span></div>"
                                             + "<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
@@ -135,6 +134,8 @@ function loadNewsfeed(code) {
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
     }
     
+    activeNewsfeed = code;
+    loadLikes();
     elasticize($("textarea"));
     
     $(".comment").on("click", function() {
@@ -159,8 +160,6 @@ function loadNewsfeed(code) {
 //            $(this).attr("pp", false);
         }
     });
-    
-    activeNewsfeed = code;
 }
 
 // Krijg de index van een evenement in het events-object
@@ -173,16 +172,23 @@ function getEventIndex(code) {
 
 // Stuur een request om een post te liken, indien deze nog niet eerder geliked is
 function updateLikes(elem) {
-    console.log(elem);
     var messageID = events[getEventIndex()].messages[$(".boodschapFeed").index(elem)].messageID,
-        myLikes = events[getEventIndex()].myLikes;
-        alreadyLiked = false;
+        alreadyLiked = false,
+        myLikes;
     
+    if(events[getEventIndex()].myLikes === undefined){
+        events[getEventIndex()].myLikes = [];
+    } else {
+        myLikes = events[getEventIndex()].myLikes;
+    }  
+
     for(var i = 0; i < myLikes.length; i++) {
         if(myLikes[i] === messageID) return false;
     }
     
-    myLikes.push(messageID);
+    events[getEventIndex()].myLikes.push(messageID);
+    updateStorage();
+
 //    $.ajax({
 //        url: "http://api.adaytoshare.be/1/platform/like",
 //        data: {code: activeNewsfeed, messageID: messageID},
@@ -201,18 +207,21 @@ function updateLikes(elem) {
 
 // Load the previously liked posts back in the interface
 function loadLikes() {
-    var messages = events[getEventIndex()].messages,
-        myLikes = events[getEventIndex()].myLikes;
-    for(var i = 0; i < messages.length; i++) {
-        for(var j = 0; j < myLikes.length; j++) {
-            console.log(messages[i].messageID, myLikes[j])
-            if(messages[i].messageID === myLikes[j]) {
-                var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
-                $(elem).css("color", "#489CAF");
-                $(elem).attr("pp", true);
+    if(events[getEventIndex()].myLikes !== undefined) {
+        var messages = events[getEventIndex()].messages,
+            myLikes = events[getEventIndex()].myLikes;
+        for(var i = 0; i < messages.length; i++) {
+            for(var j = 0; j < myLikes.length; j++) {
+                console.log(messages[i].messageID, myLikes[j])
+                if(messages[i].messageID === myLikes[j]) {
+                    var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
+                    $(elem).css("color", "#489CAF");
+                    $(elem).attr("pp", true);
+                }
             }
         }
     }
+    
 }
 
 // Add new event to the events object
@@ -222,8 +231,12 @@ function addEvent(code, name) {
     }
     events.push(new Event(code, name));
     fetchEventData(code, 5, 0);
-    localStorage.setItem("events", JSON.stringify(events));
+    updateStorage();
     console.log("New event added");
+}
+
+function updateStorage() {
+    localStorage.setItem("events", JSON.stringify(events));
 }
 
 $(document).ready(function() {
@@ -319,25 +332,24 @@ $(document).ready(function() {
                     pullDownEl.find(".spinner").removeClass("normal");
                     pullDownEl.find(".spinner").addClass("slow");
                 }
-            },
-            onScrollMove: function () {
-                console.log(this.y);
-                if (this.y > 5 && !pullDownEl.hasClass('flip')) {
-                    pullDownEl.className = 'flip';
-                    this.minScrollY = 0;
-                    
-                } else if (this.y < 5 && pullDownEl.hasClass('flip')) {
-                    pullDownEl.className = '';
-                    this.minScrollY = -pullDownOffset;
-                    
-                }
-            },
-            onScrollEnd: function () {
-                if (pullDownEl.hasClass('flip')) {
-//                    pullDownAction();	// Execute custom function (ajax call?)
-                }
             }
         });
+        
+        $(document).on("iscroll_onpulldown", function(event, data) {
+            console.log("loading");
+            pullDownEl.find(".spinner").removeClass("slow");
+            pullDownEl.find(".spinner").addClass("normal");
+            setTimeout(function() {data.iscrollview.refresh();}, 3000);
+        });
+        
+        $(document).on("iscroll_onpulldownreset", function() {
+            console.log("reset");
+            pullDownEl.find(".spinner").removeClass("normal");
+            pullDownEl.find(".spinner").addClass("slow");
+        });
+        
+        
+        
 //        myScroll.scrollToElement(".eventHeader");
     });
     

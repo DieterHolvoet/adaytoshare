@@ -1,7 +1,7 @@
 @import url("jquery.mobile-1.4.5.min.css");
 @import url("reset.css");
 @import url("jquery.ripple.css");
-@import url("jquery.mobile.iscrollview.css")
+@import url("jquery.mobile.iscrollview.css");
 
 /* CLEARFIX */
 
@@ -734,6 +734,10 @@ input {
     padding: 0;
 }
 
+#page-newsfeed .iscroll-scroller {
+    width: 100%;
+}
+
 .boodschapFeed {
     margin: 20px;
 }
@@ -817,20 +821,20 @@ input {
     animation-delay: -2.0s;
 }
 
-@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
-@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) translateZ(0) }}
+@keyframes rotate { 100% { transform: rotate(360deg) translateZ(0); -webkit-transform: rotate(360deg) translateZ(0) }}
 
 @-webkit-keyframes bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
+  0%, 100% { -webkit-transform: scale(0.0) translateZ(0) }
+  50% { -webkit-transform: scale(1.0) translateZ(0) }
 }
 
 @keyframes bounce {
   0%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
+    transform: scale(0.0) translateZ(0);
+    -webkit-transform: scale(0.0) translateZ(0);
   } 50% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
+    transform: scale(1.0) translateZ(0);
+    -webkit-transform: scale(1.0) translateZ(0);
   }
 }
