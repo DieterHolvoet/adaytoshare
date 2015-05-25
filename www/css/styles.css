@@ -1,6 +1,7 @@
 @import url("jquery.mobile-1.4.5.min.css");
 @import url("reset.css");
 @import url("jquery.ripple.css");
+@import url("jquery.mobile.iscrollview.css")
 
 /* CLEARFIX */
 
@@ -287,7 +288,6 @@ div[data-role="page"] header h1 {
 /************** Event Feed ****************/
 
 .newFeedBottom{
-   padding-bottom: 80px;
    background-color: #DFDFDE;
 }
 
@@ -320,10 +320,12 @@ div[data-role="page"] header h1 {
 .eventHeader {
     font-family: 'Raleway';
     color: white;
-    width: 100%;
+/*    width: 100%;*/
     padding: 30px 25px;
+/*
     margin-top: -20px;
     margin-left: -25px;
+*/
     text-shadow: none;
     position: relative;
 }
@@ -711,4 +713,124 @@ div[data-role="page"] header h1 {
 input {
     -webkit-appearance: none;
     border-radius: 0;
+}
+
+.ui-content {
+    max-height: calc(100vh - 60px);
+}
+
+/* test */
+
+#newsfeed-wrapper {
+    position: relative;
+    background-color: #51b0c5;
+}
+
+#newsfeed-wrapper .iscroll-content {
+    background-color: #dfdfde;
+}
+
+#page-newsfeed .ui-content {
+    padding: 0;
+}
+
+.boodschapFeed {
+    margin: 20px;
+}
+
+.boodschapFeed:last-of-type {
+    margin-bottom: 0;
+}
+
+#newsfeed-list {
+    padding-bottom: 20px;
+}
+
+.iscroll-pulldown {
+    height: 90px;
+    line-height: 50px;
+}
+
+.iscroll-pull-label {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    background-color: #51b0c5;
+    color: white;
+    font-weight: 100;
+}
+
+.iscroll-pull-icon {
+    margin: 0 auto;
+}
+
+.spinner {
+    margin: 6px auto 0 auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    text-align: center;
+}
+
+.spinner.normal {
+    -webkit-animation: rotate 2.0s infinite linear;
+    animation: rotate 2.0s infinite linear;
+}
+
+.spinner.slow {
+    -webkit-animation: rotate 4.0s infinite linear;
+    animation: rotate 4.0s infinite linear;
+}
+
+.dot1, .dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
+.spinner.normal .dot1, .spinner.normal .dot2 {
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
+}
+
+.spinner.slow .dot1, .spinner.slow .dot2 {
+    -webkit-animation: bounce 4.0s infinite ease-in-out;
+    animation: bounce 4.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0px;
+}
+
+.spinner.normal .dot1 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner.slow .dot1 {
+    -webkit-animation-delay: -2.0s;
+    animation-delay: -2.0s;
+}
+
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }

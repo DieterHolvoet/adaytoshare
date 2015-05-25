@@ -4,7 +4,8 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed;
+var events = [], activeNewsfeed, myScroll;
+
 
 function Event(code, name) {
     this.code = "";
@@ -74,7 +75,7 @@ function fetchEventData(code, limit, offset) {
             async: false,
             success: function (data) {
                 if(data.success === 1) {
-                    events[events.length - 1].messages = data.messages;
+                    events[getEventIndex(code)].messages = data.messages;
                 } else {
                     console.error("Error " + data.errorcode + ": " + data.error_message);
                     result = false;
@@ -107,21 +108,21 @@ function loadNewsfeed(code) {
     }
     
     $("#page-newsfeed .ui-content").empty();
-    var index;
-    for(var i = 0; i < events.length; i++) {
-        if(events[i].code === code) index = i;
-    }
-    console.log(index);
-    $("#page-newsfeed .ui-content").prepend("<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
+    var index = getEventIndex(code);
+    $("#page-newsfeed header").after();
+    
+    $("#page-newsfeed .ui-content").prepend("<div class=\'iscroll-pulldown\'><div class=\'spinner slow\'><div class=\'dot1\'></div><div class=\'dot2\'></div></div><span class=\'iscroll-pull-icon\'></span><span class=\'iscroll-pull-label\'></span></div>"
+                                            + "<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
-                                            + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>");
+                                            + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
+                                            + "<div id=\'newsfeed-list\'></div>");
     
     $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;
     for(var i = 0; i <  messages.length; i++) {
         var date = new Date(messages[i].timestamp * 1000);
-        $("#page-newsfeed .ui-content .eventHeader").after("<article class=\'boodschapFeed clearfix\' data-enhance=\'false\'>"
+        $("#page-newsfeed .ui-content #newsfeed-list").append("<article class=\'boodschapFeed clearfix\' data-enhance=\'false\'>"
                                                            + "<div>" + messages[i].from.charAt(0).toUpperCase() + "</div>"
                                                            + "<h1>" + messages[i].from + "</h1>"
                                                            + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "</time>"
@@ -162,10 +163,11 @@ function loadNewsfeed(code) {
     activeNewsfeed = code;
 }
 
-// Krijg de index van het huidige evenement in het events-object
-function getEventIndex() {
+// Krijg de index van een evenement in het events-object
+function getEventIndex(code) {
+    if(arguments.length === 0) code = activeNewsfeed;
     for(var i = 0; i < events.length; i++) {
-        if(events[i].code === activeNewsfeed) return i;
+        if(events[i].code === code) return i;
     }
 }
 
@@ -240,6 +242,7 @@ $(document).ready(function() {
     }
     $.mobile.initializePage();
     
+    // Loginpagina
     // Controle login
     $("#loginform").on("submit", function(e) {
         e.preventDefault();
@@ -276,18 +279,6 @@ $(document).ready(function() {
         }
     });
     
-    $(".logout").on("click", function() {
-        localStorage.removeItem("username");
-        localStorage.removeItem("events");
-        localStorage.removeItem("wasVisited");
-        $("body").pagecontainer("change", "#page-login", {});
-    });
-    
-    $(".event").on("click", function() {
-        loadNewsfeed($(this).parent().attr("id"));
-        $("body").pagecontainer("change", "#page-newsfeed", {});
-    })
-    
     $("#login-naam, #login-code").on("keyup", function(e) {
         if($(this).val() !== "") {
             checkInvalidInput($(this), true);
@@ -309,9 +300,49 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
-    
+    // Nieuwe post-pagina
     $("#page-newpost").on("pageshow", function () {
         console.log("lol");
+    });
+    
+    // Nieuwsfeed
+    
+    $("#page-newsfeed").on("pagebeforeshow", function () {
+        var pullDownEl = $(".iscroll-pulldown"),
+            pullDownLabel = $(".iscroll-pulldown .iscroll-pull-label"),
+            pullDownOffset = pullDownEl.height();
+        
+        myScroll = new iScroll("newsfeed-wrapper", {
+            onRefresh: function () {
+                console.log(this);
+                if (pullDownEl.hasClass('iscroll-pull-loading')) {
+                    pullDownEl.find(".spinner").removeClass("normal");
+                    pullDownEl.find(".spinner").addClass("slow");
+                }
+            },
+            onScrollMove: function () {
+                console.log(this.y);
+                if (this.y > 5 && !pullDownEl.hasClass('flip')) {
+                    pullDownEl.className = 'flip';
+                    this.minScrollY = 0;
+                    
+                } else if (this.y < 5 && pullDownEl.hasClass('flip')) {
+                    pullDownEl.className = '';
+                    this.minScrollY = -pullDownOffset;
+                    
+                }
+            },
+            onScrollEnd: function () {
+                if (pullDownEl.hasClass('flip')) {
+//                    pullDownAction();	// Execute custom function (ajax call?)
+                }
+            }
+        });
+//        myScroll.scrollToElement(".eventHeader");
+    });
+    
+    $("#page-newsfeed").on("pageshow", function () {
+        myScroll.refresh();
     });
     
     // Evenementenlijst
@@ -332,6 +363,18 @@ $(document).ready(function() {
         }
         $('.background').foggy();
     });
+    
+    $(".logout").on("click", function() {
+        localStorage.removeItem("username");
+        localStorage.removeItem("events");
+        localStorage.removeItem("wasVisited");
+        $("body").pagecontainer("change", "#page-login", {});
+    });
+    
+    $(".event").on("click", function() {
+        loadNewsfeed($(this).parent().attr("id"));
+        $("body").pagecontainer("change", "#page-newsfeed", {});
+    })
 });
 
 //StatusBar.styleLightContent();
