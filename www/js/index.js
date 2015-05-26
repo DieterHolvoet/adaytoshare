@@ -6,6 +6,9 @@ jquery: true
 
 var events = [], activeNewsfeed, myScroll;
 
+setTimeout(function () {
+    myScroll = new iScroll("newsfeed-wrapper", {});
+}, 100);
 
 function Event(code, name) {
     this.code = "";
@@ -109,6 +112,7 @@ function loadNewsfeed(code) {
     var content;
     if($("#page-newsfeed .iscroll-scroller").length) {
         content = "#page-newsfeed .ui-content .iscroll-content";
+        $(content).empty();
         
     } else {
         content = "#page-newsfeed .ui-content";
@@ -119,18 +123,16 @@ function loadNewsfeed(code) {
         return false;
     }
     
-    $(content).empty();
     var index = getEventIndex(code);
     
-    $(content).prepend("<div class=\'iscroll-pulldown\'><div class=\'spinner slow\'><div class=\'dot1\'></div><div class=\'dot2\'></div></div><span class=\'iscroll-pull-icon\'></span><span class=\'iscroll-pull-label\'></span></div>"
-                                            + "<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
+    $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
                                             + "<div id=\'newsfeed-list\'></div>"
                                             + "<div class=\'fab\'><span class=\'icon-plus\'></span></div>");
     
-    if($("#page-newsfeed .iscroll-content .iscroll-pulldown").length) $("#page-newsfeed .iscroll-content .iscroll-pulldown").remove();
+//    if($("#page-newsfeed .iscroll-scroller").length) $("#page-newsfeed .iscroll-content .iscroll-pulldown").remove();
     $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;
     for(var i = 0; i <  messages.length; i++) {
@@ -343,19 +345,7 @@ $(document).ready(function() {
     $("#page-newsfeed").on("pagebeforeshow", function () {
         var pullDownEl = $(".iscroll-pulldown"),
             pullDownLabel = $(".iscroll-pulldown .iscroll-pull-label"),
-            pullDownOffset = pullDownEl.height();
-        
-        setTimeout(function () {
-            myScroll = new iScroll("newsfeed-wrapper", {
-                onRefresh: function () {
-                    if (pullDownEl.hasClass('iscroll-pull-loading')) {
-                        pullDownEl.find(".spinner").removeClass("normal");
-                        pullDownEl.find(".spinner").addClass("slow");
-                    }
-                }
-            });
-        }, 100);
-        
+            pullDownOffset = pullDownEl.height();        
         
         $(document).on("iscroll_onpulldown", function(event, data) {
             console.log("loading");
