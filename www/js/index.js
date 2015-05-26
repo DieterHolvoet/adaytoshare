@@ -168,7 +168,7 @@ $(document).ready(function() {
     
     
     /*Test voor calc height*/
-    var totalheight = window.screen.height;
+    var totalheight = window.screen.height / window.devicePixelRatio; 
         //$(document).height();
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
