@@ -10,12 +10,13 @@ setTimeout(function () {
     myScroll = new iScroll("newsfeed-wrapper", {});
 }, 100);
 
-function Event(code, name) {
+function Event(code, name, cover) {
     this.code = "";
     this.code = code;
     this.name = "";
     this.name = name;
     this.cover = "";
+    this.cover = cover;
     this.myLikes = [];
 }
 
@@ -48,7 +49,7 @@ function validateCode(code) {
     if(new RegExp("^[0-9]{6}$").test(code)) {
         var result = false;
         $.ajax({
-            url: "http://api.adaytoshare.be/1/platform/check_code?code=",
+            url: "http://api.adaytoshare.be/1/platform/check_code",
             data: {code: code},
             type: 'GET',
             async: false,
@@ -79,7 +80,6 @@ function fetchEventData(code, limit, offset) {
             success: function (data) {
                 if(data.success === 1) {
                     for(var i = 0; i < data.messages.length; i++) {
-                        console.log("jaja");
                         data.messages[i].likes = parseInt(data.messages[i].likes);
                     }
                     events[getEventIndex(code)].messages = data.messages;
@@ -99,7 +99,8 @@ function loadEvents() {
     for(var i = 0; i < events.length; i++) {
         $("#page-eventlist .ui-content").append("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple id=\'"
                                                 + events[i].code + "\'>"
-                                                + "<article class=\'event\'><div class=\'background\'></div>"
+                                                + "<article class=\'event\'><div class=\'background\' style=\'background-image: url(" 
+                                                + events[i].cover + ")\'></div>"
                                                 + "<h2>" + events[i].name + "</h2>"
                                                 + "<footer><time>" + "20 mei 2015" + "</time>"
                                                 + "<span class=\'evt-photos\'>" + "103" + "</span>"
@@ -171,6 +172,16 @@ function loadNewsfeed(code) {
             $(this).attr("pp", true);
         }
     });
+}
+
+function loadMoreNewsfeed() {
+    fetchEventData(activeNewsfeed, 5, events[getEventIndex()].messages.length);
+    loadNewsfeed(activeNewsfeed);
+    myScroll.refresh();
+}
+
+function updateNewsfeed() {
+    fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
 }
 
 // Krijg de index van een evenement in het events-object
@@ -248,11 +259,11 @@ function loadLikes() {
 }
 
 // Add new event to the events object
-function addEvent(code, name) {
+function addEvent(code, name, cover) {
     for(var i = 0; i < events.length; i++) {
         if(events[i].code === code) return false;
     }
-    events.push(new Event(code, name));
+    events.push(new Event(code, name, cover));
     fetchEventData(code, 5, 0);
     updateStorage();
     console.log("New event added");
@@ -294,7 +305,7 @@ $(document).ready(function() {
                 async: false,
                 success: function (data) {
                     if(data.success === 1) {
-                        addEvent(code, data.album_name);
+                        addEvent(code, data.album_name, data.album_banner);
                     } else {
                         console.error(data.error_message);
                         result = false;
@@ -351,9 +362,7 @@ $(document).ready(function() {
             console.log("loading");
             pullDownEl.find(".spinner").removeClass("slow");
             pullDownEl.find(".spinner").addClass("normal");
-            fetchEventData(activeNewsfeed);
-            loadNewsfeed(activeNewsfeed);
-            myScroll.refresh();
+            updateNewsfeed();
             data.iscrollview.refresh();
             // setTimeout(function() {data.iscrollview.refresh();}, 3000);
         });
