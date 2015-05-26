@@ -16,8 +16,8 @@ function onDeviceReady() {
     console.log(device);
     console.log(window.device);
     console.log(window.plugins);
-    //alert('device ready');
-    StatusBar.hide();
+    // alert('device ready');
+    // StatusBar.hide();
     document.getElementById("gallery").onclick = takePicture;
 }
 
