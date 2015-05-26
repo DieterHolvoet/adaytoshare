@@ -354,7 +354,7 @@ $(document).ready(function() {
                     }
                 }
             });
-        }, 100);
+        }, 1000);
         
         
         $(document).on("iscroll_onpulldown", function(event, data) {
