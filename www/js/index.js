@@ -22,6 +22,8 @@ function Event(code, name, cover) {
 
 if(localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
+} else {
+    emptyStorage();
 }
                
 function checkInvalidInput(element, style) {
@@ -83,6 +85,7 @@ function fetchEventData(code, limit, offset) {
                         data.messages[i].likes = parseInt(data.messages[i].likes);
                     }
                     events[getEventIndex(code)].messages = data.messages;
+                    updateStorage();
                 } else {
                     console.error("Error " + data.errorcode + ": " + data.error_message);
                     result = false;
@@ -134,7 +137,6 @@ function loadNewsfeed(code) {
                                             + "<div id=\'newsfeed-list\'></div>"
                                             + "<div class=\'fab\'><span class=\'icon-plus\'></span></div>");
     
-//    if($("#page-newsfeed .iscroll-scroller").length) $("#page-newsfeed .iscroll-content .iscroll-pulldown").remove();
     $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;
     for(var i = 0; i <  messages.length; i++) {
@@ -272,12 +274,18 @@ function addEvent(code, name, cover) {
     }
     events.push(new Event(code, name, cover));
     fetchEventData(code, 5, 0);
-    updateStorage();
     console.log("New event added");
 }
 
 function updateStorage() {
     localStorage.setItem("events", JSON.stringify(events));
+}
+
+function emptyStorage() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("events");
+    localStorage.removeItem("wasVisited");
+    localStorage.removeItem("wasVisited2");
 }
 
 $(document).ready(function() {
@@ -427,9 +435,7 @@ $(document).ready(function() {
     });
     
     $(".logout").on("click", function() {
-        localStorage.removeItem("username");
-        localStorage.removeItem("events");
-        localStorage.removeItem("wasVisited");
+        emptyStorage();
         $("body").pagecontainer("change", "#page-login", {});
     });
     
@@ -440,25 +446,27 @@ $(document).ready(function() {
     
     /*Test voor calc height*/
     var totalheight;
-    if(/android/i.test(navigator.userAgent)){
+    if(/android/i.test(navigator.userAgent)) {
         totalheight = window.screen.availHeight / window.devicePixelRatio;
-    }
-    else{
+    } else {
         totalheight = window.screen.availHeight;  
     }
     
-    //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
+    // We nemen de hoogte van het screen dit is dubbel de eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
         $('.nieuwBerichtBackground').foggy({blurRadius: 5});
-    var imgDiv = $('.nieuwBerichtBackground').height();
-    var header = $('#headerNewPost').height();
-    var button = $('.verzendButton').height();
-    console.log($('.nieuwBerichtBackground').height());
-    console.log(totalheight);
-    console.log(header);
-    console.log(button);
-    $('.boodschap').height(totalheight - button - header - imgDiv - 35.666666666);    
+        
+        var imgDiv = $('.nieuwBerichtBackground').height(),
+            header = $('#headerNewPost').height(),
+            button = $('.verzendButton').height();
+        
+        console.log($('.nieuwBerichtBackground').height());
+        console.log(totalheight);
+        console.log(header);
+        console.log(button);
+        
+        $('.boodschap').height(totalheight - button - header - imgDiv - 35.666666666);    
     });
     
     $("#page-newsfeed").on("pageshow", function () {
@@ -466,6 +474,3 @@ $(document).ready(function() {
     });
 
 });
-
-//StatusBar.styleLightContent();
-//StatusBar.backgroundColorByHexString("#51b0c5");
