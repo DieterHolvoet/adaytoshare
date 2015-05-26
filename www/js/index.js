@@ -167,14 +167,15 @@ $(document).ready(function() {
     });
     
     
+    alert("screen.height=" + screen.height);
+    alert("screen.availHeight=" + screen.availHeight);
+    alert("devicePixelRatio=" + devicePixelRatio);
+    
+    
     /*Test voor calc height*/
-    var totalheight;
-    if(/android/i.test(navigator.userAgent)){
-        totalheight = window.screen.availHeight / window.devicePixelRatio;
-    }
-    else{
-        totalheight = window.screen.availHeight;  
-    }
+    var totalheight = screen.availHeight; ;
+    if(/android/i.test(navigator.userAgent)) totalheight /= devicePixelRatio;
+    else if(/(iphone)|(ipad)/i.test(navigator.userAgent)) totalheight = screen.height;
     //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
