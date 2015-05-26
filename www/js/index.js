@@ -196,23 +196,8 @@ $(document).ready(function () {
         console.log(totalheight);
         console.log(header);
         console.log(button);
-        $('.boodschap').height(totalheight - button - header - imgDiv - 30);
+        $('.boodschap').height(totalheight - button - header - imgDiv - 40);
     });
-
-    /*var android_spacer = $('<div/>', {
-        'class': 'android_spacer'
-    }).css({
-        'width': '100%',
-        'height': '200px'
-    });
-
-    $('.boodschap').on('focus', function () {
-        $(this).after(android_spacer);
-    });
-
-    $('.boodschap').on('blur', function () {
-        $('.android_spacer').remove();
-    });*/
 
     $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
