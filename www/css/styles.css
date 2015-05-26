@@ -260,10 +260,8 @@ div[data-role="page"] header h1 {
     height: 200vw;
     position: absolute;
     background: rgba(0,0,0,0.8);
-
-    
-
 }
+
 .popup-list {
     width: 80%;
     background: #fff;
@@ -277,6 +275,24 @@ div[data-role="page"] header h1 {
     margin-top: 12vh;
 }
 
+.cutOutPopUp {
+background-color:#51b0c5;
+    height:45px;
+    width:45px;
+    border-radius:50%;
+    position:absolute;
+    right:0;
+    margin-right: 4.9%;
+    margin-top: 2%;
+}
+
+.cutOutPopUp > .icon-plus{
+    margin: 0 auto;
+    display: block;
+    margin-top: -15%;
+    margin-left: 4%
+
+}
 .eventCodeToevoegen{
     display: none;
     width: calc(100% - 40px);

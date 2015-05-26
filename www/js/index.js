@@ -181,10 +181,10 @@ $(document).ready(function() {
     console.log(button);
     $('.boodschap').height(totalheight - button - header - imgDiv - 10);    
     });
-    
-    $("#page-eventlist").on("pageshow", function () {
+        $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
-            $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'><div class=\'screen\'></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'> <div class=\'screen\'><div class=\'cutOutPopUp\'> <div class =\'navbarbtn icon-plus'> </div> </div></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            
             $("#popup-eventlist").fadeIn(300);
             $("#popup-eventlist").on("click", function() {
                 $(this).fadeOut(300, function() {
@@ -195,6 +195,23 @@ $(document).ready(function() {
         }
         $('.background').foggy();
     });
+    
+        $("#page-newsfeed").on("pageshow", function () {
+        if (!localStorage.getItem('wasVisited2')) {
+            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
+            
+            $("#popup-newsfeed").fadeIn(300);
+            $("#popup-newsfeed").on("click", function() {
+                $(this).fadeOut(300, function() {
+                    $(this).remove();
+                });
+                localStorage.setItem('wasVisited2','true');
+            });
+        }
+        $('.background').foggy();
+    });
+    
+
 });
 
 //StatusBar.styleLightContent();
