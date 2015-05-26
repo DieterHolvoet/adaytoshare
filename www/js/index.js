@@ -330,6 +330,7 @@ $(document).ready(function() {
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
             } else {
+                loadNewsfeed(code);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
             }
             
@@ -397,6 +398,9 @@ $(document).ready(function() {
     });
     
     $("#page-newsfeed").on("pageshow", function () {
+        refresh();
+        // myScroll.scrollToElement(".eventHeader");
+        
         if (!localStorage.getItem('wasVisited2')) {
             $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list2\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
             
@@ -409,8 +413,6 @@ $(document).ready(function() {
             });
         }
         
-        refresh();
-        myScroll.scrollToElement(".eventHeader");
         $('.background').foggy();
     });
     
