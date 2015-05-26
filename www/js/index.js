@@ -196,7 +196,6 @@ $(document).ready(function () {
         console.log(totalheight);
         console.log(header);
         console.log(button);
-        console.log(statusBar);
         $('.boodschap').height(totalheight - button - header - imgDiv - 10);
     });
 
