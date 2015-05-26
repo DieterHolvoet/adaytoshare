@@ -18,6 +18,7 @@ function onDeviceReady() {
     //alert('device ready');
     StatusBar.hide();
     document.getElementById("takePicture").onclick = takePicture;
+    
 }
 
 function takePicture(e) {
@@ -30,8 +31,8 @@ function takePicture(e) {
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true,
         correctOrientation:true,
-        targetWidth:600,
-        targetHeight:600
+        targetWidth:640,
+        targetHeight:640
     });
 }
 
