@@ -152,6 +152,10 @@ body {
     font-family: Raleway, Arial, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* NAVBAR */
 
 div[data-role="page"] header {

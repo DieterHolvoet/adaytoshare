@@ -421,6 +421,16 @@ $(document).ready(function() {
     $("#page-eventlist").on("pagecreate", function () {
         loadEvents();
         $('.background').foggy();
+        
+        $("#addEvent").click(function() {
+            $(".eventCodeToevoegen").slideToggle("fast");
+            $("#addEvent").css("transform", "rotate(45deg)");
+        });
+        
+        $("#closeEventCode").click(function() {
+            $(".eventCodeToevoegen").slideToggle("fast");
+            $("#addEvent").css("transform", "rotate(45deg)");
+        });
     });
                             
     $("#page-eventlist").on("pageshow", function () {
