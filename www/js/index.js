@@ -388,7 +388,7 @@ $(document).ready(function() {
         
         $(window).scroll(function() {
             var elem = $("[data-iscroll]").iscrollview();
-           if(elem.iscrollview('y') > (elem.iscrollview('maxScrollY') - 300)) {
+           if(elem.iscrollview('y') > (elem.iscrollview('maxScrollY') + 300)) {
                loadMoreNewsfeed();
                refresh();
            }
