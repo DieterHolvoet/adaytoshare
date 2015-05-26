@@ -252,7 +252,8 @@ function loadLikes() {
                     var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
                     $(elem).css("color", "#489CAF");
                     $(elem).attr("pp", true);
-                    $(elem).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes + " Party points");
+                    messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes += 1 // Temp fix
+                    $(elem).text(messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes + " Party points");
                 }
             }
         }
@@ -421,10 +422,19 @@ $(document).ready(function() {
     $("#page-eventlist").on("pagecreate", function () {
         loadEvents();
         $('.background').foggy();
+        var open = false;
         
         $("#addEvent").click(function() {
-            $(".eventCodeToevoegen").slideToggle("fast");
-            $("#addEvent").css("transform", "rotate(45deg)");
+            if(open) {
+                $(".eventCodeToevoegen").slideDown("fast");
+                $("#addEvent").css("transform", "rotate(45deg)");
+                open = false;
+                
+            } else {
+                $(".eventCodeToevoegen").slideUp("fast");
+                $("#addEvent").css("transform", "rotate(0deg)");
+                open = true;
+            }   
         });
         
         $("#closeEventCode").click(function() {
