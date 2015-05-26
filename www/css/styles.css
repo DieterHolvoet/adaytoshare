@@ -443,6 +443,41 @@ background-color:#51b0c5;
     font-size: 0.9em;
 }
 
+.report{
+    display: none;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    position: absolute;
+    height: 100vh;
+    text-align: center;
+    z-index: 999;
+}
+
+.report section{
+    display: inline-block;
+    width: 82%;
+    padding: 4%;
+    margin: auto 0;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 50%;
+}
+
+.report section h1{
+    font-weight: 200;
+    text-transform: uppercase;
+}
+
+.report section button{
+    font-family: 'Raleway';
+    font-weight: 200;
+    border: none;
+    color: white !important;
+    background-color: #51afc5 !important;
+    text-shadow: none !important;
+
+}
+
 .fab{
     text-align: center;
     position: fixed;
