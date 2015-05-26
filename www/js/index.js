@@ -4,10 +4,10 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed;
+var events = [], activeNewsfeed, myScroll;
 
 setTimeout(function () {
-    window.myScroll = new iScroll("newsfeed-wrapper", {});
+    myScroll = new iScroll("newsfeed-wrapper", {});
 }, 100);
 
 function Event(code, name, cover) {
@@ -178,13 +178,13 @@ function loadNewsfeed(code) {
 function loadMoreNewsfeed() {
     fetchEventData(activeNewsfeed, 5 + events[getEventIndex()].messages.length, 0);
     loadNewsfeed(activeNewsfeed);
-    window.myScroll.refresh();
+    myScroll.refresh();
 }
 
 function updateNewsfeed() {
     fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
     loadNewsfeed(activeNewsfeed);
-    window.myScroll.refresh();
+    myScroll.refresh();
 }
 
 // Krijg de index van een evenement in het events-object
@@ -379,8 +379,8 @@ $(document).ready(function() {
     });
     
     $("#page-newsfeed").on("pageshow", function () {
-        window.myScroll.refresh();
-        window.myScroll.scrollToElement(".eventHeader");
+        myScroll.refresh();
+        myScroll.scrollToElement(".eventHeader");
         
         $(window).scroll(function() {
            if($(window).scrollTop() + $(window).height() == $(document).height()) {
