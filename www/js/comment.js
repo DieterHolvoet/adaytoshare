@@ -13,23 +13,15 @@ $(document).ready(function() {
 		$(this).addClass('magictime boingInUp');
 
 		if($(this).attr("pp") !== "true"){
-			
 			n++;
-
 			$(this).children().text( " " + n);
-
 			$(this).css( "color", "#489CAF");
-
 			$(this).attr("pp", true);
 
 		} else{
-
 			n--;
-
 			$(this).children().text( " " + n);
-
 			$(this).css( "color", "black");
-
 			$(this).attr("pp", false);
 		}
 
