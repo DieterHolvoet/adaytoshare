@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-		$('#report').click(function() {
+		$('.reportT').click(function() {
 			$('.report').fadeIn( "fast" );
 			$('.fab').css('display', 'none');
 		});
