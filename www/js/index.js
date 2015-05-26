@@ -379,20 +379,19 @@ $(document).ready(function() {
             pullDownEl.find(".spinner").removeClass("normal");
             pullDownEl.find(".spinner").addClass("slow");
         });
-//        myScroll.scrollToElement(".eventHeader");
+        
+        $(document).on("iscroll_iscrollmove", function() {
+            var elem = $("[data-iscroll]").iscrollview();
+            if(elem.iscrollview('y') < (elem.iscrollview('maxScrollY') + 300)) {
+                loadMoreNewsfeed();
+                refresh();
+            }
+        });
     });
     
     $("#page-newsfeed").on("pageshow", function () {
         refresh();
         myScroll.scrollToElement(".eventHeader");
-        
-        $(window).scroll(function() {
-            var elem = $("[data-iscroll]").iscrollview();
-           if(elem.iscrollview('y') > (elem.iscrollview('maxScrollY') + 300)) {
-               loadMoreNewsfeed();
-               refresh();
-           }
-        });
     });
     
     // Evenementenlijst
