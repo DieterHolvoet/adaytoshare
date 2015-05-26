@@ -28,6 +28,7 @@
     <script src="js/camera.js"></script>
     <script src="js/import.js"></script>
     <script src="js/eventCode.js"></script>
+    <script src="js/report.js"></script>
 
 
 </head>
@@ -107,6 +108,15 @@
 
     <!-- Nieuwsfeed -->
     <div data-role="page" id="page-newsfeed" class="newFeedBottom">
+        <div class="report">
+            <section>
+                <h1>Rapporteer deze boodschap</h1>
+                <hr>
+                <p>lorem ipsum blablabla...</p>
+                <input type="text" name="email">
+                <button>Verzenden</button>
+            </section>
+        </div>
         <header class="clearfix">
             <a href="#page-eventlist" data-transition="slide" data-direction="reverse">
                 <div class="navbarbtn icon-back"></div>
@@ -116,7 +126,6 @@
                 <div class="navbarbtn"></div>
             </a>
         </header>
-
         <div role="main" class="ui-content">
             <section class="eventHeader">
                     <h1>Integration Show</h1>
@@ -135,7 +144,7 @@
                     <span class="icon-wine65 partypoints">
                         <span class="ppNumber"> 1</span> Party points
                     </span>
-                    <span class="icon-warning34 spanHeaderRight"></span>
+                    <span class="icon-warning34 spanHeaderRight" id="report"></span>
                     <span class="icon-chat110 spanHeaderRight comment"> 2</span>
                     <form class="commentField">
                         <section class="reaction">
