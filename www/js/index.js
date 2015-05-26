@@ -49,7 +49,7 @@ function validateCode(code) {
             async: false,
             success: function (data) {
                 if(data.success === 1) {
-                    console.log("Valid platform.")
+                    console.log("Valid platform.");
                     result = true;
                 } else {
                     console.error("Error " + data.errorcode + ": " + data.error_message);
@@ -168,7 +168,13 @@ $(document).ready(function() {
     
     
     /*Test voor calc height*/
-     var totalheight = window.screen.availHeight / window.devicePixelRatio;
+    var totalheight;
+    if(/android/i.test(navigator.userAgent)){
+        totalheight = window.screen.availHeight / window.devicePixelRatio;
+    }
+    else{
+        totalheight = window.screen.availHeight;  
+    }
     //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
