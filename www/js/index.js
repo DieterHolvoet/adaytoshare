@@ -380,13 +380,15 @@ $(document).ready(function() {
             pullDownEl.find(".spinner").addClass("slow");
         });
         
-        $(document).on("iscroll_iscrollmove", function() {
+        $(document).on("iscroll_onscrollend", function(event, data) {
             var elem = $("[data-iscroll]").iscrollview();
-            if(elem.iscrollview('y') < (elem.iscrollview('maxScrollY') + 300)) {
+            console.log(elem.iscrollview('y') === (elem.iscrollview('maxScrollY')));
+            if(elem.iscrollview('y') === (elem.iscrollview('maxScrollY'))) {
                 loadMoreNewsfeed();
-                refresh();
+                data.iscrollview.refresh();
             }
         });
+        
     });
     
     $("#page-newsfeed").on("pageshow", function () {
