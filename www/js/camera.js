@@ -23,7 +23,7 @@ function onDeviceReady() {
 
 function takePicture(e) {
     navigator.camera.getPicture(onSuccess, onFail, {
-        quality: 50,
+        quality: 49,
         destinationType: navigator.camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.CAMERA,
         allowEdit: true,
