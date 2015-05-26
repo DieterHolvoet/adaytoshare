@@ -181,7 +181,8 @@ $(document).ready(function() {
     console.log(button);
     $('.boodschap').height(totalheight - button - header - imgDiv - 10);    
     });
-        $("#page-eventlist").on("pageshow", function () {
+    
+    $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
             $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'> <div class=\'screen\'><div class=\'cutOutPopUp\'> <div class =\'navbarbtn icon-plus'> </div> </div></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
             
@@ -198,7 +199,7 @@ $(document).ready(function() {
     
         $("#page-newsfeed").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited2')) {
-            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
+            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list2\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
             
             $("#popup-newsfeed").fadeIn(300);
             $("#popup-newsfeed").on("click", function() {
@@ -210,7 +211,6 @@ $(document).ready(function() {
         }
         $('.background').foggy();
     });
-    
 
 });
 
