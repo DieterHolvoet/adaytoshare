@@ -166,11 +166,6 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
-    
-    /*alert("screen.height=" + screen.height);
-    alert("screen.availHeight=" + screen.availHeight);
-    alert("devicePixelRatio=" + devicePixelRatio);*/
-    
     /*Test voor calc height*/
     var totalheight = screen.availHeight; ;
     if(/android/i.test(navigator.userAgent)) totalheight /= devicePixelRatio;
