@@ -142,7 +142,7 @@ function loadNewsfeed(code) {
         $(content).children("#newsfeed-list").append("<article class=\'boodschapFeed clearfix\' data-enhance=\'false\' id=\'" + messages[i].messageID + "\'>"
                                                            + "<div>" + messages[i].from.charAt(0).toUpperCase() + "</div>"
                                                            + "<h1>" + messages[i].from + "</h1>"
-                                                           + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "</time>"
+                                                           + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + ('0' + date.getMinutes()).slice(-2) + "</time>"
                                                            + "<p>" + messages[i].message + "</p>"
                                                            + (messages[i].photoURL !== "" ? ("<img src=\'" + messages[i].photoURL + "\' alt=\'foto post\'>") : "")
                                                            + "<footer><span class=\'icon-wine65 partypoints\'>"
@@ -168,7 +168,7 @@ function loadNewsfeed(code) {
             updateLikes($(this).parent().parent());
             fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
             events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes += 1; // Tijdelijke fix
-            $(this).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes + " Party points")
+            $(this).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes + " Party points");
             $(this).css( "color", "#489CAF");
             $(this).attr("pp", true);
         }
@@ -252,6 +252,7 @@ function loadLikes() {
                     var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
                     $(elem).css("color", "#489CAF");
                     $(elem).attr("pp", true);
+                    $(elem).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes + " Party points");
                 }
             }
         }
@@ -419,6 +420,7 @@ $(document).ready(function() {
     // Evenementenlijst
     $("#page-eventlist").on("pagecreate", function () {
         loadEvents();
+        $('.background').foggy();
     });
                             
     $("#page-eventlist").on("pageshow", function () {
@@ -432,7 +434,6 @@ $(document).ready(function() {
                 localStorage.setItem('wasVisited','true');
             });
         }
-        $('.background').foggy();
     });
     
     $(".logout").on("click", function() {
