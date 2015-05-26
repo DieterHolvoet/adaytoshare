@@ -354,7 +354,7 @@ $(document).ready(function() {
                     }
                 }
             });
-        }, 1000);
+        }, 100);
         
         
         $(document).on("iscroll_onpulldown", function(event, data) {
@@ -363,6 +363,7 @@ $(document).ready(function() {
             pullDownEl.find(".spinner").addClass("normal");
             fetchEventData(activeNewsfeed);
             loadNewsfeed(activeNewsfeed);
+            myScroll.refresh();
             data.iscrollview.refresh();
             // setTimeout(function() {data.iscrollview.refresh();}, 3000);
         });
