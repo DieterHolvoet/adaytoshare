@@ -126,7 +126,8 @@ function loadNewsfeed(code) {
     
     var index = getEventIndex(code);
     
-    $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
+    $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
+                                                + events[i].cover + ")\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
@@ -182,6 +183,8 @@ function loadMoreNewsfeed() {
 
 function updateNewsfeed() {
     fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
+    loadNewsfeed(activeNewsfeed);
+    myScroll.refresh();
 }
 
 // Krijg de index van een evenement in het events-object
@@ -378,6 +381,12 @@ $(document).ready(function() {
     $("#page-newsfeed").on("pageshow", function () {
         myScroll.refresh();
         myScroll.scrollToElement(".eventHeader");
+        
+        $(window).scroll(function() {
+           if($(window).scrollTop() + $(window).height() == $(document).height()) {
+               loadMoreNewsfeed();
+           }
+        });
     });
     
     // Evenementenlijst
