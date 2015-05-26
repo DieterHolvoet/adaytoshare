@@ -311,14 +311,14 @@ div[data-role="page"] header h1 {
     margin-top: -15%;
     margin-left: 4%
 }
-.eventCodeToevoegen{
+.eventCodeToevoegen {
     display: none;
     width: calc(100% - 40px);
     padding: 20px;   
     background-color: #51b0c5;
 }
 
-.eventCodeToevoegen button{
+.eventCodeToevoegen button {
     font-family: 'Raleway';
     font-weight: 200;
     border: none;
@@ -327,7 +327,7 @@ div[data-role="page"] header h1 {
     text-shadow: none !important;
 }
 
-.logout{
+.logout {
     color: white !important;
     background-color: #51b0c5 !important;
     font-size: 100%;
@@ -337,6 +337,12 @@ div[data-role="page"] header h1 {
     border-radius: 3px;
     text-shadow: none;
     border: 0;
+    width: 100%;
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
 }
 
 /************** Event Feed ****************/

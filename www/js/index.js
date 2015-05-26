@@ -97,7 +97,7 @@ function fetchEventData(code, limit, offset) {
 
 function loadEvents() {
     for(var i = 0; i < events.length; i++) {
-        $("#page-eventlist .ui-content").append("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple id=\'"
+        $("#page-eventlist .ui-content .logout").before("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple id=\'"
                                                 + events[i].code + "\'>"
                                                 + "<article class=\'event\'><div class=\'background\' style=\'background-image: url(" 
                                                 + events[i].cover + ")\'></div>"
