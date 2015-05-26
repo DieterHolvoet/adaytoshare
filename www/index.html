@@ -23,28 +23,29 @@
     <script src="js/jquery.color-2.1.2.min.js"></script>
     <script src="js/jquery.ripple.js"></script>
     <script src="js/jquery.foggy.min.js"></script>
+    <script src="js/elastic-textarea-min.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script src="js/jquery.mobile.iscrollview.js"></script>
+    
     <script src="js/index.js"></script>
     <script src="js/comment.js"></script>
     <script src="js/camera.js"></script>
     <script src="js/import.js"></script>
     <script src="js/eventCode.js"></script>
     <script src="js/report.js"></script>
-   
-
 </head>
 
 <body>
     <!-- Loginpagina -->
     <div data-role="page" id="page-login" data-enhance="false">
-        <img src="ADTS_Logo.png" alt="logo a day to share" class="logo">
+        <img src="ADTS_Logo.png" alt="Logo A Day To Share" class="logo">
         <form id="loginform">
-
             <label class="icon-user185">
                 <input type="text" name="naam" placeholder="Naam" alt="naam invoeren" id="login-naam">
             </label>
             <hr class="lijn">
             <label class="icon-locked59">
-                <input type="text" name="code" placeholder="Evenementencode" alt="code invoeren" id="login-code">
+                <input type="text" name="code" placeholder="Evenementencode" alt="Code invoeren" id="login-code">
             </label>
             <input type="submit" value="Login" alt="Loginknop" disabled="true">
         </form>
@@ -59,65 +60,17 @@
         <header class="clearfix">
             <h1>Evenementenlijst</h1>
             <a href="#">
-                <div class="navbarbtn icon-plus" id="addEvent"></div>
+                <div class="navbarbtn icon-plus"></div>
             </a>
         </header>
-        <section class="eventCodeToevoegen">
-            <input type="text" name="eventCode">
-            <button id="closeEventCode">Toevoegen</button>
-        </section>
         <div role="main" class="ui-content">
-            <a href="#page-newsfeed" data-transition="slide" data-ripple>
-                <article class="event">
-                    <div class="background"></div>
-                    <h2>Integration show</h2>
-                    <footer>
-                        <time>20 mei 2015</time>
-                        <span class="evt-photos">15</span>
-                        <span class="evt-people">103</span>
-                    </footer>
-                </article>
-            </a>
-
-            <a href="#page-newsfeed" data-transition="slide" data-ripple>
-                <article class="event">
-                    <div class="background"></div>
-                    <h2>Integration show</h2>
-                    <footer>
-                        <time>20 mei 2015</time>
-                        <span class="evt-photos">15</span>
-                        <span class="evt-people">103</span>
-                    </footer>
-                </article>
-            </a>
-
-            <a href="#page-newsfeed" data-transition="slide" data-ripple>
-                <article class="event">
-                    <div class="background"></div>
-                    <h2>Integration show</h2>
-                    <footer>
-                        <time>20 mei 2015</time>
-                        <span class="evt-photos">15</span>
-                        <span class="evt-people">103</span>
-                    </footer>
-                </article>
-            </a>
-            <button class="logout" href="#">Uitloggen</button>
+            <a class="logout" href="#">Uitloggen</a>
         </div>
     </div>
 
     <!-- Nieuwsfeed -->
     <div data-role="page" id="page-newsfeed" class="newFeedBottom">
-        <div class="report">
-            <section>
-                <h1>Rapporteer deze boodschap</h1>
-                <hr>
-                <p>Geef hier je e-mail adres in voor deze boodschap te melden.</p>
-                <input type="text" name="email">
-                <button>Verzenden</button>
-            </section>
-        </div>
-        <header class="clearfix">
+        <header class="clearfix" data-role="header" data-enhance="false">
             <a href="#page-eventlist" data-transition="slide" data-direction="reverse">
                 <div class="navbarbtn icon-back"></div>
             </a>
@@ -126,59 +79,15 @@
                 <div class="navbarbtn"></div>
             </a>
         </header>
-
-        <div role="main" class="ui-content">
-            <section class="eventHeader">
-                    <h1>Integration Show</h1>
-                    <h2>
-                        <span class="icon-pin56"></span> 
-                        Multemedia lab 
-                        <span class="icon-multiple25 spanHeaderRight"> 108</span>
-                        <span class="icon-mail87 spanHeaderRight"> 20</span>
-                    </h2>
-            </section>
-            <article class="boodschapFeed">
-                <div>J</div>
-                <h1>Joske duchatoo<time>20:08</time></h1>
-                <p>Wa een zot project is me da hier !</p>
-                <footer>
-                    <span class="icon-wine65 partypoints">
-                        <span class="ppNumber"> 1</span> Party points
-                    </span>
-                    <span class="icon-warning34 spanHeaderRight reportT"></span>
-                    <span class="icon-chat110 spanHeaderRight comment"> 2</span>
-                    <form class="commentField">
-                        <section class="reaction">
-                            <hr>
-                            <div>N</div>
-                            <h1>Naomi<time>21:05</time></h1>
-                            <p>Haha jaja tzal wel !!</p>
-                        </section>
-                        <hr>
-                        <h2>Meer reacties weergeven</h2>
-                        <textarea></textarea>
-                        <button>Post</button>
-                    </form>
-                </footer>
-            </article>
-
-            <article class="boodschapFeed">
-                <div>D</div>
-                <h1>Den Danny<time>19:17</time></h1>
-                <p>Wij zijn ier goe aant werk.</p>
-                <img src="fotoPost.jpg" alt="foto post">
-                <footer>
-                    <span class="icon-wine65 partypoints">
-                        <span class="ppNumber"> 10</span> Party points
-                    </span>
-                    <span class="icon-warning34 spanHeaderRight reportT"></span>
-                    <span class="icon-chat110 spanHeaderRight comment"> 1</span>
-                    <form class="commentField">
-                        <textarea></textarea>
-                        <button>Post</button>
-                    </form>
-                </footer>
-            </article>
+        <div role="main" class="ui-content" data-iscroll id="newsfeed-wrapper">
+            <div class="iscroll-pulldown">
+                <div class="spinner slow">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                </div>
+                <span class="iscroll-pull-icon"></span>
+                <span class="iscroll-pull-label"></span>
+            </div>
             <a href="#page-newpost" data-transition="slideup">
                 <div class="fab"><span class="icon-plus"></span>
                 </div>
@@ -213,11 +122,6 @@
             </div>
         </div>
     </div>
-
-    <!-- vw/vh/vmax/vmin polyfill -->
-    <script src="js/tokenizer.js"></script>
-    <script src="js/parser.js"></script>
-    <script src="js/vminpoly.js"></script>
 </body>
 
 </html>
