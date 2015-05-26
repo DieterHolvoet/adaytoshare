@@ -196,7 +196,7 @@ $(document).ready(function () {
         console.log(totalheight);
         console.log(header);
         console.log(button);
-        $('.boodschap').height(totalheight - button - header - imgDiv - 10);
+        $('.boodschap').height(totalheight - button - header - imgDiv - 30);
     });
 
     /*var android_spacer = $('<div/>', {
