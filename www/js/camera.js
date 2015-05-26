@@ -18,6 +18,7 @@ function onDeviceReady() {
     //alert('device ready');
     StatusBar.hide();
     document.getElementById("takePicture").onclick = takePicture;
+    
 }
 
 function takePicture(e) {
