@@ -133,7 +133,7 @@ function loadNewsfeed(code) {
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
                                             + "<div id=\'newsfeed-list\'></div>"
-                                            + "<div class=\'fab\'><span class=\'icon-plus\'></span></div>");
+                                            + "<a class=\'fab\' href=\'#page-newpost\' data-transition=\'slideup\'><span class=\'icon-plus\'></span></a>");
     
     $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;

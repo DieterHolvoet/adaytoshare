@@ -30,9 +30,9 @@ function takePicture(e) {
         encodingType: Camera.EncodingType.JPEG,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true,
-        correctOrientation:true,
-        targetWidth:640,
-        targetHeight:640
+        correctOrientation: true,
+        targetWidth: 640,
+        targetHeight: 640
     });
 }
 
