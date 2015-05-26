@@ -169,7 +169,7 @@ $(document).ready(function() {
     
     /*Test voor calc height*/
     var totalheight = window.screen.height / window.devicePixelRatio; 
-        //$(document).height();
+        //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
         $('.nieuwBerichtBackground').foggy({blurRadius: 5});
@@ -181,6 +181,10 @@ $(document).ready(function() {
     console.log(header);
     console.log(button);
     $('.boodschap').height(totalheight - button - header - imgDiv - 10);    
+    });
+    
+    $('.boodschap').on("click", function(){
+        $('.boodschap').focus();
     });
     
     $("#page-eventlist").on("pageshow", function () {
