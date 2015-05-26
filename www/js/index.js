@@ -199,7 +199,7 @@ $(document).ready(function() {
     
         $("#page-newsfeed").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited2')) {
-            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
+            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list2\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
             
             $("#popup-newsfeed").fadeIn(300);
             $("#popup-newsfeed").on("click", function() {

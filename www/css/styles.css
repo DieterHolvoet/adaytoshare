@@ -6,74 +6,51 @@
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
 }
-
 .clearfix:after {
     clear: both;
 }
-
 /* FONTS */
 
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/raleway-light-webfont.eot');
-    src: url('../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-light-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-light-webfont.woff') format('woff'),
-         url('../fonts/raleway-light-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-light-webfont.svg#ralewaylight') format('svg');
+    src: url('../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-light-webfont.woff2') format('woff2'), url('../fonts/raleway-light-webfont.woff') format('woff'), url('../fonts/raleway-light-webfont.ttf') format('truetype'), url('../fonts/raleway-light-webfont.svg#ralewaylight') format('svg');
     font-weight: 200;
 }
-
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/raleway-medium-webfont.eot');
-    src: url('../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-medium-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-medium-webfont.woff') format('woff'),
-         url('../fonts/raleway-medium-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    src: url('../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-medium-webfont.woff2') format('woff2'), url('../fonts/raleway-medium-webfont.woff') format('woff'), url('../fonts/raleway-medium-webfont.ttf') format('truetype'), url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
     font-weight: 400;
 }
-    
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/raleway-regular-webfont.eot');
-    src: url('../fonts/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-regular-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-regular-webfont.woff') format('woff'),
-         url('../fonts/raleway-regular-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-regular-webfont.svg#ralewayregular') format('svg');
+    src: url('../fonts/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-regular-webfont.woff2') format('woff2'), url('../fonts/raleway-regular-webfont.woff') format('woff'), url('../fonts/raleway-regular-webfont.ttf') format('truetype'), url('../fonts/raleway-regular-webfont.svg#ralewayregular') format('svg');
     font-weight: 500;
 }
-    
 @font-face {
     font-family: 'Raleway';
     src: url('../fonts/raleway-semibold-webfont.eot');
-    src: url('../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-semibold-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-semibold-webfont.woff') format('woff'),
-         url('../fonts/raleway-semibold-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    src: url('../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-semibold-webfont.woff2') format('woff2'), url('../fonts/raleway-semibold-webfont.woff') format('woff'), url('../fonts/raleway-semibold-webfont.ttf') format('truetype'), url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
     font-weight: 700;
 }
-
 /* ICON FONT */
 
 @font-face {
     font-family: 'adts';
-    src:url('../fonts/adts.eot?');
-    src:url('../fonts/adts.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/adts.woff') format('woff'),
-        url('../fonts/adts.ttf') format('truetype'),
-        url('../fonts/adts.svg') format('svg');
+    src: url('../fonts/adts.eot?');
+    src: url('../fonts/adts.eot?#iefix') format('embedded-opentype'), url('../fonts/adts.woff') format('woff'), url('../fonts/adts.ttf') format('truetype'), url('../fonts/adts.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
-
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
     font-family: 'adts';
     speak: none;
     font-style: normal;
@@ -85,45 +62,36 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .icon-plus:before {
     content: "\e60a";
     color: white;
 }
-
 .icon-back:before {
     content: "\e60b";
     color: white;
 }
-
 .icon-pin56:before {
     content: "\e606";
 }
-
 .icon-multiple25:before {
     content: "\e604";
 }
-
 .icon-mail87:before {
     content: "\e603";
 }
-
 .icon-wine65:before {
     content: "\e609";
     font-size: 1.3em;
 }
-
 .icon-chat110:before {
     content: "\e601";
     font-size: 1.3em;
 }
-
 .icon-warning34:before {
     content: "\e608";
     font-size: 1.3em;
     margin-left: 5px;
 }
-
 .icon-user185:before {
     content: "\e607";
     color: #4d4d4d;
@@ -131,18 +99,16 @@
     height: 40px;
     line-height: 40px;
 }
-
 .icon-locked59:before {
     content: "\e602";
     color: #4d4d4d;
     font-family: 'adts';
 }
-
 /* GENERAL */
+
 body {
     font-family: Raleway, Arial, sans-serif;
 }
-
 /* NAVBAR */
 
 div[data-role="page"] header {
@@ -154,7 +120,6 @@ div[data-role="page"] header {
     height: 60px;
     padding: 0 20px;
 }
-
 .navbarbtn {
     width: 40px;
     height: 60px;
@@ -163,24 +128,20 @@ div[data-role="page"] header {
     text-align: center;
     float: left;
 }
-
 div[data-role="page"] header h1 ~ a .navbarbtn {
     float: right;
     margin-right: 0;
 }
-
 div[data-role="page"] header h1 {
     max-width: calc(100vw - 120px);
     height: 60px;
     line-height: 60px;
     float: left;
-    
     /* Line break */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 /*************** Event Lijst *************/
 
 .ui-content {
@@ -189,20 +150,19 @@ div[data-role="page"] header h1 {
     padding: 20px;
     text-shadow: none;
 }
-
 .event {
     position: relative;
     width: 100%;
     height: 150px;
     display: block;
     margin: 0 auto 20px auto;
-    overflow: hidden; /* Prevent margin-collapsing */
+    overflow: hidden;
+    /* Prevent margin-collapsing */
     border-radius: 5px;
     color: white;
     font-family: 'Raleway';
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
 .background {
     background-image: url(../eventBackground.jpg);
     background-size: 100%;
@@ -213,7 +173,6 @@ div[data-role="page"] header h1 {
     top: 0;
     bottom: 0;
 }
-
 .event h2 {
     position: absolute;
     bottom: 42px;
@@ -221,7 +180,6 @@ div[data-role="page"] header h1 {
     font-size: 1.2em;
     font-weight: 100;
 }
-
 .event footer {
     color: black;
     position: absolute;
@@ -230,10 +188,10 @@ div[data-role="page"] header h1 {
     height: 35px;
     line-height: 35px;
     padding-left: 15px;
-    background-color: rgba(255,255,255,0.85);
+    background-color: rgba(255, 255, 255, 0.85);
 }
-
-.evt-photos, .evt-people {
+.evt-photos,
+.evt-people {
     color: #e84746;
     font-size: 18px;
     height: 35px;
@@ -241,14 +199,12 @@ div[data-role="page"] header h1 {
     float: right;
     padding-right: 15px;
 }
-
 .evt-photos:before {
     content: "\e600";
     font-family: 'adts';
     font-size: 20px;
     padding-right: 6px;
 }
-
 .evt-people:before {
     content: "\e604";
     font-family: 'adts';
@@ -257,12 +213,11 @@ div[data-role="page"] header h1 {
 }
 .screen {
     width: 100%;
+    height: 100%;
     height: 200vw;
     position: absolute;
-    background: rgba(0,0,0,0.8);
-
-    
-
+    background: rgb(100, 100, 100);
+    background: rgba(0, 0, 0, 0.8);
 }
 .popup-list {
     width: 80%;
@@ -270,53 +225,56 @@ div[data-role="page"] header h1 {
     border-radius: 10px;
     display: block;
     position: absolute;
-    padding: 3vh;
+    padding: 5%;
     text-align: center;
     font-size: 18px;
-    margin-left: 3vh;
-    margin-top: 12vh;
+    left: 5%;
+    top: 70px;
 }
-
+.popup-list2 {
+    width: 80%;
+    background: #fff;
+    border-radius: 10px;
+    display: block;
+    position: absolute;
+    padding: 5%;
+    text-align: center;
+    font-size: 18px;
+    left: 5%;
+    bottom: 100px;
+}
 .cutOutPopUp {
-
-background-color:#51b0c5;
-    height:45px;
-    width:45px;
-    border-radius:50%;
-    position:absolute;
-    right:0;
-    margin-right: 4.9%;
-    margin-top: 2%;
+    background-color: #51b0c5;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    top: 7px;
 }
-
-.cutOutPopUp > .icon-plus{
+.cutOutPopUp > .icon-plus {
     margin: 0 auto;
     display: block;
     margin-top: -15%;
     margin-left: 4%
-
 }
 /************** Event Feed ****************/
 
-.newFeedBottom{
-   padding-bottom: 80px;
-   background-color: #DFDFDE;
+.newFeedBottom {
+    padding-bottom: 80px;
+    background-color: #DFDFDE;
 }
-
-.reaction{
+.reaction {
     margin-top: 10px;
     margin-bottom: 15px;
 }
-
-.recation h1{
+.recation h1 {
     font-family: 0.9em;
 }
-
-.reaction p{
+.reaction p {
     font-size: 0.8em;
     margin-top: 10px !important;
 }
-
 .eventHeader {
     background-image: url(../eventBackground.jpg);
     background-size: cover;
@@ -328,28 +286,23 @@ background-color:#51b0c5;
     margin-left: -20px;
     text-shadow: none;
 }
-
 .eventHeader h1 {
     text-shadow: none;
     font-size: 1.6em;
     font-weight: 200;
 }
-
 .eventHeader h2 {
     margin-top: 20px;
     font-weight: 200;
 }
-
-.eventHeader h2 span{
+.eventHeader h2 span {
     font-size: 1em;
 }
-
-.spanHeaderRight{
+.spanHeaderRight {
     float: right;
     margin-left: 10px;
 }
-
-.boodschapFeed{
+.boodschapFeed {
     font-family: 'Raleway';
     float: left;
     width: 90%;
@@ -357,10 +310,9 @@ background-color:#51b0c5;
     padding: 5%;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
-.boodschapFeed div{
+.boodschapFeed div {
     color: white;
     text-align: center;
     float: left;
@@ -370,55 +322,45 @@ background-color:#51b0c5;
     height: 30px;
     border-radius: 100px;
 }
-
-.commentField{
+.commentField {
     width: 100%;
     display: none;
 }
-
-.commentField button{
+.commentField button {
     background-color: #51b0c5 !important;
     font-family: 'Raleway';
     font-weight: 200;
     color: white !important;
     border-radius: 0px !important;
 }
-
-.commentField h2{
+.commentField h2 {
     width: 100%;
     font-size: 0.7em;
     text-align: center;
 }
-
-.boodschapFeed h1{
+.boodschapFeed h1 {
     line-height: 2;
     margin-left: 40px;
 }
-
-.boodschapFeed time{
+.boodschapFeed time {
     float: right;
 }
-
-.boodschapFeed p{
+.boodschapFeed p {
     width: 100%;
     margin-top: 15px;
 }
-
-.boodschapFeed img{
+.boodschapFeed img {
     margin-top: 10px;
     width: 110%;
     margin-left: -5%
 }
-
-.boodschapFeed footer{
+.boodschapFeed footer {
     margin-top: 10px;
 }
-
-.boodschapFeed footer span{
+.boodschapFeed footer span {
     font-size: 0.9em;
 }
-
-.fab{
+.fab {
     text-align: center;
     position: fixed;
     bottom: 20px;
@@ -430,13 +372,11 @@ background-color:#51b0c5;
     margin: 0 auto;
     left: 50%;
     margin-left: -30px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
-.fab span{
+.fab span {
     line-height: 2.4;
 }
-
 /************** Loginpagina ****************/
 
 .logo {
@@ -445,7 +385,6 @@ background-color:#51b0c5;
     padding: 15vh 0 10vh 0;
     display: block;
 }
-
 .website {
     height: 10vh;
     width: 60vw;
@@ -453,7 +392,6 @@ background-color:#51b0c5;
     margin: 0 auto;
     font-size: 100%;
 }
-
 #page-login form {
     text-align: center;
     margin: 0 auto;
@@ -462,7 +400,6 @@ background-color:#51b0c5;
     width: 60vw;
     min-width: 300px;
 }
-
 #page-login input {
     line-height: 21px;
     height: 21px;
@@ -474,17 +411,15 @@ background-color:#51b0c5;
     font-family: 'Raleway', sans-serif;
     padding: 0;
     margin: 0;
-    color: #4D4D4D;   
+    color: #4D4D4D;
 }
-
-#page-login ::-webkit-input-placeholder{
-    color: #4D4D4D;   
+#page-login::-webkit-input-placeholder {
+    color: #4D4D4D;
 }
-
 .invalid-input:before {
-    color: #e84746; !important
+    color: #e84746;
+    !important
 }
-
 /*
 .invalid-input::-webkit-input-placeholder {
     color: #e84746; !important
@@ -508,11 +443,10 @@ background-color:#51b0c5;
     margin: 0 auto;
     width: 80%;
 }
-
 #page-login input[type="submit"] {
     font-size: 100%;
     font-family: 'Raleway';
-/*
+    /*
     background-color: #51b0c5;
     color: #fff;
 */
@@ -525,7 +459,6 @@ background-color:#51b0c5;
     font-weight: 100;
     border-radius: 3px;
 }
-
 #page-login a {
     display: block;
     text-align: center;
@@ -537,7 +470,6 @@ background-color:#51b0c5;
     text-decoration: none;
     font-weight: 200;
 }
-
 #page-login hr {
     width: 75%;
     background-color: #4d4d4d;
@@ -545,18 +477,16 @@ background-color:#51b0c5;
     height: 0.4px;
     margin-top: 0;
 }
-
 #page-login label {
     margin: 0;
 }
-
 /************** Nieuw Bericht ****************/
+
 /*Setting screen*/
 
 #page-newspost ui-content {
     padding-bottom: 0px;
 }
-
 .contentTextbericht {
     margin-left: -20px;
     margin-top: -20px;
@@ -571,44 +501,36 @@ background-color:#51b0c5;
     content: "\e60c";
     color: #FFF;
 }
-
 .closeLink {
     float: right;
 }
 /*Img + keuze camera of importeren      http://stackoverflow.com/questions/9209764/horizontal-centering-text-over-image-via-css*/
 
-
 .icon-camera:before {
     content: "\e600";
     color: #FFF;
 }
-
 .icon-camera {
     text-decoration: none;
     margin-right: 10px;
 }
-
 .icon-galery:before {
     content: "\e605";
     color: #FFF;
 }
-
 .icon-galery {
     text-decoration: none;
     margin-left: 10px;
 }
-
 .backgroundImg {
     float: left;
     display: block;
 }
-
 .backgroundImg img {
     position: relative;
     display: block;
     width: 100%;
 }
-
 .choiseCameraOrImport {
     position: absolute;
     text-align: center;
@@ -622,9 +544,8 @@ background-color:#51b0c5;
 
 .formulierTekstbericht {
     width: 100%;
-    display: block;  
+    display: block;
 }
-
 .boodschap {
     width: 100%;
     border: 0;
@@ -636,7 +557,6 @@ background-color:#51b0c5;
     resize: none;
     display: block;
 }
-
 .verzendButton {
     color: #FFF;
     background-color: #51B0C5;
@@ -646,58 +566,47 @@ background-color:#51b0c5;
     margin: 0;
     padding: 0;
 }
-
-#page-newpost ::-webkit-input-placeholder {
+#page-newpost::-webkit-input-placeholder {
     color: #000;
 }
-
-.custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on{
-    height: 20px;   
+.custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on {
+    height: 20px;
 }
-
 .custom-size-flipswitch.ui-flipswitch {
     height: 20px;
     width: 50px;
-border-radius: 100px;
+    border-radius: 100px;
 }
 .custom-size-flipswitch.ui-flipswitch.ui-flipswitch-active {
-background-color: #51B0C5;
+    background-color: #51B0C5;
     padding-left: 20px;
     width: 1.875em;
 }
-
-.sliderPrive{
+.sliderPrive {
     position: absolute;
     left: 70%;
-    bottom: 40px; 
+    bottom: 40px;
 }
-
-#page-newpost :-moz-placeholder {
+#page-newpost:-moz-placeholder {
     /* Firefox 18- */
-    
     color: #000;
     padding-top: 10px;
     padding-left: 5px;
 }
-
-#page-newpost ::-moz-placeholder {
+#page-newpost::-moz-placeholder {
     /* Firefox 19+ */
-    
     color: #000;
     padding-top: 10px;
     padding-left: 5px;
 }
-
-#page-newpost :-ms-input-placeholder {
+#page-newpost:-ms-input-placeholder {
     color: #000;
     padding-top: 10px;
     padding-left: 5px;
 }
-
 * {
     text-shadow: none;
 }
-
 input {
     -webkit-appearance: none;
     border-radius: 0;
