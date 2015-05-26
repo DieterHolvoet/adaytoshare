@@ -178,13 +178,17 @@ function loadNewsfeed(code) {
 function loadMoreNewsfeed() {
     fetchEventData(activeNewsfeed, 5 + events[getEventIndex()].messages.length, 0);
     loadNewsfeed(activeNewsfeed);
-    myScroll.refresh();
+    refresh();
 }
 
 function updateNewsfeed() {
     fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
     loadNewsfeed(activeNewsfeed);
-    myScroll.refresh();
+    refresh();
+}
+
+function refresh() {
+    $("[data-iscroll]").iscrollview().iscrollview('refresh');
 }
 
 // Krijg de index van een evenement in het events-object
@@ -379,12 +383,14 @@ $(document).ready(function() {
     });
     
     $("#page-newsfeed").on("pageshow", function () {
-        myScroll.refresh();
+        refresh();
         myScroll.scrollToElement(".eventHeader");
         
         $(window).scroll(function() {
-           if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            var elem = $("[data-iscroll]").iscrollview();
+           if(elem.iscrollview('y') > (elem.iscrollview('maxScrollY') - 300)) {
                loadMoreNewsfeed();
+               refresh();
            }
         });
     });
