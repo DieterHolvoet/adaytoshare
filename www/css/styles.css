@@ -393,7 +393,9 @@ div[data-role="page"] header h1 {
 .boodschapFeed p {
     width: 100%;
     clear: left;
-    padding-top: 10px;
+    padding: 15px 0 10px 0;
+    line-height: normal;
+    word-wrap: break-word;
 }
 
 .boodschapFeed img {

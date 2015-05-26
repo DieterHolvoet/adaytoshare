@@ -75,6 +75,10 @@ function fetchEventData(code, limit, offset) {
             async: false,
             success: function (data) {
                 if(data.success === 1) {
+                    for(var i = 0; i < data.messages.length; i++) {
+                        console.log("jaja");
+                        data.messages[i].likes = parseInt(data.messages[i].likes);
+                    }
                     events[getEventIndex(code)].messages = data.messages;
                 } else {
                     console.error("Error " + data.errorcode + ": " + data.error_message);
@@ -102,26 +106,36 @@ function loadEvents() {
 }
 
 function loadNewsfeed(code) {
+    var content;
+    if($("#page-newsfeed .iscroll-scroller").length) {
+        content = "#page-newsfeed .ui-content .iscroll-content";
+        
+    } else {
+        content = "#page-newsfeed .ui-content";
+    }
+    
     if(code === undefined) {
         console.error("No code specified");
         return false;
     }
     
-    $("#page-newsfeed .ui-content").empty();
+    $(content).empty();
     var index = getEventIndex(code);
     
-    $("#page-newsfeed .ui-content").prepend("<div class=\'iscroll-pulldown\'><div class=\'spinner slow\'><div class=\'dot1\'></div><div class=\'dot2\'></div></div><span class=\'iscroll-pull-icon\'></span><span class=\'iscroll-pull-label\'></span></div>"
+    $(content).prepend("<div class=\'iscroll-pulldown\'><div class=\'spinner slow\'><div class=\'dot1\'></div><div class=\'dot2\'></div></div><span class=\'iscroll-pull-icon\'></span><span class=\'iscroll-pull-label\'></span></div>"
                                             + "<section class=\'eventHeader\'><div class=\'eventBackground\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
-                                            + "<div id=\'newsfeed-list\'></div>");
+                                            + "<div id=\'newsfeed-list\'></div>"
+                                            + "<div class=\'fab\'><span class=\'icon-plus\'></span></div>");
     
+    if($("#page-newsfeed .iscroll-content .iscroll-pulldown").length) $("#page-newsfeed .iscroll-content .iscroll-pulldown").remove();
     $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;
     for(var i = 0; i <  messages.length; i++) {
         var date = new Date(messages[i].timestamp * 1000);
-        $("#page-newsfeed .ui-content #newsfeed-list").append("<article class=\'boodschapFeed clearfix\' data-enhance=\'false\'>"
+        $(content).children("#newsfeed-list").append("<article class=\'boodschapFeed clearfix\' data-enhance=\'false\' id=\'" + messages[i].messageID + "\'>"
                                                            + "<div>" + messages[i].from.charAt(0).toUpperCase() + "</div>"
                                                            + "<h1>" + messages[i].from + "</h1>"
                                                            + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "</time>"
@@ -138,26 +152,21 @@ function loadNewsfeed(code) {
     loadLikes();
     elasticize($("textarea"));
     
-    $(".comment").on("click", function() {
-        $(this).next().slideToggle("fast");
+    $(".comment").on("tap", function() {
+        $(this).next().slideToggle();
     });
 
     $(".partypoints").on("click", function() {
+        var messageID = $(this).parent().parent().attr("id");
         var n = $(this).text().replace(" Party points", "");
-        
         if($(this).attr("pp") !== "true") {
             $(this).addClass('magictime boingInUp');
-            n++;
             updateLikes($(this).parent().parent());
+            fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
+            events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes += 1; // Tijdelijke fix
+            $(this).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes + " Party points")
             $(this).css( "color", "#489CAF");
             $(this).attr("pp", true);
-
-        } else {
-            // Nog geen un-like-functionaliteit aanwezig in de API
-//            n--;
-//            updateLikes(index);
-//            $(this).css( "color", "black");
-//            $(this).attr("pp", false);
         }
     });
 }
@@ -167,6 +176,13 @@ function getEventIndex(code) {
     if(arguments.length === 0) code = activeNewsfeed;
     for(var i = 0; i < events.length; i++) {
         if(events[i].code === code) return i;
+    }
+}
+
+// Krijg de index van een evenement in het events-object
+function getMessageIndex(code, messageID) {
+    for(var i = 0; i < events[getEventIndex(code)].messages.length; i++) {
+        if(events[getEventIndex(code)].messages[i].messageID === messageID) return i;
     }
 }
 
@@ -212,13 +228,18 @@ function loadLikes() {
             myLikes = events[getEventIndex()].myLikes;
         for(var i = 0; i < messages.length; i++) {
             for(var j = 0; j < myLikes.length; j++) {
-                console.log(messages[i].messageID, myLikes[j])
                 if(messages[i].messageID === myLikes[j]) {
                     var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
                     $(elem).css("color", "#489CAF");
                     $(elem).attr("pp", true);
                 }
             }
+        }
+    } else {
+        for(var i = 0; i < messages.length; i++) {
+            var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
+            $(elem).css("color", "inherit");
+            $(elem).attr("pp", false);
         }
     }
     
@@ -319,27 +340,31 @@ $(document).ready(function() {
     });
     
     // Nieuwsfeed
-    
     $("#page-newsfeed").on("pagebeforeshow", function () {
         var pullDownEl = $(".iscroll-pulldown"),
             pullDownLabel = $(".iscroll-pulldown .iscroll-pull-label"),
             pullDownOffset = pullDownEl.height();
         
-        myScroll = new iScroll("newsfeed-wrapper", {
-            onRefresh: function () {
-                console.log(this);
-                if (pullDownEl.hasClass('iscroll-pull-loading')) {
-                    pullDownEl.find(".spinner").removeClass("normal");
-                    pullDownEl.find(".spinner").addClass("slow");
+        setTimeout(function () {
+            myScroll = new iScroll("newsfeed-wrapper", {
+                onRefresh: function () {
+                    if (pullDownEl.hasClass('iscroll-pull-loading')) {
+                        pullDownEl.find(".spinner").removeClass("normal");
+                        pullDownEl.find(".spinner").addClass("slow");
+                    }
                 }
-            }
-        });
+            });
+        }, 100);
+        
         
         $(document).on("iscroll_onpulldown", function(event, data) {
             console.log("loading");
             pullDownEl.find(".spinner").removeClass("slow");
             pullDownEl.find(".spinner").addClass("normal");
-            setTimeout(function() {data.iscrollview.refresh();}, 3000);
+            fetchEventData(activeNewsfeed);
+            loadNewsfeed(activeNewsfeed);
+            data.iscrollview.refresh();
+            // setTimeout(function() {data.iscrollview.refresh();}, 3000);
         });
         
         $(document).on("iscroll_onpulldownreset", function() {
@@ -347,14 +372,12 @@ $(document).ready(function() {
             pullDownEl.find(".spinner").removeClass("normal");
             pullDownEl.find(".spinner").addClass("slow");
         });
-        
-        
-        
 //        myScroll.scrollToElement(".eventHeader");
     });
     
     $("#page-newsfeed").on("pageshow", function () {
         myScroll.refresh();
+        myScroll.scrollToElement(".eventHeader");
     });
     
     // Evenementenlijst
