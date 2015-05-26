@@ -168,7 +168,8 @@ $(document).ready(function() {
     
     
     /*Test voor calc height*/
-    var totalheight = $(document).height();
+    var totalheight = window.screen.height;
+        //$(document).height();
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
         $('.nieuwBerichtBackground').foggy({blurRadius: 5});
@@ -179,7 +180,7 @@ $(document).ready(function() {
     console.log(totalheight);
     console.log(header);
     console.log(button);
-    $('.boodschap').height(totalheight - button - header - imgDiv);    
+    $('.boodschap').height(totalheight - button - header - imgDiv - 10);    
     });
     
     $("#page-eventlist").on("pageshow", function () {
