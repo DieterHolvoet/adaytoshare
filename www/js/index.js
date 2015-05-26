@@ -167,10 +167,9 @@ $(document).ready(function() {
     });
     
     
-    alert("screen.height=" + screen.height);
+    /*alert("screen.height=" + screen.height);
     alert("screen.availHeight=" + screen.availHeight);
-    alert("devicePixelRatio=" + devicePixelRatio);
-    
+    alert("devicePixelRatio=" + devicePixelRatio);*/
     
     /*Test voor calc height*/
     var totalheight = screen.availHeight; ;
@@ -187,7 +186,12 @@ $(document).ready(function() {
     console.log(totalheight);
     console.log(header);
     console.log(button);
-    $('.boodschap').height(totalheight - button - header - imgDiv - 35.666666666);    
+    if(/android/i.test(navigator.userAgent)){
+        $('.boodschap').height(totalheight - button - header - imgDiv - 35.666666666);
+    }
+    else if(/(iphone)|(ipad)/i.test(navigator.userAgent)){
+        $('.boodschap').height(totalheight - button - header - imgDiv - 10);
+    }    
     });
     
     $("#page-eventlist").on("pageshow", function () {
