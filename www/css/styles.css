@@ -276,6 +276,35 @@ div[data-role="page"] header h1 {
     margin-left: 3vh;
     margin-top: 12vh;
 }
+
+.eventCodeToevoegen{
+    display: none;
+    width: calc(100% - 40px);
+    padding: 20px;   
+    background-color: #51b0c5;
+}
+
+.eventCodeToevoegen button{
+    font-family: 'Raleway';
+    font-weight: 200;
+    border: none;
+    color: black !important;
+    background-color: #dfdfde !important;
+    text-shadow: none !important;
+}
+
+.logout{
+    color: white !important;
+    background-color: #51b0c5 !important;
+    font-size: 100%;
+    font-family: 'Raleway';
+    text-transform: uppercase;
+    font-weight: 100;
+    border-radius: 3px;
+    text-shadow: none;
+    border: 0;
+}
+
 /************** Event Feed ****************/
 
 .newFeedBottom{
