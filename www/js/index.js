@@ -182,7 +182,7 @@ $(document).ready(function () {
 
 
     /*Test voor calc height*/
-    var totalheight = window.screen.innerHeight / window.devicePixelRatio;
+    var totalheight = window.screen.innerHeight; /// window.devicePixelRatio;
     //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function () {
         console.log("pagecontainerloaded");
