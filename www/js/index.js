@@ -127,7 +127,7 @@ function loadNewsfeed(code) {
     var index = getEventIndex(code);
     
     $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
-                                                + events[i].cover + ")\'></div><h1>" + events[index].name + "</h1>"
+                                                + events[index].cover + ")\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
