@@ -22,8 +22,6 @@ function Event(code, name, cover) {
 
 if(localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
-} else {
-    emptyStorage();
 }
                
 function checkInvalidInput(element, style) {
@@ -291,7 +289,7 @@ function emptyStorage() {
 $(document).ready(function() {
 
     // Initialisatie van de pagina
-    if(localStorage.getItem("username")) {
+    if(localStorage.getItem("username") && localStorage.getItem("events")) {
         if(events.length > 1) {
             window.location.hash = "page-eventlist";
         } else {
@@ -300,6 +298,7 @@ $(document).ready(function() {
         }
         
     } else {
+        emptyStorage();
         window.location.hash = "page-login";
     }
     $.mobile.initializePage();
