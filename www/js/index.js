@@ -650,12 +650,12 @@ $(document).ready(function() {
                 } else if(hasMessage) {
                     var sendData = "code=" + activeNewsfeed
                                     + "&from=" + localStorage.getItem("username")
-                                    + "&message=" + $(".boodschap").val().replace(/ /g, '%20');
+                                    + "&message=" + $(".boodschap").val();
                                     + (isPrivate ? ("&public=0") : "");
                     
                     $.ajax({
                         url: "http://dtdl.ehb.be/~jan.klaas.vdm/crosscall.php",
-                        data: {url: "http://api.adaytoshare.be/1/guestbook/post", sendData: sendData},
+                        data: {url: "http://api.adaytoshare.be/1/guestbook/post", postData: sendData},
                         type: 'POST',
                         async: false,
                         success: function (data) {
