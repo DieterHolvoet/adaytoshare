@@ -113,7 +113,7 @@ function loadEvents() {
 }
 
 function loadNewsfeed(code) {
-    console.log(code);
+    console.log("Loading newsfeed: " + code);
     var content;
     if($("#page-newsfeed .iscroll-scroller").length) {
         content = "#page-newsfeed .ui-content .iscroll-content";
@@ -466,7 +466,8 @@ $(document).ready(function() {
                         open = false;
                         $("#addEvent").css("transform", "rotate(0deg)");
                         addEvent(code, data.album_name, data.album_banner);
-                        loadEvents();
+                        loadNewsfeed(code);
+                        $("body").pagecontainer("change", "#page-newsfeed", {});
                     
                     } else {
                         console.error(data.error_message);
