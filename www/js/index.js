@@ -4,7 +4,7 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed, myScroll;
+var events = [], activeNewsfeed, activeMessage, myScroll;
 
 setTimeout(function () {
     myScroll = new iScroll("newsfeed-wrapper", {});
@@ -295,6 +295,26 @@ function resetCamera() {
     $(".boodschap").val("");
 }
 
+function reportMessage(code, messageID, message) {
+    $.ajax({
+        url: "http://api.adaytoshare.be/1/guestbook/report",
+        data: {code: code, messageID: messageID, message: message},
+        type: 'POST',
+        async: false,
+        success: function (data) {
+            if(data.success === 1) {
+                console.log("Bericht succesvol gerapporteerd.")
+                result = true;
+                
+            } else {
+                console.error(data.error_message);
+                result = false;
+            }
+        }
+    });
+    return result;
+}
+
 // Event handlers
 
 
@@ -338,6 +358,7 @@ $(document).ready(function() {
     });
     
     $('body').on("tap", ".reportT", function() {
+        activeMessage = $(this).parent().parent().attr("id");
         $('.report').fadeIn( "fast" );
         $('.fab').css('display', 'none');
     });
@@ -345,6 +366,16 @@ $(document).ready(function() {
     $('body').on("tap", ".reportBackground", function() {
         $('.report').fadeOut( "fast" );
         $('.fab').css('display', 'block');
+    });
+
+    $('body').on("tap", ".report button", function() {
+        if($(".report input").val()) {
+            reportMessage(activeNewsfeed, activeMessage, $(".report input").val());
+            $(".report input").val("");
+            
+            $('.report').fadeOut( "fast" );
+            $('.fab').css('display', 'block');
+        }
     });
     
     // Initialisatie van de pagina
