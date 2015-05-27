@@ -18,6 +18,8 @@ function onDeviceReady() {
     // alert('device ready');
     // StatusBar.hide();
     document.getElementById("takePicture").onclick = takePicture;
+    document.getElementById("gallery").onclick = getPicture;
+
     
 }
 
@@ -33,6 +35,21 @@ function takePicture(e) {
         correctOrientation: true,
         targetWidth: 300,
         targetHeight: 300
+    });
+}
+
+function getPicture(e) {
+    navigator.camera.getPicture(onSuccess, onFail, {
+        quality: 49,
+        destinationType: navigator.camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true,
+        correctOrientation: true,
+        targetWidth: 640,
+        targetHeight: 640
     });
 }
 
