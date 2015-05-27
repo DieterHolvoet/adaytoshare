@@ -159,7 +159,7 @@ function loadNewsfeed(code) {
             $(".commentField:last").prepend("<div class=\'comment-entry\'>"
                                        + "<span class=\'comment-name\'>" + (comments.from.length ? (comments.from) : "<i>Geen naam</i>") + "</span>"
                                        + "<span class=\'comment-message\'>" + comments.message + "</span>"
-                                       + "</div>")
+                                       + "</div>");
         }
     }
     $("#newsfeed-list").css({"min-height": $(document).height() - 60 - $(".eventHeader").height()});
@@ -399,8 +399,13 @@ $(document).ready(function() {
     $('body').on("tap", ".commentField button", function(e) {
         e.preventDefault();
         var comment = $(this).prev().val();
+        var messageID = $(this).parent().parent().parent().attr("id");
         if(comment !== "") {
-            if(sendComment(activeNewsfeed, $(this).parent().parent().parent().attr("id"), localStorage.getItem("username"), comment)) {
+            if(sendComment(activeNewsfeed, messageID, localStorage.getItem("username"), comment)) {
+                $(this).prev().prepend("<div class=\'comment-entry\'>"
+                                       + "<span class=\'comment-name\'>" + localStorage.getItem("username") + "</span>"
+                                       + "<span class=\'comment-message\'>" + $(this).prev().val(); + "</span>"
+                                       + "</div>");
                 $(this).prev().val("");
             }
         }
