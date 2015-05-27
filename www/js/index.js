@@ -315,7 +315,25 @@ function reportMessage(code, messageID, message) {
     return result;
 }
 
-// Event handlers
+function sendComment(code, messageID, from, message) {
+    $.ajax({
+        url: "http://api.adaytoshare.be/1/guestbook/comment",
+        data: {code: code, messageID: messageID, from: from, message: message},
+        type: 'POST',
+        async: false,
+        success: function (data) {
+            if(data.success === 1) {
+                console.log("Reactie succesvol geplaatst.")
+                result = true;
+                
+            } else {
+                console.error(data.error_message);
+                result = false;
+            }
+        }
+    });
+    return result;
+}
 
 
 $(document).ready(function() {
@@ -375,6 +393,15 @@ $(document).ready(function() {
             
             $('.report').fadeOut( "fast" );
             $('.fab').css('display', 'block');
+        }
+    });
+
+    $('body').on("tap", ".commentField button", function() {
+        var comment = $(this).prev.val();
+        if(comment !== "") {
+            if(sendComment(activeNewsfeed, $(this).parent().parent().parent().attr("id"), localStorage.getItem("username"), comment)) {
+                $(this.prev.val(""));
+            }
         }
     });
     
@@ -627,7 +654,6 @@ $(document).ready(function() {
 
         function onSuccess(imageData) {
             window.imageData = imageData;
-            console.log(window.imageData)
             
             /*Functie android crop rights reserved Ben De Greef*/
             if(/android/i.test(navigator.userAgent)) {
