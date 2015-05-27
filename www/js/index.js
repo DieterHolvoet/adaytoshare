@@ -153,7 +153,7 @@ function loadNewsfeed(code) {
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
     }
-    
+    $("#newsfeed-list").height($(document).height() - 60 - $(".eventHeader").height());
     activeNewsfeed = code;
     loadLikes();
     elasticize($("textarea"));
