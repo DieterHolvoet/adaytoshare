@@ -117,11 +117,13 @@ function loadNewsfeed(code) {
     var content;
     if($("#page-newsfeed .iscroll-scroller").length) {
         content = "#page-newsfeed .ui-content .iscroll-content";
+        $(content).empty();
         
     } else {
         content = "#page-newsfeed .ui-content";
+        $(content).children(".eventHeader, #newsfeed-list").remove();
+        
     }
-    $(content).empty();
     
     if(code === undefined) {
         console.error("No code specified");
