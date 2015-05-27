@@ -648,13 +648,14 @@ $(document).ready(function() {
                     });
 
                 } else if(hasMessage) {
-                    console.log("ja?");
+                    var sendData = "code=" + activeNewsfeed
+                                    + "&from=" + localStorage.getItem("username")
+                                    + "&message=" + $(".boodschap").val()
+                                    + (isPrivate ? ("&public=0") : "");
+                    
                     $.ajax({
-                        url: "http://api.adaytoshare.be/1/guestbook/post",
-                        data: "code=" + activeNewsfeed
-                            + "&from=" + localStorage.getItem("username")
-                            + "&message=" + $(".boodschap").val()
-                            + (isPrivate ? ("&public=0") : ""),
+                        url: "http://dtdl.ehb.be/~jan.klaas.vdm/crosscall.php?",
+                        data: {url: "http://api.adaytoshare.be/1/guestbook/post" + sendData},
                         type: 'POST',
                         async: false,
                         success: function (data) {
