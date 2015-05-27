@@ -643,14 +643,16 @@ $(document).ready(function() {
                 });
                 
             } else if(hasMessage) {
-                $.ajax({
-                    url: "http://api.adaytoshare.be/1/guestbook/post",
-                    data: {
+                var sendData = {
                         code: activeNewsfeed,
                         from: localStorage.getItem("username"),
-                        message: $(".boodschap").val(),
-                        (isPrivate ? (public: 0) : "")
-                    },
+                        message: $(".boodschap").val()
+                }
+                if(isPrivate) sendData.public = 0;
+                
+                $.ajax({
+                    url: "http://api.adaytoshare.be/1/guestbook/post",
+                    data: sendData,
                     type: 'POST',
                     async: false,
                     success: function (data) {
