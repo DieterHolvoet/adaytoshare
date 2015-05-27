@@ -540,7 +540,6 @@ $(document).ready(function() {
     
     //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function() {
-        console.log("pagecontainerloaded");
         
         $('.nieuwBerichtBackground').foggy({blurRadius: 5});
         var imgDiv = $('.nieuwBerichtBackground').height(),
@@ -561,11 +560,6 @@ $(document).ready(function() {
 
         // Cordova is ready to be used!
         function onDeviceReady() {
-            console.log(device);
-            console.log(window.device);
-            console.log(window.plugins);
-            // alert('device ready');
-            // StatusBar.hide();
             document.getElementById("takePicture").onclick = takePicture;
             document.getElementById("gallery").onclick = getPicture;
         }
@@ -609,7 +603,6 @@ $(document).ready(function() {
                 width;
 
             imageObj.src = "data:image/jpeg;base64," + imageData;
-
             width = imageObj.width; //breedte van afbeelding nemen
             canvas.setAttribute('width', width); //canvas breedte instellen
             canvas.setAttribute('height', width); //canvas hoogte instellen
