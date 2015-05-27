@@ -388,11 +388,6 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
-    // Nieuwe post-pagina
-    $("#page-newpost").on("pageshow", function () {
-        console.log("lol");
-    });
-    
     // Nieuwsfeed
     $("#page-newsfeed").on("pagebeforeshow", function () {
         var pullDownEl = $(".iscroll-pulldown"),
@@ -483,8 +478,6 @@ $(document).ready(function() {
                         open = false;
                         $("#addEvent").css("transform", "rotate(0deg)");
                         addEvent(code, data.album_name, data.album_banner);
-                        loadNewsfeed(code);
-                        $("body").pagecontainer("change", "#page-newsfeed", {});
                     
                     } else {
                         console.error(data.error_message);
