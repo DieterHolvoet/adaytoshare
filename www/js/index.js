@@ -108,6 +108,7 @@ function loadEvents() {
                                                 + "<span class=\'evt-people\'>" + "80" + "</span>"
                                                 + "</footer></article></a>");
     }
+    $(".background").foggy()
 }
 
 function loadNewsfeed(code) {
@@ -278,9 +279,9 @@ function addEvent(code, name, cover) {
 
 function checkDuplicateEvent(code) {
     for(var i = 0; i < events.length; i++) {
-        if(events[i].code === code) return true;
+        if(events[i].code === code) return false;
     }
-    return false;
+    return true;
 }
 
 function updateStorage() {
@@ -433,7 +434,6 @@ $(document).ready(function() {
     var open = false;
     $("#page-eventlist").on("pagecreate", function () {
         loadEvents();
-        $('.background').foggy();
     });
     
     $("#addEvent").on("tap", function() {
