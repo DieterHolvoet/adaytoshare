@@ -132,7 +132,7 @@ function loadNewsfeed(code) {
     
     var index = getEventIndex(code);
     
-    $(content).append("<div class=\'report reportT\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.<input type=\'text\'><button>Verzenden</button></section></div><section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
+    $(content).append("<div class=\'report\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.</p><input type=\'text\'><button>Verzenden</button></section></div><section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
                                                 + events[index].cover + ")\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
