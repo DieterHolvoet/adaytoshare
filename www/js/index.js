@@ -466,29 +466,27 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
-    /*Test voor calc height*/
-    var totalheight;
-    if(/android/i.test(navigator.userAgent)) {
-        totalheight = window.screen.availHeight / window.devicePixelRatio;
-    } else {
-        totalheight = window.screen.availHeight;  
-    }
-    
-    // We nemen de hoogte van het screen dit is dubbel de eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
+    /*Calc height voor nieuwsberichtpagina*/
+    var totalheight = screen.availHeight; ;
+    if(/android/i.test(navigator.userAgent)) totalheight /= devicePixelRatio;
+    else if(/(iphone)|(ipad)/i.test(navigator.userAgent)) totalheight = screen.height;
+    //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function(){
         console.log("pagecontainerloaded");
         $('.nieuwBerichtBackground').foggy({blurRadius: 5});
-        
-        var imgDiv = $('.nieuwBerichtBackground').height(),
-            header = $('#headerNewPost').height(),
-            button = $('.verzendButton').height();
-        
-        console.log($('.nieuwBerichtBackground').height());
-        console.log(totalheight);
-        console.log(header);
-        console.log(button);
-        
-        $('.boodschap').height(totalheight - button - header - imgDiv - 35.666666666);    
+    var imgDiv = $('.nieuwBerichtBackground').height();
+    var header = $('#headerNewPost').height();
+    var button = $('.verzendButton').height();
+    console.log($('.nieuwBerichtBackground').height());
+    console.log(totalheight);
+    console.log(header);
+    console.log(button);
+    if(/android/i.test(navigator.userAgent)){
+        $('.boodschap').height(totalheight - button - header - imgDiv - 35.666666666);
+    }
+    else if(/(iphone)|(ipad)/i.test(navigator.userAgent)){
+        $('.boodschap').height(totalheight - button - header - imgDiv - 10);
+    }    
     });
     
     $("#page-newsfeed").on("pageshow", function () {
