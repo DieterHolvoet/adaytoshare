@@ -20,15 +20,15 @@ function Event(code, name, cover) {
     this.myLikes = [];
 }
 
-if(localStorage.getItem("events")) {
+if (localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
 }
                
 function checkInvalidInput(element, style) {
     var temp = "";
     
-    if($(element).val() === "" || ($(element).attr("name") === "code" && !validateCode($(element).val()))) {
-        if(style) {
+    if ($(element).val() === "" || ($(element).attr("name") === "code" && !validateCode($(element).val()))) {
+        if (style) {
             $(element).parent().addClass("invalid-input");
             $(element).addClass("invalid-input");
             temp = $(element).attr("placeholder");
@@ -37,7 +37,7 @@ function checkInvalidInput(element, style) {
         return false;
 
     } else {
-        if(style) {
+        if (style) {
             $(element).parent().removeClass("invalid-input");
             $(element).attr("placeholder", temp);
         }
@@ -54,7 +54,7 @@ function validateCode(code) {
             type: 'GET',
             async: false,
             success: function (data) {
-                if(data.success === 1) {
+                if (data.success === 1) {
                     console.log("Valid platform.");
                     result = true;
                 } else {
@@ -71,7 +71,7 @@ function validateCode(code) {
 
 function fetchEventData(code, limit, offset) {
     var result = true;
-    if(code.length >= 6) {
+    if (code.length >= 6) {
         $.ajax({
             url: "http://api.adaytoshare.be/1/guestbook/get_posts",
             data: {code: code, limit: limit, offset: offset},
@@ -79,7 +79,7 @@ function fetchEventData(code, limit, offset) {
             async: false,
             success: function (data) {
                 if(data.success === 1) {
-                    for(var i = 0; i < data.messages.length; i++) {
+                    for (var i = 0; i < data.messages.length; i++) {
                         data.messages[i].likes = parseInt(data.messages[i].likes);
                     }
                     events[getEventIndex(code)].messages = data.messages;
@@ -251,7 +251,7 @@ function loadLikes() {
                     var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
                     $(elem).css("color", "#489CAF");
                     $(elem).attr("pp", true);
-                    messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes += 1 // Temp fix
+                    messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes += 1; // Temp fix
                     $(elem).text(messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes + " Party points");
                 }
             }
@@ -423,10 +423,10 @@ $(document).ready(function() {
     });
     
     // Evenementenlijst
+    var open = false;
     $("#page-eventlist").on("pagecreate", function () {
         loadEvents();
         $('.background').foggy();
-        var open = false;
     });
     
     $("#addEvent").on("tap", function() {
@@ -443,8 +443,31 @@ $(document).ready(function() {
     });
 
     $("#closeEventCode").on("tap", function() {
-        $(".eventCodeToevoegen").slideToggle("fast");
-        $("#addEvent").css("transform", "rotate(45deg)");
+        var $input = $("input[name='eventCode']");
+        var code = $input.val();
+        if(validateCode($("#login-code").val())) {
+            $input.css({"color": "inherit"});
+            $.ajax({
+                url: "http://api.adaytoshare.be/1/platform/check_code",
+                data: {code: code},
+                type: 'GET',
+                async: false,
+                success: function (data) {
+                    if(data.success === 1) {
+                        $(".eventCodeToevoegen").slideToggle("fast");
+                        $("#addEvent").css("transform", "rotate(45deg)");
+                        addEvent(code, data.album_name, data.album_banner);
+                        loadEvents();
+                        open = false;
+                    } else {
+                        console.error(data.error_message);
+                        result = false;
+                    }
+                }
+            });
+        } else {
+            $input.css({"color": "#e84746"});
+        }
     });
 
              $("#page-eventlist").on("pageshow", function () {
@@ -475,7 +498,7 @@ $(document).ready(function() {
     });
     
     /*Calc height voor nieuwsberichtpagina*/
-    var totalheight = screen.availHeight; ;
+    var totalheight = screen.availHeight;
     if(/android/i.test(navigator.userAgent)) totalheight /= devicePixelRatio;
     else if(/(iphone)|(ipad)/i.test(navigator.userAgent)) totalheight = screen.height;
     //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
