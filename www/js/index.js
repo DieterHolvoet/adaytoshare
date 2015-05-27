@@ -626,7 +626,6 @@ $(document).ready(function() {
         }
 
         function onSuccess(imageData) {
-            window.imageData = imageData;
             
             /*Functie android crop rights reserved Ben De Greef*/
             if(/android/i.test(navigator.userAgent)) {
@@ -643,6 +642,7 @@ $(document).ready(function() {
             var dataURL = canvas.toDataURL(); //dataURL vullen 
             document.getElementById("defImg").setAttribute('crossOrigin', 'anonymous');
             document.getElementById("defImg").src = dataURL; //afbeelding toekennen
+            window.imageData = dataURL;
             }
             else if(/(iphone)|(ipad)/i.test(navigator.userAgent)) {
                 var image = document.getElementById('defImg');
