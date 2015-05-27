@@ -298,6 +298,20 @@ $('body').on('tap', '.partypoints', function() {
     }
 });
 
+$("body").on("tap", ".logout", function() {
+    emptyStorage();
+    $("body").pagecontainer("change", "#page-login", {});
+});
+
+$("body").on("tap", ".fab", function() {
+    $("body").pagecontainer("change", "#page-newpost", {transition: "slideup"});
+});
+
+$("body").on("tap", ".event", function() {
+    loadNewsfeed($(this).parent().attr("id"));
+    $("body").pagecontainer("change", "#page-newsfeed", {});
+});
+
 $(document).ready(function() {
 
     // Initialisatie van de pagina
@@ -433,7 +447,7 @@ $(document).ready(function() {
     
     // Evenementenlijst
     var open = false;
-    $("#page-eventlist").on("pagecreate", function () {
+    $("#page-eventlist").on("pagebeforeshow", function () {
         loadEvents();
     });
     
@@ -492,20 +506,6 @@ $(document).ready(function() {
                 localStorage.setItem('wasVisited','true');
             });
         }
-    });
-    
-    $(".logout").on("tap", function() {
-        emptyStorage();
-        $("body").pagecontainer("change", "#page-login", {});
-    });
-    
-    $(".fab").on("tap", function() {
-        $("body").pagecontainer("change", "#page-newpost", {transition: "slideup"});
-    });
-    
-    $(".event").on("tap", function() {
-        loadNewsfeed($(this).parent().attr("id"));
-        $("body").pagecontainer("change", "#page-newsfeed", {});
     });
     
     /*Calc height voor nieuwsberichtpagina*/
