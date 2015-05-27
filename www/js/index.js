@@ -105,7 +105,7 @@ function loadEvents() {
                                                 + events[i].cover + ")\'></div>"
                                                 + "<h2>" + events[i].name + "</h2>"
                                                 + "<footer><time>" + "20 mei 2015" + "</time>"
-                                                + "<span class=\'icon-mail87\'>" + "103" + "</span>"
+                                                + "<span class=\'evt-photos icon-mail87\'>" + "103" + "</span>"
                                                 + "<span class=\'evt-people\'>" + "80" + "</span>"
                                                 + "</footer></article></a>");
     }
