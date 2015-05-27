@@ -675,6 +675,8 @@ $(document).ready(function() {
             if(result) {
                 $('.nieuwBerichtBackground').foggy({blurRadius: 5});
                 $(".choiseCameraOrImport").show();
+                $("#defImg").attr("src", "img/nieuwBerichtBackground.jpg");
+                $(".boodschap").val("");
                 
                 loadNewsfeed(activeNewsfeed);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
