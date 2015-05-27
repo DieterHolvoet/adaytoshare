@@ -249,6 +249,7 @@ div[data-role="page"] header h1 {
     padding-left: 15px;
     background-color: rgba(255,255,255,0.85);
     box-sizing: border-box;
+    font-weight: 200;
 }
 
 .evt-photos, .evt-people {
@@ -258,13 +259,6 @@ div[data-role="page"] header h1 {
     display: block;
     float: right;
     padding-right: 15px;
-}
-
-.evt-photos:before {
-    content: "\e600";
-    font-family: 'adts';
-    font-size: 20px;
-    padding-right: 6px;
 }
 
 .evt-people:before {
