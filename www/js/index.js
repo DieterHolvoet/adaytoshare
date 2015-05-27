@@ -654,8 +654,7 @@ $(document).ready(function() {
                                     + (isPrivate ? ("&public=0") : "");
                     
                     $.ajax({
-                        url: "http://dtdl.ehb.be/~jan.klaas.vdm/crosscall.php",
-                        data: {url: "http://api.adaytoshare.be/1/guestbook/post", postData: sendData},
+                        url: "http://api.adaytoshare.be/1/guestbook/post?" + sendData,
                         type: 'POST',
                         async: false,
                         success: function (data) {
