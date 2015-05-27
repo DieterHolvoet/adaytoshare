@@ -54,7 +54,9 @@ function getPicture(e) {
 }
 
 function onSuccess(imageData) {
+    /*Functie android crop rights reserved Ben de Greef*/
     if(/android/i.test(navigator.userAgent)){
+        setTimeout(function(){
     var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
 	var imageObj = document.getElementById("myImage");
@@ -69,6 +71,7 @@ function onSuccess(imageData) {
 	var dataURL = canvas.toDataURL(); //dataURL vullen 
 	document.getElementById("defImg").setAttribute('crossOrigin', 'anonymous');
 	document.getElementById("defImg").src = dataURL; //afbeelding toekennen
+        }, 300);
     }
     else if(/(iphone)|(ipad)/i.test(navigator.userAgent)){
         var image = document.getElementById('defImg');
