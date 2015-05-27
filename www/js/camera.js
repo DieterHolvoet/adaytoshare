@@ -54,7 +54,7 @@ function getPicture(e) {
 }
 
 function onSuccess(imageData) {
-    /*Functie android crop rights reserved Ben de Greef*/
+    /*Functie android crop rights reserved Ben De Greef*/
     if(/android/i.test(navigator.userAgent)){
     var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
