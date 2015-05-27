@@ -326,7 +326,7 @@ div[data-role="page"] header h1 {
 .eventCodeToevoegen {
     display: none;
     width: calc(100% - 40px);
-    padding: 5px 20px 20px 20px  
+    padding: 5px 20px 20px 20px;  
     background-color: #51b0c5;
 }
 
