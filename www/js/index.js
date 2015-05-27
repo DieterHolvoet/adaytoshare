@@ -154,6 +154,13 @@ function loadNewsfeed(code) {
                                                            + "<span class=\'icon-warning34 spanHeaderRight reportT\'></span>"
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
+        for(var j = 0; j < messages[i].comments.length; j++) {
+            var comments = messages[i].comments[j];
+            $(".commentField").prepend("<div class=\'comment-entry\'>"
+                                       + "<span class=\'comment-name\'>" + comments.from + "</span>"
+                                       + "<span class=\'comment-message\'>" + comments.message + "</span>"
+                                       + "</div>")
+        }
     }
     $("#newsfeed-list").css({"min-height": $(document).height() - 60 - $(".eventHeader").height()});
     activeNewsfeed = code;
@@ -281,12 +288,23 @@ function emptyStorage() {
     localStorage.removeItem("wasVisited2");
 }
 
+function resetCamera() {
+    $('.nieuwBerichtBackground').foggy({blurRadius: 5});
+    $(".choiseCameraOrImport").show();
+    $("#defImg").attr("src", "img/nieuwBerichtBackground.jpg");
+    $(".boodschap").val("");
+}
+
 // Event handlers
 
 
 $(document).ready(function() {
     
     // Event handlers
+    $('body').on('tap', '.closeLink', function() {
+        resetCamera();
+    });
+    
     $('body').on('tap', '.comment', function() {
         $(this).next().slideToggle();
     });
@@ -679,11 +697,7 @@ $(document).ready(function() {
                 busy = false;
                 
                 if(result) {
-                    $('.nieuwBerichtBackground').foggy({blurRadius: 5});
-                    $(".choiseCameraOrImport").show();
-                    $("#defImg").attr("src", "img/nieuwBerichtBackground.jpg");
-                    $(".boodschap").val("");
-
+                    resetCamera();
                     loadNewsfeed(activeNewsfeed);
                     $("body").pagecontainer("change", "#page-newsfeed", {});
                 } else {

@@ -550,9 +550,10 @@ div[data-role="page"] header h1 {
     background-color: white;
     border-radius: 10px;
     position: absolute;
-    bottom: 50%;
+    top: 20%;
     left: 50%;
     z-index: 999;
+    text-align: center;
 }
 
 .report section h1 {
