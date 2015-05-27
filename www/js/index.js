@@ -402,11 +402,8 @@ $(document).ready(function() {
         var messageID = $(this).parent().parent().parent().attr("id");
         if(comment !== "") {
             if(sendComment(activeNewsfeed, messageID, localStorage.getItem("username"), comment)) {
-                $(this).prev().prepend("<div class=\'comment-entry\'>"
-                                       + "<span class=\'comment-name\'>" + localStorage.getItem("username") + "</span>"
-                                       + "<span class=\'comment-message\'>" + $(this).prev().val() + "</span>"
-                                       + "</div>");
                 $(this).prev().val("");
+                refresh();
             }
         }
     });
