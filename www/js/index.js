@@ -334,7 +334,7 @@ $(document).ready(function() {
 
     $("body").on("tap", ".event", function() {
         loadNewsfeed($(this).parent().attr("id"));
-        $("body").pagecontainer("change", "#page-newsfeed", {});
+        $("body").pagecontainer("change", "#page-newsfeed", {transition: "slide"});
     });
     
     $('body').on("tap", ".reportT", function() {
@@ -452,14 +452,13 @@ $(document).ready(function() {
     
     // Nieuwsfeed
     $("#page-login").on("pagebeforeshow", function () {
+        // vw & vh fallback
         $(".logo").height($(document).height() / 4);
         $(".logo").css({"padding-top": ($(document).height() / 100) * 15, "padding-bottom": $(document).height() / 10});
     });
     
     $("#page-newsfeed").on("pageshow", function () {
         refresh();
-        // myScroll.scrollToElement(".eventHeader");
-        
         if (!localStorage.getItem('wasVisited2')) {
             $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list2\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
             
