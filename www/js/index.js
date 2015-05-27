@@ -153,7 +153,7 @@ function loadNewsfeed(code) {
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
     }
-    $("#newsfeed-list").height($(document).height() - 60 - $(".eventHeader").height());
+    $("#newsfeed-list").css({"min-height": $(document).height() - 60 - $(".eventHeader").height()});
     activeNewsfeed = code;
     loadLikes();
     elasticize($("textarea"));
@@ -298,22 +298,22 @@ $('body').on('tap', '.partypoints', function() {
     }
 });
 
-$("body").on("tap", ".logout", function() {
-    emptyStorage();
-    $("body").pagecontainer("change", "#page-login", {});
-});
-
-$("body").on("tap", ".fab", function() {
-    $("body").pagecontainer("change", "#page-newpost", {transition: "slideup"});
-});
-
-$("body").on("tap", ".event", function() {
-    loadNewsfeed($(this).parent().attr("id"));
-    $("body").pagecontainer("change", "#page-newsfeed", {});
-});
-
 $(document).ready(function() {
+    // Event handlers
+    $("body").on("tap", ".logout", function() {
+        emptyStorage();
+        $("body").pagecontainer("change", "#page-login", {});
+    });
 
+    $("body").on("tap", ".fab", function() {
+        $("body").pagecontainer("change", "#page-newpost", {transition: "slideup"});
+    });
+
+    $("body").on("tap", ".event", function() {
+        loadNewsfeed($(this).parent().attr("id"));
+        $("body").pagecontainer("change", "#page-newsfeed", {});
+    });
+    
     // Initialisatie van de pagina
     if(localStorage.getItem("username") && localStorage.getItem("events")) {
         if(events.length > 1) {
