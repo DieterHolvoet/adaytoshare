@@ -445,7 +445,8 @@ $(document).ready(function() {
     $("#closeEventCode").on("tap", function() {
         var $input = $("input[name='eventCode']");
         var code = $input.val();
-        if(validateCode($("#login-code").val())) {
+        
+        if(validateCode($("input[name='eventCode']").val())) {
             $input.css({"color": "inherit"});
             $.ajax({
                 url: "http://api.adaytoshare.be/1/platform/check_code",
