@@ -648,16 +648,12 @@ $(document).ready(function() {
                     });
 
                 } else if(hasMessage) {
-                    var sendData = {
-                            code: activeNewsfeed,
-                            from: localStorage.getItem("username"),
-                            message: $(".boodschap").val()
-                    }
-                    if(isPrivate) sendData.public = 0;
-
                     $.ajax({
                         url: "http://api.adaytoshare.be/1/guestbook/post",
-                        data: sendData,
+                        data: "code=" + activeNewsfeed
+                            + "&from=" + localStorage.getItem("username")
+                            + "&message=" + $(".boodschap").val()
+                            + (isPrivate ? ("&public=0") : ""),
                         type: 'POST',
                         async: false,
                         success: function (data) {
