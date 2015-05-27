@@ -528,13 +528,15 @@ div[data-role="page"] header h1 {
 
 .report {
     display: none;
+    position: fixed;
+    z-index: 999;
+}
+
+.reportBackground {
     background-color: rgba(0,0,0,0.6);
     width: 100%;
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    text-align: center;
-    z-index: 999;
+    height: 100%;
+    position: fixed; top: 0; left: 0;
 }
 
 .report section {
