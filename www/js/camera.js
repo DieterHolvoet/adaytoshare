@@ -33,8 +33,8 @@ function takePicture(e) {
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true,
         correctOrientation: true,
-        targetWidth: screen.width,
-        targetHeight: screen.width
+        targetWidth: 300,
+        targetHeight: 300
     });
 }
 
@@ -54,8 +54,26 @@ function getPicture(e) {
 }
 
 function onSuccess(imageData) {
-    var image = document.getElementById('myImage');
-    image.src = "data:image/jpeg;base64," + imageData;
+    if(/android/i.test(navigator.userAgent)){
+    var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var imageObj = document.getElementById("myImage");
+	var width;
+	
+	imageObj.src = "data:image/jpeg;base64," + imageData;
+	
+	width = imageObj.width; //breedte van afbeelding nemen
+	canvas.setAttribute('width', width); //canvas breedte instellen
+	canvas.setAttribute('height', width); //canvas hoogte instellen
+	context.drawImage(imageObj, 0, 0, width, width, 0, 0, width, width); //afbeelding tekenen
+	var dataURL = canvas.toDataURL(); //dataURL vullen 
+	document.getElementById("defImg").setAttribute('crossOrigin', 'anonymous');
+	document.getElementById("defImg").src = dataURL; //afbeelding toekennen
+    }
+    else if(/(iphone)|(ipad)/i.test(navigator.userAgent)){
+        var image = document.getElementById('defImg');
+    	image.src = "data:image/jpeg;base64," + imageData;
+    }
 }
 
 function onFail(message) {

@@ -26,10 +26,9 @@
     <script src="js/elastic-textarea-min.js"></script>
     <script src="js/iscroll.js"></script>
     <script src="js/jquery.mobile.iscrollview.js"></script>
-    
+
     <script src="js/index.js"></script>
     <script src="js/camera.js"></script>
-    <script src="js/import.js"></script>
     <script src="js/report.js"></script>
 </head>
 
@@ -95,7 +94,8 @@
                 </div>
             </a>
         </div>
-        <div class="fab"><span class="icon-plus"></span></div>
+        <div class="fab"><span class="icon-plus"></span>
+        </div>
     </div>
 
     <!-- Nieuw bericht -->
@@ -109,7 +109,9 @@
         <div role="main" class="ui-content" style="padding: 0">
             <div class="contentTextbericht">
                 <div class="backgroundImg">
-                    <img src="img/nieuwBerichtBackground.jpg" class="nieuwBerichtBackground" alt="Geblurde background foto" id="myImage">
+                    <img src="" id="myImage" class="hidden" data-role="none">
+                    <canvas id="canvas" class="hidden"></canvas>
+                    <img src="img/nieuwBerichtBackground.jpg" class="nieuwBerichtBackground" alt="Geblurde background foto" id="defImg">
                     <div class="choiseCameraOrImport">
                         <a href="#" class="icon-camera" id="takePicture"></a>
                         <a href="#" class="icon-galery" id="gallery"></a>
@@ -118,7 +120,8 @@
                 <form class="formulierTekstbericht">
                     <textarea class="boodschap" data-role="none" placeholder="Schrijf hier je boodschap..."></textarea>
                     <label class="sliderPrive">Privé
-                     <input type="checkbox" data-role="flipswitch" name="switch" id="switch" data-wrapper-class="custom-size-flipswitch" data-on-text="" data-off-text=""></label>
+                        <input type="checkbox" data-role="flipswitch" name="switch" id="switch" data-wrapper-class="custom-size-flipswitch" data-on-text="" data-off-text="">
+                    </label>
                     <input type="submit" value="Verzenden" class="verzendButton" data-role="none">
 
                 </form>
