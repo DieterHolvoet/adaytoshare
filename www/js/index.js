@@ -400,7 +400,7 @@ $(document).ready(function() {
     // Nieuwsfeed
     $("#page-login").on("pagebeforeshow", function () {
         $(".logo").height($(document).height() / 4);
-        $(".logo").css("padding", ($(document).height() / 100) * 15 + ", 0, " + $(document).height() / 10 + ", 0");
+        $(".logo").css({"padding-top": ($(document).height() / 100) * 15, "padding-bottom": $(document).height() / 10});
     });
     
     $("#page-newsfeed").on("pageshow", function () {
