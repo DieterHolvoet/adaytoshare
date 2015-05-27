@@ -97,6 +97,7 @@ function fetchEventData(code, limit, offset) {
 }
 
 function loadEvents() {
+    $("#page-eventlist .ui-content > a").remove();
     for(var i = 0; i < events.length; i++) {
         $("#page-eventlist .ui-content .logout").before("<a href=\'#page-newsfeed\' data-transition=\'slide\' data-ripple id=\'"
                                                 + events[i].code + "\'>"
@@ -115,11 +116,11 @@ function loadNewsfeed(code) {
     var content;
     if($("#page-newsfeed .iscroll-scroller").length) {
         content = "#page-newsfeed .ui-content .iscroll-content";
-        $(content).empty();
         
     } else {
         content = "#page-newsfeed .ui-content";
     }
+    $(content).empty();
     
     if(code === undefined) {
         console.error("No code specified");
