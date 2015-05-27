@@ -113,6 +113,7 @@ function loadEvents() {
 }
 
 function loadNewsfeed(code) {
+    console.log(code);
     var content;
     if($("#page-newsfeed .iscroll-scroller").length) {
         content = "#page-newsfeed .ui-content .iscroll-content";
@@ -427,8 +428,6 @@ $(document).ready(function() {
                 localStorage.setItem('wasVisited2','true');
             });
         }
-        
-        $('.background').foggy();
     });
     
     // Evenementenlijst
@@ -447,7 +446,7 @@ $(document).ready(function() {
             $(".eventCodeToevoegen").slideUp("fast");
             $("#addEvent").css("transform", "rotate(0deg)");
             open = true;
-        }   
+        }
     });
 
     $("#closeEventCode").on("tap", function() {
@@ -529,11 +528,4 @@ $(document).ready(function() {
         $('.boodschap').height(totalheight - button - header - imgDiv - 10);
     }    
     });
-  $(function() {
-        $('.choiseCameraOrImport').css('opacity','0');
-        $(document).click(function(){
-            var e = $('.choiseCameraOrImport');
-            e.not(':animated').css({'opacity': 1 }).effect("scale", {origin:['middle','center'], from:{width:e.width()/2,height:e.height()/2}, percent: 100, direction: 'both', easing: "easeOutBounce" }, 700);
-        });
-    });  
 });
