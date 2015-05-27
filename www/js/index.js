@@ -649,7 +649,7 @@ $(document).ready(function() {
                         code: activeNewsfeed,
                         from: localStorage.getItem("username"),
                         message: $(".boodschap").val(),
-                        (isPrivate ? (public: 0,) : "")
+                        (isPrivate ? (public: 0) : "")
                     },
                     type: 'POST',
                     async: false,
