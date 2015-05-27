@@ -157,24 +157,6 @@ function loadNewsfeed(code) {
     activeNewsfeed = code;
     loadLikes();
     elasticize($("textarea"));
-    
-    $(".comment").on("tap", function() {
-        $(this).next().slideToggle();
-    });
-
-    $(".partypoints").on("click", function() {
-        var messageID = $(this).parent().parent().attr("id");
-        var n = $(this).text().replace(" Party points", "");
-        if($(this).attr("pp") !== "true") {
-            $(this).addClass('magictime boingInUp');
-            updateLikes($(this).parent().parent());
-            fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
-            events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes += 1; // Tijdelijke fix
-            $(this).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes + " Party points");
-            $(this).css( "color", "#489CAF");
-            $(this).attr("pp", true);
-        }
-    });
 }
 
 function loadMoreNewsfeed() {
@@ -296,6 +278,25 @@ function emptyStorage() {
     localStorage.removeItem("wasVisited");
     localStorage.removeItem("wasVisited2");
 }
+
+// Event handlers
+$('body').on('tap', '.comment', function() {
+    $(this).next().slideToggle();
+});
+
+$('body').on('tap', '.partypoints', function() {
+    var messageID = $(this).parent().parent().attr("id");
+    var n = $(this).text().replace(" Party points", "");
+    if($(this).attr("pp") !== "true") {
+        $(this).addClass('magictime boingInUp');
+        updateLikes($(this).parent().parent());
+        fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
+        events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes += 1; // Tijdelijke fix
+        $(this).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes + " Party points");
+        $(this).css( "color", "#489CAF");
+        $(this).attr("pp", true);
+    }
+});
 
 $(document).ready(function() {
 
