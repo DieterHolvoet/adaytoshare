@@ -18,10 +18,10 @@ function onDeviceReady() {
     console.log(window.plugins);
     // alert('device ready');
     // StatusBar.hide();
-    document.getElementById("gallery").onclick = takePicture;
+    document.getElementById("gallery").onclick = getPicture;
 }
 
-function takePicture(e) {
+function getPicture(e) {
     navigator.camera.getPicture(onSuccess, onFail, {
         quality: 49,
         destinationType: navigator.camera.DestinationType.DATA_URL,
