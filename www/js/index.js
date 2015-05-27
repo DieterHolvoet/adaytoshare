@@ -395,7 +395,11 @@ $(document).ready(function() {
                 data.iscrollview.refresh();
             }
         });
-        
+    });
+    
+    // Nieuwsfeed
+    $("#page-login").on("pagebeforeshow", function () {
+        $(".logo").height($(document).height() / 4);
     });
     
     $("#page-newsfeed").on("pageshow", function () {
