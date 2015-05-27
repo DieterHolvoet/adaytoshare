@@ -650,7 +650,7 @@ $(document).ready(function() {
                 } else if(hasMessage) {
                     var sendData = "code=" + activeNewsfeed
                                     + "&from=" + localStorage.getItem("username")
-                                    + "&message=" + $(".boodschap").val().replace(" ", "%20")
+                                    + "&message=" + $(".boodschap").val().replaceAll(" ", "%20")
                                     + (isPrivate ? ("&public=0") : "");
                     
                     $.ajax({
