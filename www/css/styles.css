@@ -737,14 +737,18 @@ div[data-role="page"] header h1 {
     text-align: center;
     top: 35%;
     left:50%;
-    margin-left: -55px;
-    padding: 20px 20px 20px 20px;
+    margin-left: -80px;
+    padding: 30px 20px 20px 30px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 1000px;
 }
 
-.choiseCameraOrImport a{
-    font-size: 40px;
+.icon-camera{
+    font-size: 35px;   
+}
+
+.icon-galery{
+    font-size: 38px;   
 }
 
 /*Form*/
