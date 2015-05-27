@@ -31,8 +31,8 @@ function takePicture(e) {
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true,
         correctOrientation: true,
-        targetWidth: 640,
-        targetHeight: 640
+        targetWidth: 300,
+        targetHeight: 300
     });
 }
 
