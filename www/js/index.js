@@ -672,13 +672,17 @@ $(document).ready(function() {
                     result = false;
                 
                 if(hasImage) {
+                    var data = {
+                        code: activeNewsfeed,
+                        from: localStorage.getItem("username"),
+                        photo: window.imageData
+                    }
+                    if(hasMessage) data.message = $(".boodschap").val();
+                    if(isPrivate) data.public = 0;
+                    
                     $.ajax({
                         url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
-                        data: "code=" + activeNewsfeed
-                            + "&from=" + localStorage.getItem("username")
-                            + "&photo=" + window.imageData.replace("data:image/png;base64,", "")
-                            + (hasMessage ? ("&message=" + $(".boodschap").val()) : "")
-                            + (isPrivate ? ("&public=0") : ""),
+                        data: data,
                         dataType: 'json',
                         type: 'POST',
                         async: false,
