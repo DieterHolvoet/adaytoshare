@@ -157,7 +157,7 @@ function loadNewsfeed(code) {
         for(var j = 0; j < messages[i].comments.length; j++) {
             var comments = messages[i].comments[j];
             $(".commentField").prepend("<div class=\'comment-entry\'>"
-                                       + "<span class=\'comment-name\'>" + comments.from + "</span>"
+                                       + "<span class=\'comment-name\'>" + (comments.from.length() ? (comments.from) : "<i>Geen naam</i>") + "</span>"
                                        + "<span class=\'comment-message\'>" + comments.message + "</span>"
                                        + "</div>")
         }
