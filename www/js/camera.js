@@ -1,16 +1,11 @@
-/* jshint
-browser: true,
-devel: true
-*/
+
 var pictureSource; // picture source
 var destinationType; // sets the format of returned value 
 
 // Wait for Cordova to connect with the device
-//
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // Cordova is ready to be used!
-//
 function onDeviceReady() {
     console.log(device);
     console.log(window.device);
@@ -19,8 +14,6 @@ function onDeviceReady() {
     // StatusBar.hide();
     document.getElementById("takePicture").onclick = takePicture;
     document.getElementById("gallery").onclick = getPicture;
-
-    
 }
 
 function takePicture(e) {
