@@ -151,7 +151,7 @@ function loadNewsfeed(code) {
                                                            + (messages[i].photoURL !== "" ? ("<img src=\'" + messages[i].photoURL + "\' alt=\'foto post\'>") : "")
                                                            + "<footer><span class=\'icon-wine65 partypoints\'>"
                                                            + messages[i].likes + " Party points" + "</span>"
-                                                           + "<span class=\'icon-warning34 spanHeaderRight\'></span>"
+                                                           + "<span class=\'icon-warning34 spanHeaderRight reportT\'></span>"
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
                                                            + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
     }
