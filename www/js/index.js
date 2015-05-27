@@ -614,74 +614,80 @@ $(document).ready(function() {
             }, 0);
         }
         
+        var busy;
+        
         function sendPost() {
+            busy = true;
             var hasImage = $("#defImg").attr("src") !== "img/nieuwBerichtBackground.jpg",
                 hasMessage = $(".boodschap").val() !== "",
                 isPrivate = $(".sliderPrive input")[0].checked,
                 result = false;
             
-            if(hasImage) {
-                $.ajax({
-                    url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
-                    data: "code=" + activeNewsfeed
-                        + "&from=" + localStorage.getItem("username")
-                        + "&photo=" + $("#defImg").attr("src").replace("data:image/png;base64,", "")
-                        + "&extension=png"
-                        + (hasMessage ? ("&message=" + $(".boodschap").val()) : "")
-                        + (isPrivate ? ("&public=0") : ""),
-                    dataType: 'json',
-                    type: 'POST',
-                    async: false,
-                    success: function (data) {
-                        if (data.success === 1) {
-                            console.log("Post sent successfully.");
-                            result = true;
-                        } else {
-                            console.error("Error " + data.errorcode + ": " + data.error_message);
-                            result = false;
+            if(!busy) {
+                if(hasImage) {
+                    $.ajax({
+                        url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
+                        data: "code=" + activeNewsfeed
+                            + "&from=" + localStorage.getItem("username")
+                            + "&photo=" + $("#defImg").attr("src").replace("data:image/png;base64,", "")
+                            + "&extension=png"
+                            + (hasMessage ? ("&message=" + $(".boodschap").val()) : "")
+                            + (isPrivate ? ("&public=0") : ""),
+                        dataType: 'json',
+                        type: 'POST',
+                        async: false,
+                        success: function (data) {
+                            if (data.success === 1) {
+                                console.log("Post sent successfully.");
+                                result = true;
+                            } else {
+                                console.error("Error " + data.errorcode + ": " + data.error_message);
+                                result = false;
+                            }
                         }
+                    });
+
+                } else if(hasMessage) {
+                    var sendData = {
+                            code: activeNewsfeed,
+                            from: localStorage.getItem("username"),
+                            message: $(".boodschap").val()
                     }
-                });
-                
-            } else if(hasMessage) {
-                var sendData = {
-                        code: activeNewsfeed,
-                        from: localStorage.getItem("username"),
-                        message: $(".boodschap").val()
+                    if(isPrivate) sendData.public = 0;
+
+                    $.ajax({
+                        url: "http://api.adaytoshare.be/1/guestbook/post",
+                        data: sendData,
+                        type: 'POST',
+                        async: false,
+                        success: function (data) {
+                            if (data.success === 1) {
+                                console.log("Message sent successfully.");
+                                result = true;
+                            } else {
+                                console.error("Error " + data.errorcode + ": " + data.error_message);
+                                result = false;
+                            }
+                        }
+                    });
+
+                } else {
+                    console.error("No message or image provided.");
+                    result = false;
                 }
-                if(isPrivate) sendData.public = 0;
-                
-                $.ajax({
-                    url: "http://api.adaytoshare.be/1/guestbook/post",
-                    data: sendData,
-                    type: 'POST',
-                    async: false,
-                    success: function (data) {
-                        if (data.success === 1) {
-                            console.log("Message sent successfully.");
-                            result = true;
-                        } else {
-                            console.error("Error " + data.errorcode + ": " + data.error_message);
-                            result = false;
-                        }
-                    }
-                });
-                
-            } else {
-                console.error("No message or image provided.");
-                result = false;
-            }
-            
-            if(result) {
-                $('.nieuwBerichtBackground').foggy({blurRadius: 5});
-                $(".choiseCameraOrImport").show();
-                $("#defImg").attr("src", "img/nieuwBerichtBackground.jpg");
-                $(".boodschap").val("");
-                
-                loadNewsfeed(activeNewsfeed);
-                $("body").pagecontainer("change", "#page-newsfeed", {});
-            } else {
-                return false;
+
+                if(result) {
+                    $('.nieuwBerichtBackground').foggy({blurRadius: 5});
+                    $(".choiseCameraOrImport").show();
+                    $("#defImg").attr("src", "img/nieuwBerichtBackground.jpg");
+                    $(".boodschap").val("");
+
+                    loadNewsfeed(activeNewsfeed);
+                    $("body").pagecontainer("change", "#page-newsfeed", {});
+                    busy = false;
+                } else {
+                    return false;
+                }
             }
         }
         
