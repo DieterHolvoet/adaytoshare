@@ -617,13 +617,13 @@ $(document).ready(function() {
         var busy;
         
         function sendPost() {
-            busy = true;
-            var hasImage = $("#defImg").attr("src") !== "img/nieuwBerichtBackground.jpg",
-                hasMessage = $(".boodschap").val() !== "",
-                isPrivate = $(".sliderPrive input")[0].checked,
-                result = false;
-            
             if(!busy) {
+                busy = true;
+                var hasImage = $("#defImg").attr("src") !== "img/nieuwBerichtBackground.jpg",
+                    hasMessage = $(".boodschap").val() !== "",
+                    isPrivate = $(".sliderPrive input")[0].checked,
+                    result = false;
+                
                 if(hasImage) {
                     $.ajax({
                         url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
@@ -648,6 +648,7 @@ $(document).ready(function() {
                     });
 
                 } else if(hasMessage) {
+                    console.log("ja?");
                     $.ajax({
                         url: "http://api.adaytoshare.be/1/guestbook/post",
                         data: "code=" + activeNewsfeed
@@ -671,7 +672,9 @@ $(document).ready(function() {
                     console.error("No message or image provided.");
                     result = false;
                 }
-
+                
+                busy = false;
+                
                 if(result) {
                     $('.nieuwBerichtBackground').foggy({blurRadius: 5});
                     $(".choiseCameraOrImport").show();
@@ -680,7 +683,6 @@ $(document).ready(function() {
 
                     loadNewsfeed(activeNewsfeed);
                     $("body").pagecontainer("change", "#page-newsfeed", {});
-                    busy = false;
                 } else {
                     return false;
                 }
