@@ -397,7 +397,7 @@ $(document).ready(function() {
     });
 
     $('body').on("tap", ".commentField button", function() {
-        var comment = $(this).prev.val();
+        var comment = $(this).prev().val();
         if(comment !== "") {
             if(sendComment(activeNewsfeed, $(this).parent().parent().parent().attr("id"), localStorage.getItem("username"), comment)) {
                 $(this.prev.val(""));
