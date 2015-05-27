@@ -404,7 +404,7 @@ $(document).ready(function() {
             if(sendComment(activeNewsfeed, messageID, localStorage.getItem("username"), comment)) {
                 $(this).prev().prepend("<div class=\'comment-entry\'>"
                                        + "<span class=\'comment-name\'>" + localStorage.getItem("username") + "</span>"
-                                       + "<span class=\'comment-message\'>" + $(this).prev().val(); + "</span>"
+                                       + "<span class=\'comment-message\'>" + $(this).prev().val() + "</span>"
                                        + "</div>");
                 $(this).prev().val("");
             }
