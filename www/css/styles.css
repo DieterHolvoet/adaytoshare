@@ -391,7 +391,6 @@ div[data-role="page"] header h1 {
     font-family: 'Raleway';
     color: white;
     padding: 30px 25px;
-    margin-top: 95px;
     text-shadow: none;
     position: relative;
 }
@@ -861,6 +860,7 @@ input {
     height: 90px;
     line-height: 50px;
     width: 100%;
+    position: static !important;
 }
 
 .iscroll-pull-label {
