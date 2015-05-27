@@ -530,7 +530,7 @@ $(document).ready(function() {
     });
   $(function() {
         $('.choiseCameraOrImport').css('opacity','0');
-        $(document).fadeIn(function(){
+        $(document).click(function(){
             var e = $('.choiseCameraOrImport');
             e.not(':animated').css({'opacity': 1 }).effect("scale", {origin:['middle','center'], from:{width:e.width()/2,height:e.height()/2}, percent: 100, direction: 'both', easing: "easeOutBounce" }, 700);
         });
