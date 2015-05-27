@@ -276,6 +276,13 @@ function addEvent(code, name, cover) {
     console.log("New event added");
 }
 
+function checkDuplicateEvent(code) {
+    for(var i = 0; i < events.length; i++) {
+        if(events[i].code === code) return true;
+    }
+    return false;
+}
+
 function updateStorage() {
     localStorage.setItem("events", JSON.stringify(events));
 }
@@ -446,7 +453,7 @@ $(document).ready(function() {
         var $input = $("input[name='eventCode']");
         var code = $input.val();
         
-        if(validateCode($("input[name='eventCode']").val())) {
+        if(validateCode(code) && checkDuplicateEvent(code)) {
             $input.css({"color": "inherit"});
             $.ajax({
                 url: "http://api.adaytoshare.be/1/platform/check_code",
@@ -455,11 +462,12 @@ $(document).ready(function() {
                 async: false,
                 success: function (data) {
                     if(data.success === 1) {
-                        $(".eventCodeToevoegen").slideToggle("fast");
-                        $("#addEvent").css("transform", "rotate(45deg)");
+                        $(".eventCodeToevoegen").slideUp("fast");
+                        open = false;
+                        $("#addEvent").css("transform", "rotate(0deg)");
                         addEvent(code, data.album_name, data.album_banner);
                         loadEvents();
-                        open = false;
+                    
                     } else {
                         console.error(data.error_message);
                         result = false;
@@ -471,7 +479,7 @@ $(document).ready(function() {
         }
     });
 
-             $("#page-eventlist").on("pageshow", function () {
+    $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
             $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'> <div class=\'screen\'><div class=\'cutOutPopUp\'> <div class =\'navbarbtn icon-plus'> </div> </div></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
             $("#popup-eventlist").fadeIn(300);
