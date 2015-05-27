@@ -598,10 +598,14 @@ $(document).ready(function() {
             document.getElementById("defImg").setAttribute('crossOrigin', 'anonymous');
             document.getElementById("defImg").src = dataURL; //afbeelding toekennen
             }
-            else if(/(iphone)|(ipad)/i.test(navigator.userAgent)){
+            else if(/(iphone)|(ipad)/i.test(navigator.userAgent)) {
                 var image = document.getElementById('defImg');
                 image.src = "data:image/jpeg;base64," + imageData;
             }
+            
+            // rights reserved Dieter Holvoet jwz
+            $('.nieuwBerichtBackground').foggy(false);
+            $(".choiseCameraOrImport").hide();
         }
 
         function onFail(message) {
@@ -609,5 +613,70 @@ $(document).ready(function() {
                 //alert('Failed because: ' + message);
             }, 0);
         }
+        
+        function sendPost() {
+            var hasImage = $("#defImg").attr("src") !== "img/nieuwBerichtBackground.jpg",
+                hasMessage = $(".boodschap").val() !== "",
+                isPrivate = $(".sliderPrive input")[0].checked,
+                result = false;
+            
+            if(hasImage) {
+                $.ajax({
+                    url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
+                    data: "code=" + activeNewsfeed
+                        + "&from=" + localStorage.getItem("username")
+                        + "&photo=" + $("#defImg").attr("src")
+                        + (hasMessage ? ("&message=" + $(".boodschap").val()) : "")
+                        + (isPrivate ? ("&public=0") : ""),
+                    dataType: 'json',
+                    type: 'POST',
+                    async: false,
+                    success: function (data) {
+                        if (data.success === 1) {
+                            console.log("Post sent successfully.");
+                            result = true;
+                        } else {
+                            console.error("Error " + data.errorcode + ": " + data.error_message);
+                            result = false;
+                        }
+                    }
+                });
+                
+            } else if(hasMessage) {
+                $.ajax({
+                    url: "http://api.adaytoshare.be/1/guestbook/post",
+                    data: {
+                        code: activeNewsfeed,
+                        from: localStorage.getItem("username"),
+                        message: $(".boodschap").val(),
+                        (isPrivate ? (public: 0,) : "")
+                    },
+                    type: 'POST',
+                    async: false,
+                    success: function (data) {
+                        if (data.success === 1) {
+                            console.log("Message sent successfully.");
+                            result = true;
+                        } else {
+                            console.error("Error " + data.errorcode + ": " + data.error_message);
+                            result = false;
+                        }
+                    }
+                });
+                
+            } else {
+                console.error("No message or image provided.");
+                result = false;
+            }
+            
+            if(result) {
+                loadNewsfeed(activeNewsfeed);
+                $("body").pagecontainer("change", "#page-newsfeed", {});
+            } else {
+                return false;
+            }
+        }
+        
+        $("body").on("tap", ".verzendButton", sendPost);
     });
 });
