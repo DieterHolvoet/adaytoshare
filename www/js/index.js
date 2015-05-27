@@ -132,8 +132,7 @@ function loadNewsfeed(code) {
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
-                                            + "<div id=\'newsfeed-list\'></div>"
-                                            + "<a class=\'fab\' href=\'#page-newpost\' data-transition=\'slideup\'><span class=\'icon-plus\'></span></a>");
+                                            + "<div id=\'newsfeed-list\'></div>");
     
     $('.eventHeader .eventBackground').foggy();
     var messages = events[index].messages;
@@ -423,24 +422,24 @@ $(document).ready(function() {
         loadEvents();
         $('.background').foggy();
         var open = false;
-        
-        $("#addEvent").click(function() {
-            if(open) {
-                $(".eventCodeToevoegen").slideDown("fast");
-                $("#addEvent").css("transform", "rotate(45deg)");
-                open = false;
-                
-            } else {
-                $(".eventCodeToevoegen").slideUp("fast");
-                $("#addEvent").css("transform", "rotate(0deg)");
-                open = true;
-            }   
-        });
-        
-        $("#closeEventCode").click(function() {
-            $(".eventCodeToevoegen").slideToggle("fast");
+    });
+    
+    $("#addEvent").on("tap", function() {
+        if(open) {
+            $(".eventCodeToevoegen").slideDown("fast");
             $("#addEvent").css("transform", "rotate(45deg)");
-        });
+            open = false;
+
+        } else {
+            $(".eventCodeToevoegen").slideUp("fast");
+            $("#addEvent").css("transform", "rotate(0deg)");
+            open = true;
+        }   
+    });
+
+    $("#closeEventCode").on("tap", function() {
+        $(".eventCodeToevoegen").slideToggle("fast");
+        $("#addEvent").css("transform", "rotate(45deg)");
     });
                             
     $("#page-eventlist").on("pageshow", function () {
@@ -456,12 +455,16 @@ $(document).ready(function() {
         }
     });
     
-    $(".logout").on("click", function() {
+    $(".logout").on("tap", function() {
         emptyStorage();
         $("body").pagecontainer("change", "#page-login", {});
     });
     
-    $(".event").on("click", function() {
+    $(".fab").on("tap", function() {
+        $("body").pagecontainer("change", "#page-newpost", {transition: "slideup"});
+    });
+    
+    $(".event").on("tap", function() {
         loadNewsfeed($(this).parent().attr("id"));
         $("body").pagecontainer("change", "#page-newsfeed", {});
     });
@@ -488,9 +491,4 @@ $(document).ready(function() {
         $('.boodschap').height(totalheight - button - header - imgDiv - 10);
     }    
     });
-    
-    $("#page-newsfeed").on("pageshow", function () {
-        
-    });
-
 });
