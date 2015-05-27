@@ -626,6 +626,8 @@ $(document).ready(function() {
         }
 
         function onSuccess(imageData) {
+            window.imageData = imageData;
+            console.log(window.imageData)
             
             /*Functie android crop rights reserved Ben De Greef*/
             if(/android/i.test(navigator.userAgent)) {
@@ -642,7 +644,6 @@ $(document).ready(function() {
             var dataURL = canvas.toDataURL(); //dataURL vullen 
             document.getElementById("defImg").setAttribute('crossOrigin', 'anonymous');
             document.getElementById("defImg").src = dataURL; //afbeelding toekennen
-            window.imageData = dataURL;
             }
             else if(/(iphone)|(ipad)/i.test(navigator.userAgent)) {
                 var image = document.getElementById('defImg');
@@ -675,7 +676,7 @@ $(document).ready(function() {
                         url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
                         data: "code=" + activeNewsfeed
                             + "&from=" + localStorage.getItem("username")
-                            + "&photo=" + window.imageData
+                            + "&photo=" + window.imageData.replace("data:image/png;base64,", "")
                             + (hasMessage ? ("&message=" + $(".boodschap").val()) : "")
                             + (isPrivate ? ("&public=0") : ""),
                         dataType: 'json',
