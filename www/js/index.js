@@ -626,6 +626,8 @@ $(document).ready(function() {
         }
 
         function onSuccess(imageData) {
+            window.imageData = imageData;
+            
             /*Functie android crop rights reserved Ben De Greef*/
             if(/android/i.test(navigator.userAgent)) {
             var canvas = document.getElementById("canvas"),
@@ -673,8 +675,7 @@ $(document).ready(function() {
                         url: "http://api.adaytoshare.be/1/guestbook/post_with_media_base64",
                         data: "code=" + activeNewsfeed
                             + "&from=" + localStorage.getItem("username")
-                            + "&photo=" + $("#defImg").attr("src").replace("data:image/png;base64,", "")
-                            + "&extension=png"
+                            + "&photo=" + window.imageData
                             + (hasMessage ? ("&message=" + $(".boodschap").val()) : "")
                             + (isPrivate ? ("&public=0") : ""),
                         dataType: 'json',
