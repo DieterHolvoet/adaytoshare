@@ -406,7 +406,7 @@ $(document).ready(function() {
                                            + "<span class=\'comment-name\'>" + localStorage.getItem("username") + "</span>"
                                            + "<span class=\'comment-message\'>" + $(this).prev().val() + "</span>"
                                            + "</div>");
-                $(this).parent().prev().text(+($(this).parent().prev().text()) += 1);
+                $(this).parent().prev().text(parseInt($(this).parent().prev().text()) += 1);
                 $(this).prev().val("");
                 refresh();
             }
