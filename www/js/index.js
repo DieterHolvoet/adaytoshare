@@ -130,10 +130,7 @@ function loadNewsfeed(code) {
         return false;
     }
     
-    var index = getEventIndex(code);
-    
-    $("#page-newsfeed").append("<div class=\'report\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.</p><input data-enhance=\'false\' type=\'text\'><button>Verzenden</button></section></div>");
-    
+    var index = getEventIndex(code);    
     $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
                                                 + events[index].cover + ")\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
@@ -409,6 +406,7 @@ $(document).ready(function() {
                                            + "<span class=\'comment-name\'>" + localStorage.getItem("username") + "</span>"
                                            + "<span class=\'comment-message\'>" + $(this).prev().val() + "</span>"
                                            + "</div>");
+                $(this).parent().prev().text(+($(this).parent().prev().text()) += 1);
                 $(this).prev().val("");
                 refresh();
             }
@@ -768,7 +766,7 @@ $(document).ready(function() {
                 
                 if(result) {
                     resetCamera();
-                    setTimeout(function(){ loadNewsfeed(activeNewsfeed); }, 2000);
+                    loadNewsfeed(activeNewsfeed);
                     $("body").pagecontainer("change", "#page-newsfeed", {});
                 } else {
                     return false;
