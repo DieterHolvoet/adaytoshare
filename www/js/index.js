@@ -4,7 +4,7 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed, activeMessage, myScroll;
+var events = [], activeNewsfeed, activeMessage, myScroll, refresh, refresh2;
 
 setTimeout(function () {
     myScroll = new iScroll("newsfeed-wrapper", {});
@@ -332,7 +332,7 @@ function sendComment(code, messageID, from, message) {
 
 
 $(document).ready(function() {
-    function refresh() {
+    refresh = function() {
         $("#newsfeed-wrapper").iscrollview('refresh');
     }
     
@@ -515,6 +515,7 @@ $(document).ready(function() {
             console.log(elem.iscrollview('y') === (elem.iscrollview('maxScrollY')));
             if(elem.iscrollview('y') === (elem.iscrollview('maxScrollY'))) {
                 loadMoreNewsfeed();
+                refresh2 = data.iscrollview.refresh();
                 data.iscrollview.refresh();
             }
         });
