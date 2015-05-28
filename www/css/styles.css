@@ -281,8 +281,8 @@ div[data-role="page"] header h1 {
 
 .screen {
     width: 100%;
-    height: 102%;
-    height: 200vw;
+    height: 100%;
+    height: 100vh;
     position: absolute;
     z-index: 100;
     background: rgb(100, 100, 100);

@@ -461,10 +461,6 @@ $(document).ready(function() {
         $("body").pagecontainer("change", "#page-login", {});
     });
 
-    $("body").on("tap", ".fab", function() {
-        $("body").pagecontainer("change", "#page-newpost", {transition: "slideup"});
-    });
-
     $("body").on("tap", ".event", function() {
         loadNewsfeed($(this).parent().attr("id"));
         $("body").pagecontainer("change", "#page-newsfeed", {transition: "slide"});
