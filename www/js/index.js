@@ -257,6 +257,10 @@ function loadLikes() {
 
 // Add new event to the events object
 function addEvent(code, name, cover) {
+    if(code === "123123") {
+        name = "Integration Show";
+        cover = "show.png";
+    }
     for(var i = 0; i < events.length; i++) {
         if(events[i].code === code) return false;
     }
