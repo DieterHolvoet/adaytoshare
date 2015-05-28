@@ -589,9 +589,11 @@ $(document).ready(function() {
                 async: false,
                 success: function (data) {
                     if(data.success === 1) {
+                        $("#loginform input[type='submit']").css("background-color", "#51b0c5");
                         addEvent(code, data.album_name, data.album_banner);
                     } else {
                         console.error(data.error_message);
+                        $("#loginform input[type='submit']").css("background-color", "#9a9a9a");
                         result = false;
                     }
                 }
