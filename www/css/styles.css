@@ -153,7 +153,7 @@
 
 /* GENERAL */
 body {
-    font-family: Raleway, Arial, sans-serif;
+    font-family: Raleway, sans-serif;
 }
 
 a {
@@ -168,7 +168,7 @@ i {
 
 div[data-role="page"] header {
     background-color: #51b0c5;
-    font-family: Raleway, Arial, sans-serif;
+    font-family: Raleway, sans-serif;
     font-weight: 200;
     font-size: 18px;
     color: white;
@@ -220,7 +220,7 @@ div[data-role="page"] header h1 {
     overflow: hidden; /* Prevent margin-collapsing */
     border-radius: 5px;
     color: white;
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
@@ -340,7 +340,7 @@ div[data-role="page"] header h1 {
 }
 
 .eventCodeToevoegen button {
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     font-weight: 200;
     border: none;
     color: #51b0c5 !important;
@@ -352,7 +352,7 @@ div[data-role="page"] header h1 {
     color: white !important;
     background-color: #51b0c5 !important;
     font-size: 100%;
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     text-transform: uppercase;
     font-weight: 100;
     border-radius: 3px;
@@ -400,7 +400,7 @@ div[data-role="page"] header h1 {
 }
 
 .eventHeader {
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     color: white;
     padding: 30px 25px;
     text-shadow: none;
@@ -432,7 +432,7 @@ div[data-role="page"] header h1 {
 }
 
 .boodschapFeed {
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     margin: 20px;
     padding: 15px;
     background-color: white;
@@ -469,7 +469,7 @@ div[data-role="page"] header h1 {
     background-color: #51b0c5 !important;
     font-weight: 200;
     font-size: 100%;
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     background-color: #9a9a9a;
     color: #f9f9f9;
     width: 100%;
@@ -584,7 +584,7 @@ div[data-role="page"] header h1 {
 
 .boodschapFeed time, .boodschapFeed p, .boodschapFeed span {
     font-size: 15px;
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
 }
 
 .partypoints {
@@ -643,7 +643,7 @@ div[data-role="page"] header h1 {
 }
 
 .report section button {
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     font-weight: 200;
     border: none;
     color: white !important;
@@ -735,7 +735,7 @@ div[data-role="page"] header h1 {
 
 #page-login input[type="submit"] {
     font-size: 100%;
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     background-color: #9a9a9a;
     color: #f9f9f9;
     margin: 8% auto 20% auto;
@@ -753,7 +753,7 @@ div[data-role="page"] header h1 {
     color: #4d4d4d;
     width: 80%;
     margin: 0 auto;
-    font-family: 'Raleway';
+    font-family: Raleway, sans-serif;
     text-decoration: none;
     font-weight: 200;
 }
@@ -862,11 +862,29 @@ div[data-role="page"] header h1 {
     border: 0;
     color: #000;
     margin: 0;
-    padding: 0;
-    padding: 10px 5px 0px 5px;
+    padding: 10px;
     box-sizing: border-box;
     resize: none;
     display: block;
+    font-family: Raleway, sans-serif;
+}
+
+.boodschap::-webkit-input-placeholder { /* WebKit browsers */
+    color: #4d4d4d;
+}
+
+.boodschap:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #4d4d4d;
+   opacity: 1;
+}
+
+.boodschap::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #4d4d4d;
+   opacity: 1;
+}
+
+.boodschap:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: #4d4d4d;
 }
 
 .verzendButton {
@@ -899,10 +917,10 @@ div[data-role="page"] header h1 {
     width: 1.875em;
 }
 
-.sliderPrive{
+.sliderPrive {
     position: absolute;
-    left: 70%;
-    bottom: 40px; 
+    bottom: 40px;
+    right: 15px;
 }
 
 #page-newpost :-moz-placeholder {
