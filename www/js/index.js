@@ -298,20 +298,20 @@ function updateLikes(elem) {
     events[getEventIndex()].myLikes.push(messageID);
     updateStorage();
 
-//    $.ajax({
-//        url: "http://api.adaytoshare.be/1/platform/like",
-//        data: {code: activeNewsfeed, messageID: messageID},
-//        type: 'POST',
-//        async: false,
-//        success: function (data) {
-//            if(data.success === 1) {
-//
-//            } else {
-//                console.error(data.error_message);
-//                result = false;
-//            }
-//        }
-//    });
+    $.ajax({
+        url: "http://api.adaytoshare.be/1/guestbook/like",
+        data: {code: activeNewsfeed, messageID: messageID},
+        type: 'POST',
+        async: false,
+        success: function (data) {
+            if(data.success === 1) {
+
+            } else {
+                console.error(data.error_message);
+                result = false;
+            }
+        }
+    });
 }
 
 // Load the previously liked posts back in the interface
