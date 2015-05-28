@@ -4,7 +4,7 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed, activeMessage, myScroll, refresh;
+var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang;
 
 var nederlands = {
     name: "Naam",
@@ -13,11 +13,13 @@ var nederlands = {
     logout: "Uitloggen",
     add: "Toevoegen",
     send: "Verzenden",
+    post: "Posten",
     location: "Locatie",
     website: "Bekijk onze website",
     popup_newsfeed: "Wil je zelf een boodschap met eventueel een foto sturen? Duw dan op het plus-icoon.",
     popup_eventlist: "Duw op het icoontje om een nieuwe evenementencode in te voeren.",
     eventlist: "Evenementenlijst",
+    feed: "Berichtenfeed",
     report: "Rapporteer deze boodschap",
     report_desc: "Gelieve mee te geven waarom deze boodschap volgens u ongepast is.",
     new_message: "Nieuw bericht",
@@ -32,11 +34,13 @@ var engels = {
     logout: "Logout",
     add: "Add",
     send: "Send",
+    post: "Post",
     location: "Location",
     website: "Visit our website",
     popup_newsfeed: "Press the plus icon to send a message yourself - optionally with a picture.",
     popup_eventlist: "Press the icon to enter a new event code.",
     eventlist: "Event list",
+    feed: "Newsfeed",
     report: "Report this message",
     report_desc: "Please provide a reason why you think this message is inappropriate.",
     new_message: "New message",
@@ -60,6 +64,10 @@ function Event(code, name, cover) {
 
 if (localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
+}
+
+if (!localStorage.getItem("language")) {
+    localStorage.setItem("language", "dutch");
 }
                
 function checkInvalidInput(element, style) {
@@ -171,7 +179,7 @@ function loadNewsfeed(code) {
     var index = getEventIndex(code);    
     $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
                                                 + events[index].cover + ")\'></div><h1>" + events[index].name + "</h1>"
-                                            + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
+                                            + "<h2><span class=\'icon-pin56\'></span>" + lang.location
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
                                             + "<span class=\'icon-mail87 spanHeaderRight\'>" + "20" + "</span></h2></section>"
                                             + "<div id=\'newsfeed-list\'></div>");
@@ -190,7 +198,7 @@ function loadNewsfeed(code) {
                                                            + messages[i].likes + " Party points" + "</span>"
                                                            + "<span class=\'icon-warning34 spanHeaderRight reportT\'></span>"
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"
-                                                           + "<form class=\'commentField\'><textarea></textarea><button>Post</button></form></footer></article>");
+                                                           + "<form class=\'commentField\'><textarea></textarea><button>" + lang.post + "</button></form></footer></article>");
         for(var j = 0; j < messages[i].comments.length; j++) {
             var comments = messages[i].comments[j];
             $(".commentField:last").prepend("<div class=\'comment-entry\'>"
@@ -474,10 +482,35 @@ $(document).ready(function() {
         var inactiveClass = $(this).attr('class').replace("language inactive ", ""),
             activeClass = $(".active").attr("class").replace("language active ", ""),
             that = $(".active");
-        localStorage.setItem("language", inactiveClass);
         
-        $(this).attr("class", "language active " + activeClass);
-        $(that).attr("class", "language inactive " + inactiveClass);
+        localStorage.setItem("language", inactiveClass);
+        switch(inactiveClass) {
+            case "dutch":
+                lang = nederlands;
+                break;
+            case "french":
+                
+                break;
+            case "english":
+                lang = engels;
+                break;
+        }
+        
+        $("#login-naam").attr("placeholder", lang.name);
+        $("#login-code").attr("placeholder", lang.code);
+        $("#page-login input[type='submit']").val(lang.login);
+        $(".website a").text(lang.website);
+        
+        $(".report h1").text(lang.report);
+        $(".report p").text(lang.report_desc);
+        $(".report button").text(lang.send);
+        $("#page-newsfeed > header h1").text(lang.feed);
+        $("#page-eventlist > header h1").text(lang.eventlist);
+        $(".logout").text(lang.logout);
+        $(".closeEventCode").text(lang.add);
+        
+        $(that).attr("class", "language active " + inactiveClass);
+        $(this).attr("class", "language inactive " + activeClass);
         
         $(".language_inactive").slideUp();
         console.log("Language is " + localStorage.getItem("language"));
@@ -596,7 +629,7 @@ $(document).ready(function() {
     $("#page-newsfeed").on("pageshow", function () {
         refresh();
         if (!localStorage.getItem('wasVisited2')) {
-            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list2\'>Wil je zelf een boodschap met eventueel een foto sturen? Duw op het plus-icoon.</p></div>");
+            $("body").append("<div id=\'popup-newsfeed\' style=\'display: none\'> <div class=\'screen\'></div><p class=\'popup-list2\'>" + lang.popup_newsfeed + "</p></div>");
             
             $("#popup-newsfeed").fadeIn(300);
             $("#popup-newsfeed").on("click", function() {
@@ -660,7 +693,7 @@ $(document).ready(function() {
 
     $("#page-eventlist").on("pageshow", function () {
         if (!localStorage.getItem('wasVisited')) {
-            $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'> <div class=\'screen\'><div class=\'cutOutPopUp\'> <div class =\'navbarbtn icon-plus'> </div> </div></div><p class=\'popup-list\'>Duw op het icoontje om een een nieuwe logincode in te voeren.</p></div>");
+            $("body").append("<div id=\'popup-eventlist\' style=\'display: none\'> <div class=\'screen\'><div class=\'cutOutPopUp\'> <div class =\'navbarbtn icon-plus'> </div> </div></div><p class=\'popup-list\'>" + lang.popup_eventlist + "</p></div>");
             $("#popup-eventlist").fadeIn(300);
             $("#popup-eventlist").on("click", function() {
                 $(this).fadeOut(300, function() {
