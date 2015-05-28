@@ -335,7 +335,7 @@ $(document).ready(function() {
     refresh = function() {
         setTimeout(function(){
             $('#newsfeed-wrapper').iscrollview("refresh");
-        }, 100);
+        },100);
     }
     window.refresh = refresh;
     
