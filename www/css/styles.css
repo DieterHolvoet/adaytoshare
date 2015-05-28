@@ -1059,3 +1059,36 @@ input {
     -webkit-transition: -webkit-transform .5s;
     transition: transform .5s;
 }
+
+/* LANGUAGES */
+
+.language_chooser {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 30px;
+    width: 50px;
+}
+
+.language_chooser > .language {
+    
+}
+
+.dutch {
+    background-image: url(../lang_dutch.png)
+}
+
+.english {
+    background-image: url(../lang_english.png)
+}
+
+.french {
+    background-image: url(../lang_french.png)
+}
+
+.language {
+    background-repeat: none;
+    background-size: 100%;
+    width: 50px;
+    height: 30px;
+}

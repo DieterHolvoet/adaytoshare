@@ -6,6 +6,44 @@ jquery: true
 
 var events = [], activeNewsfeed, activeMessage, myScroll, refresh;
 
+var nederlands = {
+    name: "Naam",
+    code: "Evenementencode",
+    login: "Inloggen",
+    logout: "Uitloggen",
+    add: "Toevoegen",
+    send: "Verzenden",
+    location: "Locatie",
+    website: "Bekijk onze website",
+    popup_newsfeed: "Wil je zelf een boodschap met eventueel een foto sturen? Duw dan op het plus-icoon.",
+    popup_eventlist: "Duw op het icoontje om een nieuwe evenementencode in te voeren.",
+    eventlist: "Evenementenlijst",
+    report: "Rapporteer deze boodschap",
+    report_desc: "Gelieve mee te geven waarom deze boodschap volgens u ongepast is.",
+    new_message: "Nieuw bericht",
+    message_desc: "Schrijf hier je boodschap",
+    private: "Privé"
+}
+
+var engels = {
+    name: "Name",
+    code: "Event code",
+    login: "Login",
+    logout: "Logout",
+    add: "Add",
+    send: "Send",
+    location: "Location",
+    website: "Visit our website",
+    popup_newsfeed: "Press the plus icon to send a message yourself - optionally with a picture.",
+    popup_eventlist: "Press the icon to enter a new event code.",
+    eventlist: "Event list",
+    report: "Report this message",
+    report_desc: "Please provide a reason why you think this message is inappropriate.",
+    new_message: "New message",
+    message_desc: "Write your message here",
+    private: "Private"
+}
+
 setTimeout(function () {
     myScroll = new iScroll("newsfeed-wrapper", {});
 }, 100);
@@ -426,6 +464,17 @@ $(document).ready(function() {
     
     $('body').on('blur', '.commentField', function() {
         refresh();
+    });
+    
+    $('body').on('tap', '.language_chooser > language', function() {
+        $(".language_inactive").slideToggle();
+    });
+    
+    $('body').on('tap', '.language_inactive > language', function() {
+        $(".language_inactive").slideToggle();
+        localStorage.setItem("language", $(this).attr('class').replace("language ", ""));
+        $(".language_inactive").slideUp();
+        console.log("Language is " + localStorage.getItem("language"));
     });
     
     // Initialisatie van de pagina
