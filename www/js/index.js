@@ -463,7 +463,6 @@ $(document).ready(function() {
 
     $("body").on("tap", ".event", function() {
         loadNewsfeed($(this).parent().attr("id"));
-        $("body").pagecontainer("change", "#page-newsfeed", {transition: "slide"});
     });
     
     $('body').on("tap", ".reportT", function() {
