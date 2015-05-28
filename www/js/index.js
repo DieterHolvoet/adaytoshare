@@ -768,7 +768,7 @@ $(document).ready(function() {
                 
                 if(result) {
                     resetCamera();
-                    loadNewsfeed(activeNewsfeed);
+                    setTimeout(function(){ loadNewsfeed(activeNewsfeed); }, 2000);
                     $("body").pagecontainer("change", "#page-newsfeed", {});
                 } else {
                     return false;
