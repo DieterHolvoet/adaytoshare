@@ -1064,8 +1064,8 @@ input {
 
 .language_chooser {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 15px;
+    top: 15px;
     height: 30px;
     width: 50px;
 }
@@ -1087,8 +1087,9 @@ input {
 }
 
 .language {
-    background-repeat: none;
+    background-repeat: no-repeat;
     background-size: 100%;
     width: 50px;
-    height: 30px;
+    height: 33px;
+    margin-bottom: 10px;
 }

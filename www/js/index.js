@@ -466,13 +466,19 @@ $(document).ready(function() {
         refresh();
     });
     
-    $('body').on('tap', '.language_chooser > language', function() {
+    $('body').on('tap', '.active', function() {
         $(".language_inactive").slideToggle();
     });
     
-    $('body').on('tap', '.language_inactive > language', function() {
-        $(".language_inactive").slideToggle();
-        localStorage.setItem("language", $(this).attr('class').replace("language ", ""));
+    $('body').on('tap', '.inactive', function() {
+        var inactiveClass = $(this).attr('class').replace("language inactive ", ""),
+            activeClass = $(".active").attr("class").replace("language active ", ""),
+            that = $(".active");
+        localStorage.setItem("language", inactiveClass);
+        
+        $(this).attr("class", "language active " + activeClass);
+        $(that).attr("class", "language inactive " + inactiveClass);
+        
         $(".language_inactive").slideUp();
         console.log("Language is " + localStorage.getItem("language"));
     });
