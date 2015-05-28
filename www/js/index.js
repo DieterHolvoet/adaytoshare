@@ -305,7 +305,7 @@ function updateLikes(elem) {
         async: false,
         success: function (data) {
             if(data.success === 1) {
-
+                console.log("Post succesvol geliked!")
             } else {
                 console.error(data.error_message);
                 result = false;
@@ -325,7 +325,6 @@ function loadLikes() {
                     var elem = ".boodschapFeed:eq(" + i + ") .partypoints";
                     $(elem).css("color", "#489CAF");
                     $(elem).attr("pp", true);
-                    messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes += 1; // Temp fix
                     $(elem).text(messages[getMessageIndex(activeNewsfeed, messages[i].messageID)].likes + " Party points");
                 }
             }
@@ -449,7 +448,6 @@ $(document).ready(function() {
             $(this).addClass('magictime boingInUp');
             updateLikes($(this).parent().parent());
             fetchEventData(activeNewsfeed, events[getEventIndex()].messages.length, 0);
-            events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes += 1; // Tijdelijke fix
             $(this).text(events[getEventIndex()].messages[getMessageIndex(activeNewsfeed, messageID)].likes + " Party points");
             $(this).css( "color", "#489CAF");
             $(this).attr("pp", true);
