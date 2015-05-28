@@ -92,6 +92,10 @@
     color: white;
 }
 
+.icon-back {
+    width: 40px;
+}
+
 .icon-back:before {
     content: "\e60b";
     color: white;
@@ -169,11 +173,11 @@ div[data-role="page"] header {
     font-size: 18px;
     color: white;
     height: 60px;
-    padding: 0 20px;
+    padding: 0 8px 0 20px;
 }
 
 .navbarbtn {
-    width: 40px;
+    width: 60px;
     height: 60px;
     margin: 0 10px 0 -10px;
     line-height: 60px;
@@ -613,10 +617,15 @@ div[data-role="page"] header h1 {
     background-color: white;
     border-radius: 10px;
     position: absolute;
-    top: 20%;
+    top: 30vh;
     left: 50%;
     z-index: 999;
     text-align: center;
+}
+
+.report input {
+    border: 1px solid lightgrey;
+    margin: 10px 0 15px;
 }
 
 .report section h1 {
@@ -636,6 +645,13 @@ div[data-role="page"] header h1 {
     color: white !important;
     background-color: #51afc5 !important;
     text-shadow: none !important;
+}
+
+.report input, .report button {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 
 /* FLOATING ACTION BUTTON */

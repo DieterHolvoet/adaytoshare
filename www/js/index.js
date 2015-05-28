@@ -132,7 +132,9 @@ function loadNewsfeed(code) {
     
     var index = getEventIndex(code);
     
-    $(content).append("<div class=\'report\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.</p><input type=\'text\'><button>Verzenden</button></section></div><section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
+    $("#page-newsfeed").append("<div class=\'report\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.</p><input type=\'text\'><button>Verzenden</button></section></div>");
+    
+    $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
                                                 + events[index].cover + ")\'></div><h1>" + events[index].name + "</h1>"
                                             + "<h2><span class=\'icon-pin56\'></span>" + "Locatie"
                                             + "<span class=\'icon-multiple25 spanHeaderRight\'>" + "108" + "</span>"
@@ -379,6 +381,7 @@ $(document).ready(function() {
         activeMessage = $(this).parent().parent().attr("id");
         $('.report').fadeIn( "fast" );
         $('.fab').css('display', 'none');
+        elasticize($(".report input"));
     });
 
     $('body').on("tap", ".reportBackground", function() {
@@ -406,6 +409,10 @@ $(document).ready(function() {
                 refresh();
             }
         }
+    });
+    
+    $('body').on('blur', '.commentField', function() {
+        refresh();
     });
     
     // Initialisatie van de pagina
@@ -482,6 +489,7 @@ $(document).ready(function() {
     
     // Nieuwsfeed
     $("#page-newsfeed").on("pagebeforeshow", function () {
+        $("#page-eventlist .ui-content").css("min-height", $(document).height() - 100); 
         var pullDownEl = $(".iscroll-pulldown"),
             pullDownLabel = $(".iscroll-pulldown .iscroll-pull-label"),
             pullDownOffset = pullDownEl.height();        
