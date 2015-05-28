@@ -531,6 +531,10 @@ $(document).ready(function() {
         $(".report button").text(lang.send);
         $("#page-newsfeed > header h1").text(lang.feed);
         $("#page-eventlist > header h1").text(lang.eventlist);
+        $("#page-newpost > header h1").text(lang.new_message);
+        $(".formulierTekstbericht textarea").attr("placeholder", lang.message_desc);
+        $(".sliderPrive").contents().filter(function() { return this.nodeType === 3; })[0].textContent = lang.private + " ";
+        $("#page-newpost input[type='submit']").text(lang.send);
         $(".logout").text(lang.logout);
         $(".closeEventCode").text(lang.add);
         
