@@ -151,7 +151,7 @@ function loadNewsfeed(code) {
                                                            + "<time>" + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + ('0' + date.getMinutes()).slice(-2) + "</time>"
                                                            + "<p>" + messages[i].message + "</p>"
                                                            + (messages[i].photoURL !== "" ? ("<img src=\'" + messages[i].photoURL + "\' alt=\'foto post\'>") : "")
-                                                           + "<footer><span class=\'icon-wine65 partypoints\'>"
+                                                           + "<footer class=\'clearfix\'><span class=\'icon-wine65 partypoints\'>"
                                                            + messages[i].likes + " Party points" + "</span>"
                                                            + "<span class=\'icon-warning34 spanHeaderRight reportT\'></span>"
                                                            + "<span class=\'icon-chat110 spanHeaderRight comment\'>" + messages[i].comments.length + "</span>"

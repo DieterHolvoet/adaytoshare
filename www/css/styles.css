@@ -93,7 +93,7 @@
 }
 
 .icon-back {
-    width: 40px;
+    width: 40px !important;
 }
 
 .icon-back:before {
@@ -433,12 +433,16 @@ div[data-role="page"] header h1 {
 
 .boodschapFeed {
     font-family: 'Raleway';
-    margin-top: 20px;
+    margin: 20px;
     padding: 15px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     box-sizing: border-box;
+}
+
+.boodschapFeed:last-of-type {
+    margin-bottom: 0;
 }
 
 .boodschapFeed > div {
@@ -449,6 +453,7 @@ div[data-role="page"] header h1 {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    line-height: 2;
 }
 
 /* COMMENTS */
@@ -457,6 +462,7 @@ div[data-role="page"] header h1 {
     width: 100%;
     display: none;
     margin-top: 10px;
+    clear: left;
 }
 
 .commentField button {
@@ -517,12 +523,8 @@ div[data-role="page"] header h1 {
 .comment-entry {
     border-radius: 5px;
     background-color: #51b0c5;
-    margin: 15px 0;
+    margin-bottom: 15px;
     box-sizing: border-box;
-}
-
-.comment-entry:last-of-type {
-    margn-bottom: 25px;
 }
 
 .comment-entry span {
@@ -557,6 +559,7 @@ div[data-role="page"] header h1 {
 
 .boodschapFeed time {
     float: right;
+    line-height: 2;
 }
 
 .boodschapFeed p {
@@ -574,17 +577,17 @@ div[data-role="page"] header h1 {
     padding: 12px;
 }
 
-.boodschapFeed footer {
-    margin-top: 10px;
-}
-
-.boodschapFeed > * {
-    line-height: 2;
+.boodschapFeed footer span {
+    padding: 15px 7.5px
 }
 
 .boodschapFeed time, .boodschapFeed p, .boodschapFeed span {
     font-size: 15px;
     font-family: 'Raleway';
+}
+
+.partypoints {
+    float: left;
 }
 
 .partypoints:hover {
@@ -954,14 +957,6 @@ input {
 
 #page-newsfeed .iscroll-scroller {
     width: 100%;
-}
-
-.boodschapFeed {
-    margin: 20px;
-}
-
-.boodschapFeed:last-of-type {
-    margin-bottom: 0;
 }
 
 #newsfeed-list {
