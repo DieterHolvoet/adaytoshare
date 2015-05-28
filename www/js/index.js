@@ -179,10 +179,6 @@ function updateNewsfeed() {
     refresh();
 }
 
-function refresh() {
-    $("[data-iscroll]").iscrollview().iscrollview('refresh');
-}
-
 // Krijg de index van een evenement in het events-object
 function getEventIndex(code) {
     if(arguments.length === 0) code = activeNewsfeed;
@@ -336,6 +332,9 @@ function sendComment(code, messageID, from, message) {
 
 
 $(document).ready(function() {
+    function refresh() {
+        $("#newsfeed-wrapper").iscrollview('refresh');
+    }
     
     // Event handlers
     $('body').on('tap', '.closeLink', function() {
