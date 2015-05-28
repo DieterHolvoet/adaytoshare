@@ -285,6 +285,10 @@ function emptyStorage() {
     localStorage.removeItem("events");
     localStorage.removeItem("wasVisited");
     localStorage.removeItem("wasVisited2");
+    
+    events = [];
+    activeNewsfeed = "";
+    activeMessage = "";
 }
 
 function resetCamera() {
@@ -498,7 +502,6 @@ $(document).ready(function() {
     
     // Nieuwsfeed
     $("#page-newsfeed").on("pagebeforeshow", function () {
-        $("#page-eventlist .ui-content").css("min-height", $(document).height() - 100); 
         var pullDownEl = $(".iscroll-pulldown"),
             pullDownLabel = $(".iscroll-pulldown .iscroll-pull-label"),
             pullDownOffset = pullDownEl.height();        
@@ -555,6 +558,7 @@ $(document).ready(function() {
     $("#page-eventlist").on("pagebeforeshow", function () {
         loadEvents();
         $('.nieuwBerichtBackground').foggy({blurRadius: 5});
+        $("#page-eventlist .ui-content").css("min-height", $(document).height() - 100);
     });
     
     $("#addEvent").on("tap", function() {
