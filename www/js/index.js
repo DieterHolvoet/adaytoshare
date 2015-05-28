@@ -6,67 +6,81 @@ jquery: true
 
 var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang;
 
-var dutch = {
-    name: "Naam",
-    code: "Evenementencode",
-    login: "Inloggen",
-    logout: "Uitloggen",
-    add: "Toevoegen",
-    send: "Verzenden",
-    post: "Posten",
-    location: "Locatie",
-    website: "Bekijk onze website",
-    popup_newsfeed: "Wil je zelf een boodschap met eventueel een foto sturen? Duw dan op het plus-icoon.",
-    popup_eventlist: "Duw op het icoontje om een nieuwe evenementencode in te voeren.",
-    eventlist: "Evenementenlijst",
-    feed: "Berichtenfeed",
-    report: "Rapporteer deze boodschap",
-    report_desc: "Gelieve mee te geven waarom deze boodschap volgens u ongepast is.",
-    new_message: "Nieuw bericht",
-    message_desc: "Schrijf hier je boodschap",
-    private: "Privé"
-}
-
-var english = {
-    name: "Name",
-    code: "Event code",
-    login: "Login",
-    logout: "Logout",
-    add: "Add",
-    send: "Send",
-    post: "Post",
-    location: "Location",
-    website: "Visit our website",
-    popup_newsfeed: "Press the plus icon to send a message yourself - optionally with a picture.",
-    popup_eventlist: "Press the icon to enter a new event code.",
-    eventlist: "Event list",
-    feed: "Newsfeed",
-    report: "Report this message",
-    report_desc: "Please provide a reason why you think this message is inappropriate.",
-    new_message: "New message",
-    message_desc: "Write your message here",
-    private: "Private"
-}
-
-var french = {
-    name: "Nom",
-    code: "Code d'événement",
-    login: "Se connecter",
-    logout: "Se déconnecter",
-    add: "Ajouter",
-    send: "Envoyer",
-    post: "Poster",
-    location: "Location",
-    website: "Visitez notre site web",
-    popup_newsfeed: "Appuyez sur l'icône 'plus' pour envoyer un message vous-même - éventuellement avec une photo.",
-    popup_eventlist: "Appuyez sur l'icône pour entrer un nouveau code de l'événement.",
-    eventlist: "Liste des événements",
-    feed: "Fil d'actualité",
-    report: "Signaler ce message",
-    report_desc: "S'il vous plaît fournir une raison pourquoi vous pensez que ce message est inapproprié.",
-    new_message: "Nouveau message",
-    message_desc: "Votre message ici",
-    private: "Privé"
+function setLanguage(language) {
+    switch(language) {
+        case "dutch":
+            lang = {
+                name: "Naam",
+                code: "Evenementencode",
+                login: "Inloggen",
+                logout: "Uitloggen",
+                add: "Toevoegen",
+                send: "Verzenden",
+                post: "Posten",
+                location: "Locatie",
+                website: "Bekijk onze website",
+                popup_newsfeed: "Wil je zelf een boodschap met eventueel een foto sturen? Duw dan op het plus-icoon.",
+                popup_eventlist: "Duw op het icoontje om een nieuwe evenementencode in te voeren.",
+                eventlist: "Evenementenlijst",
+                feed: "Berichtenfeed",
+                report: "Rapporteer deze boodschap",
+                report_desc: "Gelieve mee te geven waarom deze boodschap volgens u ongepast is.",
+                new_message: "Nieuw bericht",
+                message_desc: "Schrijf hier je boodschap",
+                private: "Privé"
+            }
+            break;
+            
+        case "english":
+            lang = {
+                name: "Name",
+                code: "Event code",
+                login: "Login",
+                logout: "Logout",
+                add: "Add",
+                send: "Send",
+                post: "Post",
+                location: "Location",
+                website: "Visit our website",
+                popup_newsfeed: "Press the plus icon to send a message yourself - optionally with a picture.",
+                popup_eventlist: "Press the icon to enter a new event code.",
+                eventlist: "Event list",
+                feed: "Newsfeed",
+                report: "Report this message",
+                report_desc: "Please provide a reason why you think this message is inappropriate.",
+                new_message: "New message",
+                message_desc: "Write your message here",
+                private: "Private"
+            }
+            break;
+            
+        case "french":
+            lang = {
+                name: "Nom",
+                code: "Code d'événement",
+                login: "Se connecter",
+                logout: "Se déconnecter",
+                add: "Ajouter",
+                send: "Envoyer",
+                post: "Poster",
+                location: "Location",
+                website: "Visitez notre site web",
+                popup_newsfeed: "Appuyez sur l'icône 'plus' pour envoyer un message vous-même - éventuellement avec une photo.",
+                popup_eventlist: "Appuyez sur l'icône pour entrer un nouveau code de l'événement.",
+                eventlist: "Liste des événements",
+                feed: "Fil d'actualité",
+                report: "Signaler ce message",
+                report_desc: "S'il vous plaît fournir une raison pourquoi vous pensez que ce message est inapproprié.",
+                new_message: "Nouveau message",
+                message_desc: "Votre message ici",
+                private: "Privé"
+            }
+            break;
+            
+        default:
+            console.error("Wrong language string");
+            break;
+    }
 }
 
 setTimeout(function () {
@@ -88,11 +102,11 @@ if (localStorage.getItem("events")) {
 }
 
 if (localStorage.getItem("language")) {
-    lang = localStorage.getItem("language");
+    setLanguage(localStorage.getItem("language"));
     
 } else {
     localStorage.setItem("language", "dutch");
-    lang = nederlands;
+    setLanguage("dutch");
 }
                
 function checkInvalidInput(element, style) {
@@ -511,13 +525,13 @@ $(document).ready(function() {
         localStorage.setItem("language", inactiveClass);
         switch(inactiveClass) {
             case "dutch":
-                lang = dutch;
+                setLanguage("dutch");
                 break;
             case "french":
-                lang = french;
+                setLanguage("french");
                 break;
             case "english":
-                lang = english;
+                setLanguage("english");
                 break;
         }
         
