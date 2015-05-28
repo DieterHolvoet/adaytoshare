@@ -132,7 +132,7 @@ function loadNewsfeed(code) {
     
     var index = getEventIndex(code);
     
-    $("#page-newsfeed").append("<div class=\'report\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.</p><input type=\'text\'><button>Verzenden</button></section></div>");
+    $("#page-newsfeed").append("<div class=\'report\'><div class=\'reportBackground\'></div><section><h1>Rapporteer deze boodschap</h1><hr><p>Gelieve mee te geven waarom deze boodschap volgens u ongepast is.</p><input data-enhance=\'false\' type=\'text\'><button>Verzenden</button></section></div>");
     
     $(content).append("<section class=\'eventHeader\'><div class=\'eventBackground\' style=\'background-image: url(" 
                                                 + events[index].cover + ")\'></div><h1>" + events[index].name + "</h1>"
@@ -545,6 +545,7 @@ $(document).ready(function() {
     var open = false;
     $("#page-eventlist").on("pagebeforeshow", function () {
         loadEvents();
+        $('.nieuwBerichtBackground').foggy({blurRadius: 5});
     });
     
     $("#addEvent").on("tap", function() {
@@ -610,7 +611,6 @@ $(document).ready(function() {
     //We nemen de hoogte van het sreen dit is dubbel d eigenlijke hoogte dus we delen dit door de pixelratio die 2 is
     $('#page-newpost').on("pageshow", function() {
         
-        $('.nieuwBerichtBackground').foggy({blurRadius: 5});
         var imgDiv = $('.nieuwBerichtBackground').height(),
             header = $('#headerNewPost').height(),
             button = $('.verzendButton').height();
