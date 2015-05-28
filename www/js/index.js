@@ -6,7 +6,7 @@ jquery: true
 
 var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang;
 
-var nederlands = {
+var dutch = {
     name: "Naam",
     code: "Evenementencode",
     login: "Inloggen",
@@ -27,7 +27,7 @@ var nederlands = {
     private: "Privé"
 }
 
-var engels = {
+var english = {
     name: "Name",
     code: "Event code",
     login: "Login",
@@ -48,6 +48,27 @@ var engels = {
     private: "Private"
 }
 
+var french = {
+    name: "Nom",
+    code: "Code d'événement",
+    login: "Se connecter",
+    logout: "Se déconnecter",
+    add: "Ajouter",
+    send: "Envoyer",
+    post: "Poster",
+    location: "Location",
+    website: "Visitez notre site web",
+    popup_newsfeed: "Appuyez sur l'icône 'plus' pour envoyer un message vous-même - éventuellement avec une photo.",
+    popup_eventlist: "Appuyez sur l'icône pour entrer un nouveau code de l'événement.",
+    eventlist: "Liste des événements",
+    feed: "Fil d'actualité",
+    report: "Signaler ce message",
+    report_desc: "S'il vous plaît fournir une raison pourquoi vous pensez que ce message est inapproprié.",
+    new_message: "Nouveau message",
+    message_desc: "Votre message ici",
+    private: "Privé"
+}
+
 setTimeout(function () {
     myScroll = new iScroll("newsfeed-wrapper", {});
 }, 100);
@@ -66,8 +87,12 @@ if (localStorage.getItem("events")) {
     events = JSON.parse(localStorage.getItem("events"));
 }
 
-if (!localStorage.getItem("language")) {
+if (localStorage.getItem("language")) {
+    lang = localStorage.getItem("language");
+    
+} else {
     localStorage.setItem("language", "dutch");
+    lang = nederlands;
 }
                
 function checkInvalidInput(element, style) {
@@ -486,13 +511,13 @@ $(document).ready(function() {
         localStorage.setItem("language", inactiveClass);
         switch(inactiveClass) {
             case "dutch":
-                lang = nederlands;
+                lang = dutch;
                 break;
             case "french":
-                
+                lang = french;
                 break;
             case "english":
-                lang = engels;
+                lang = english;
                 break;
         }
         
