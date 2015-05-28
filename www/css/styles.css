@@ -862,7 +862,7 @@ div[data-role="page"] header h1 {
     border: 0;
     color: #000;
     margin: 0;
-    padding: 10px;
+    padding: 10px 0 0 10px;
     box-sizing: border-box;
     resize: none;
     display: block;
@@ -1088,8 +1088,8 @@ input {
     width: 50px;
 }
 
-.language_chooser > .language {
-    
+.language_inactive {
+    display: none;
 }
 
 .dutch {
