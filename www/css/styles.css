@@ -525,6 +525,7 @@ div[data-role="page"] header h1 {
     background-color: #51b0c5;
     margin-bottom: 15px;
     box-sizing: border-box;
+    word-wrap: break-word;
 }
 
 .comment-entry span {
