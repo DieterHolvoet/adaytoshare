@@ -4,7 +4,7 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang, emptyStorage;
+var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang;
 
 function setLanguage(language) {
     switch(language) {
@@ -93,7 +93,7 @@ function setLanguage(language) {
 }
 
 // Storage leegmaken
-emptyStorage = function() {
+var emptyStorage = function() {
     localStorage.removeItem("username");
     localStorage.removeItem("events");
     localStorage.removeItem("wasVisited");
@@ -103,23 +103,6 @@ emptyStorage = function() {
     activeNewsfeed = "";
     activeMessage = "";
 }
-
-setTimeout(function () {
-    window.myScroll = new iScroll("newsfeed-wrapper", {});
-    
-    // Storage leegmaken
-    emptyStorage = function() {
-        localStorage.removeItem("username");
-        localStorage.removeItem("events");
-        localStorage.removeItem("wasVisited");
-        localStorage.removeItem("wasVisited2");
-
-        events = [];
-        activeNewsfeed = "";
-        activeMessage = "";
-        $("#newsfeed-wrapper").iscrollview("destroy");
-    }
-}, 100);
 
 function Event(code, name, cover) {
     this.code = "";
@@ -568,10 +551,6 @@ $(document).ready(function() {
         $(".logout").text(lang.logout);
         $(".closeEventCode").text(lang.add);
         
-        $("#newsfeed-wrapper").iscrollview("destroy");
-        setTimeout(function () {
-            window.myScroll = new iScroll("newsfeed-wrapper", {});
-        }, 100);
         $(".iscroll-pull-label").attr("data-iscroll-loading-text", lang.iscroll_loading);
         $(".iscroll-pull-label").attr("data-iscroll-pulled-text", lang.iscroll_pulled);
         $(".iscroll-pull-label").text(lang.iscroll_reset);
@@ -625,6 +604,9 @@ $(document).ready(function() {
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
             } else {
+                setTimeout(function () {
+                    window.myScroll = new iScroll("newsfeed-wrapper", {});
+                }, 100);
                 loadNewsfeed(code);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
             }
