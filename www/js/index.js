@@ -603,12 +603,13 @@ $(document).ready(function() {
             
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
+                
             } else {
                 setTimeout(function () {
-                    window.myScroll = new iScroll("newsfeed-wrapper", {});
+                    myScroll = new iScroll("newsfeed-wrapper", {});
+                    loadNewsfeed(code);
+                    $("body").pagecontainer("change", "#page-newsfeed", {});
                 }, 100);
-                loadNewsfeed(code);
-                $("body").pagecontainer("change", "#page-newsfeed", {});
             }
             
         } else {
