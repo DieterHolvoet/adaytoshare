@@ -92,9 +92,7 @@ function setLanguage(language) {
     }
 }
 
-setTimeout(function () {
-    myScroll = new iScroll("newsfeed-wrapper", {});
-}, 100);
+
 
 function Event(code, name, cover) {
     this.code = "";
@@ -607,6 +605,9 @@ $(document).ready(function() {
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
             } else {
+                setTimeout(function () {
+                    myScroll = new iScroll("newsfeed-wrapper", {});
+                }, 100);
                 loadNewsfeed(code);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
             }
