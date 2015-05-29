@@ -92,8 +92,6 @@ function setLanguage(language) {
     }
 }
 
-window.myScroll = new iScroll("newsfeed-wrapper", {});
-
 // Storage leegmaken
 emptyStorage = function() {
     localStorage.removeItem("username");
@@ -104,8 +102,24 @@ emptyStorage = function() {
     events = [];
     activeNewsfeed = "";
     activeMessage = "";
-    window.myScroll.destroy();
 }
+
+setTimeout(function () {
+    window.myScroll = new iScroll("newsfeed-wrapper", {});
+    
+    // Storage leegmaken
+    emptyStorage = function() {
+        localStorage.removeItem("username");
+        localStorage.removeItem("events");
+        localStorage.removeItem("wasVisited");
+        localStorage.removeItem("wasVisited2");
+
+        events = [];
+        activeNewsfeed = "";
+        activeMessage = "";
+        window.myScroll.destroy();
+    }
+}, 100);
 
 function Event(code, name, cover) {
     this.code = "";
