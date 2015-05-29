@@ -325,6 +325,7 @@ div[data-role="page"] header h1 {
     right: 10px;
     top: 7px;
     z-index: 200;
+    margin: 0 6.5px 0;
 }
 .cutOutPopUp > .icon-plus {
     margin: 0 auto;
