@@ -117,7 +117,7 @@ setTimeout(function () {
         events = [];
         activeNewsfeed = "";
         activeMessage = "";
-        window.myScroll.destroy();
+        $("#newsfeed-wrapper").iscrollview("destroy");
     }
 }, 100);
 
@@ -568,7 +568,7 @@ $(document).ready(function() {
         $(".logout").text(lang.logout);
         $(".closeEventCode").text(lang.add);
         
-        window.myScroll.destroy();
+        $("#newsfeed-wrapper").iscrollview("destroy");
         setTimeout(function () {
             window.myScroll = new iScroll("newsfeed-wrapper", {});
         }, 100);
