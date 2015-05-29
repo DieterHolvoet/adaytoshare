@@ -547,7 +547,7 @@ $(document).ready(function() {
         $("#page-newpost > header h1").text(lang.new_message);
         $(".formulierTekstbericht textarea").attr("placeholder", lang.message_desc);
         $(".sliderPrive").contents().filter(function() { return this.nodeType === 3; })[0].textContent = lang.private + " ";
-        $("#page-newpost input[type='submit']").text(lang.send);
+        $(".verzendButton").val(lang.send);
         $(".logout").text(lang.logout);
         $(".closeEventCode").text(lang.add);
         
