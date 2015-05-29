@@ -509,7 +509,7 @@ $(document).ready(function() {
     });
     
     $('body').on('blur', '.commentField', function() {
-        
+        refresh();
     });
     
     document.addEventListener('focusout', function(e) {refresh()});
