@@ -462,7 +462,7 @@ $(document).ready(function() {
     
     $("body").on("tap", ".logout", function() {
         emptyStorage();
-        $("body").pagecontainer("change", "#page-login", {});
+        document.location = "index.html";
     });
 
     $("body").on("tap", ".event", function() {
