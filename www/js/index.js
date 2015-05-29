@@ -92,22 +92,20 @@ function setLanguage(language) {
     }
 }
 
-setTimeout(function () {
-    window.myScroll = new iScroll("newsfeed-wrapper", {});
-    
-    // Storage leegmaken
-    emptyStorage = function() {
-        localStorage.removeItem("username");
-        localStorage.removeItem("events");
-        localStorage.removeItem("wasVisited");
-        localStorage.removeItem("wasVisited2");
+window.myScroll = new iScroll("newsfeed-wrapper", {});
 
-        events = [];
-        activeNewsfeed = "";
-        activeMessage = "";
-        window.myScroll.destroy();
-    }
-}, 100);
+// Storage leegmaken
+emptyStorage = function() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("events");
+    localStorage.removeItem("wasVisited");
+    localStorage.removeItem("wasVisited2");
+
+    events = [];
+    activeNewsfeed = "";
+    activeMessage = "";
+    window.myScroll.destroy();
+}
 
 function Event(code, name, cover) {
     this.code = "";
