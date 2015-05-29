@@ -5,7 +5,6 @@ jquery: true
 */
 
 var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang, emptyStorage;
-window.myScroll = myScroll;
 
 function setLanguage(language) {
     switch(language) {
@@ -93,6 +92,10 @@ function setLanguage(language) {
     }
 }
 
+setTimeout(function () {
+    window.myScroll = new iScroll("newsfeed-wrapper", {});
+}, 100);
+
 // Storage leegmaken
 emptyStorage = function() {
     localStorage.removeItem("username");
@@ -103,6 +106,7 @@ emptyStorage = function() {
     events = [];
     activeNewsfeed = "";
     activeMessage = "";
+    myScroll.destroy();
 }
 
 function Event(code, name, cover) {
@@ -552,6 +556,10 @@ $(document).ready(function() {
         $(".logout").text(lang.logout);
         $(".closeEventCode").text(lang.add);
         
+        window.myScroll.destroy();
+        setTimeout(function () {
+            window.myScroll = new iScroll("newsfeed-wrapper", {});
+        }, 100);
         $(".iscroll-pull-label").attr("data-iscroll-loading-text", lang.iscroll_loading);
         $(".iscroll-pull-label").attr("data-iscroll-pulled-text", lang.iscroll_pulled);
         $(".iscroll-pull-label").text(lang.iscroll_reset);
@@ -605,9 +613,6 @@ $(document).ready(function() {
             if(events.length > 1) {
                 $("body").pagecontainer("change", "#page-eventlist", {});
             } else {
-                setTimeout(function () {
-                    window.myScroll = new iScroll("newsfeed-wrapper", {});
-                }, 100);
                 loadNewsfeed(code);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
             }
@@ -616,20 +621,6 @@ $(document).ready(function() {
             return false;
         }
     });
-    
-    // Storage leegmaken
-    emptyStorage = function() {
-        localStorage.removeItem("username");
-        localStorage.removeItem("events");
-        localStorage.removeItem("wasVisited");
-        localStorage.removeItem("wasVisited2");
-
-        events = [];
-        activeNewsfeed = "";
-        activeMessage = "";
-        window.myScroll.destroy();
-        console.log("myScroll destroyed.")
-    }
     
     $("#login-naam, #login-code").on("keyup", function(e) {
         if($(this).val() !== "") {
