@@ -27,7 +27,10 @@ function setLanguage(language) {
                 report_desc: "Gelieve mee te geven waarom deze boodschap volgens u ongepast is.",
                 new_message: "Nieuw bericht",
                 message_desc: "Schrijf hier je boodschap",
-                private: "Privé"
+                private: "Privé",
+                iscroll_pulled: "Laat los om te vernieuwen...",
+                iscroll_loading: "Laden...",
+                iscroll_reset: "Trek naar beneden om te vernieuwen..."
             }
             break;
             
@@ -50,7 +53,10 @@ function setLanguage(language) {
                 report_desc: "Please provide a reason why you think this message is inappropriate.",
                 new_message: "New message",
                 message_desc: "Write your message here",
-                private: "Private"
+                private: "Private",
+                iscroll_pulled: "Let go to refresh...",
+                iscroll_loading: "Loading...",
+                iscroll_reset: "Pull down to refresh..."
             }
             break;
             
@@ -73,7 +79,10 @@ function setLanguage(language) {
                 report_desc: "S'il vous plaît fournir une raison pourquoi vous pensez que ce message est inapproprié.",
                 new_message: "Nouveau message",
                 message_desc: "Votre message ici",
-                private: "Privé"
+                private: "Privé",
+                iscroll_pulled: "Lâchez pour rafraîchir ...",
+                iscroll_loading: "Chargement ...",
+                iscroll_reset: "Tirez pour rafraîchir ..."
             }
             break;
             
@@ -544,6 +553,10 @@ $(document).ready(function() {
         $("#page-newpost input[type='submit']").text(lang.send);
         $(".logout").text(lang.logout);
         $(".closeEventCode").text(lang.add);
+        
+        $(".iscroll-pull-label").attr("data-iscroll-loading-text", lang.iscroll_loading);
+        $(".iscroll-pull-label").attr("data-iscroll-pulled-text", lang.iscroll_pulled);
+        $(".iscroll-pull-label").text(lang.iscroll_reset);
         
         $(that).attr("class", "language active " + inactiveClass);
         $(this).attr("class", "language inactive " + activeClass);
