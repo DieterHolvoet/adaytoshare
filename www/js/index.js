@@ -380,6 +380,7 @@ function emptyStorage() {
     events = [];
     activeNewsfeed = "";
     activeMessage = "";
+    myScroll.destroy();
 }
 
 function resetCamera() {
