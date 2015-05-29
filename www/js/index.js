@@ -512,6 +512,10 @@ $(document).ready(function() {
         refresh();
     });
     
+    $('body').on('focusout', '.commentField', function() {
+        refresh();
+    });
+    
     document.addEventListener('focusout', function(e) {refresh()});
     
     $('body').on('tap', '.active', function() {
