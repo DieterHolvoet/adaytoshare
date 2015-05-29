@@ -5,6 +5,7 @@ jquery: true
 */
 
 var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang, emptyStorage;
+window.myScroll = myScroll;
 
 function setLanguage(language) {
     switch(language) {
@@ -605,7 +606,7 @@ $(document).ready(function() {
                 $("body").pagecontainer("change", "#page-eventlist", {});
             } else {
                 setTimeout(function () {
-                    myScroll = new iScroll("newsfeed-wrapper", {});
+                    window.myScroll = new iScroll("newsfeed-wrapper", {});
                 }, 100);
                 loadNewsfeed(code);
                 $("body").pagecontainer("change", "#page-newsfeed", {});
@@ -626,7 +627,7 @@ $(document).ready(function() {
         events = [];
         activeNewsfeed = "";
         activeMessage = "";
-        myScroll.destroy();
+        window.myScroll.destroy();
         console.log("myScroll destroyed.")
     }
     
