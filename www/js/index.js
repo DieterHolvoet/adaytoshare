@@ -627,6 +627,7 @@ $(document).ready(function() {
         activeNewsfeed = "";
         activeMessage = "";
         myScroll.destroy();
+        console.log("myScroll destroyed.")
     }
     
     $("#login-naam, #login-code").on("keyup", function(e) {
