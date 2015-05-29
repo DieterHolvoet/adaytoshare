@@ -4,7 +4,7 @@ browser: true,
 jquery: true
 */
 
-var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang;
+var events = [], activeNewsfeed, activeMessage, myScroll, refresh, lang, emptyStorage;
 
 function setLanguage(language) {
     switch(language) {
@@ -92,7 +92,17 @@ function setLanguage(language) {
     }
 }
 
+// Storage leegmaken
+emptyStorage = function() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("events");
+    localStorage.removeItem("wasVisited");
+    localStorage.removeItem("wasVisited2");
 
+    events = [];
+    activeNewsfeed = "";
+    activeMessage = "";
+}
 
 function Event(code, name, cover) {
     this.code = "";
@@ -371,18 +381,6 @@ function updateStorage() {
     localStorage.setItem("events", JSON.stringify(events));
 }
 
-function emptyStorage() {
-    localStorage.removeItem("username");
-    localStorage.removeItem("events");
-    localStorage.removeItem("wasVisited");
-    localStorage.removeItem("wasVisited2");
-    
-    events = [];
-    activeNewsfeed = "";
-    activeMessage = "";
-    myScroll.destroy();
-}
-
 function resetCamera() {
     $('.nieuwBerichtBackground').foggy({blurRadius: 5});
     $(".choiseCameraOrImport").show();
@@ -617,6 +615,19 @@ $(document).ready(function() {
             return false;
         }
     });
+    
+    // Storage leegmaken
+    emptyStorage = function() {
+        localStorage.removeItem("username");
+        localStorage.removeItem("events");
+        localStorage.removeItem("wasVisited");
+        localStorage.removeItem("wasVisited2");
+
+        events = [];
+        activeNewsfeed = "";
+        activeMessage = "";
+        myScroll.destroy();
+    }
     
     $("#login-naam, #login-code").on("keyup", function(e) {
         if($(this).val() !== "") {
