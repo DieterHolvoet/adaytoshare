@@ -106,7 +106,7 @@ emptyStorage = function() {
     events = [];
     activeNewsfeed = "";
     activeMessage = "";
-    myScroll.destroy();
+    window.myScroll.destroy();
 }
 
 function Event(code, name, cover) {
